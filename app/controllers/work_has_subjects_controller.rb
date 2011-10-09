@@ -2,7 +2,7 @@ class WorkHasSubjectsController < ApplicationController
   load_and_authorize_resource
   helper_method :get_work, :get_subject
   after_filter :solr_commit, :only => [:create, :update, :destroy]
-  cache_sweeper :page_sweeper, :only => [:create, :update, :destroy]
+  cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]
 
   # GET /work_has_subjects
   # GET /work_has_subjects.xml
