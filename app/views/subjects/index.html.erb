@@ -1,0 +1,7 @@
+<%- case when @work -%>
+  <%= render 'subjects/index_work', :subjects => @subjects -%>
+<%- when @classification -%>
+  <%= render 'subjects/index_classification', :subjects => @subjects -%>
+<%- else -%>
+  <%= render 'subjects/index', :subjects => @subjects -%>
+<%- end -%>
