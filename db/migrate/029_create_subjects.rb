@@ -19,6 +19,7 @@ class CreateSubjects < ActiveRecord::Migration
     add_index :subjects, :parent_id
     add_index :subjects, :use_term_id
     add_index :subjects, :subject_type_id
+    add_index :subjects, :required_role_id
   end
 
   def self.down
