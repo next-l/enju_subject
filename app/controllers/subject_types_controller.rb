@@ -1,5 +1,6 @@
 class SubjectTypesController < InheritedResources::Base
   respond_to :html, :xml
+  load_and_authorize_resource
 
   def update
     @subject_type = SubjectType.find(params[:id])
