@@ -4,7 +4,7 @@ class SubjectHasClassificationsController < ApplicationController
   before_filter :get_classification
 
   # GET /subject_has_classifications
-  # GET /subject_has_classifications.xml
+  # GET /subject_has_classifications.json
   def index
     case when @subject
       @subject_has_classifications = @subject.subject_has_classifications.page(params[:page])
@@ -16,21 +16,21 @@ class SubjectHasClassificationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @subject_has_classifications }
+      format.json { render :json => @subject_has_classifications }
     end
   end
 
   # GET /subject_has_classifications/1
-  # GET /subject_has_classifications/1.xml
+  # GET /subject_has_classifications/1.json
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @subject_has_classification }
+      format.json { render :json => @subject_has_classification }
     end
   end
 
   # GET /subject_has_classifications/new
-  # GET /subject_has_classifications/new.xml
+  # GET /subject_has_classifications/new.json
   def new
     @subject_has_classification = SubjectHasClassification.new
     @subject_has_classification.subject = @subject
@@ -38,7 +38,7 @@ class SubjectHasClassificationsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @subject_has_classification }
+      format.json { render :json => @subject_has_classification }
     end
   end
 
@@ -47,7 +47,7 @@ class SubjectHasClassificationsController < ApplicationController
   end
 
   # POST /subject_has_classifications
-  # POST /subject_has_classifications.xml
+  # POST /subject_has_classifications.json
   def create
     @subject_has_classification = SubjectHasClassification.new(params[:subject_has_classification])
 
@@ -55,31 +55,31 @@ class SubjectHasClassificationsController < ApplicationController
       if @subject_has_classification.save
         flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.subject_has_classification'))
         format.html { redirect_to(@subject_has_classification) }
-        format.xml  { render :xml => @subject_has_classification, :status => :created, :location => @subject_has_classification }
+        format.json { render :json => @subject_has_classification, :status => :created, :location => @subject_has_classification }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @subject_has_classification.errors, :status => :unprocessable_entity }
+        format.json { render :json => @subject_has_classification.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # PUT /subject_has_classifications/1
-  # PUT /subject_has_classifications/1.xml
+  # PUT /subject_has_classifications/1.json
   def update
     respond_to do |format|
       if @subject_has_classification.update_attributes(params[:subject_has_classification])
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.subject_has_classification'))
         format.html { redirect_to(@subject_has_classification) }
-        format.xml  { head :ok }
+        format.json { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @subject_has_classification.errors, :status => :unprocessable_entity }
+        format.json { render :json => @subject_has_classification.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /subject_has_classifications/1
-  # DELETE /subject_has_classifications/1.xml
+  # DELETE /subject_has_classifications/1.json
   def destroy
     @subject_has_classification.destroy
 
@@ -91,7 +91,7 @@ class SubjectHasClassificationsController < ApplicationController
       else
         format.html { redirect_to(subject_has_classifications_url) }
       end
-      format.xml  { head :ok }
+      format.json { head :ok }
     end
   end
 end
