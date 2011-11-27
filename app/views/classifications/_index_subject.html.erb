@@ -1,8 +1,10 @@
 <div id="content_detail" class="ui-corner-all">
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.classification')) -%></h1>
 <div id="content_list">
-  <h2><%= link_to @subject.term, @subject -%></h2>
 
+<h2><%= link_to @subject.term, @subject -%></h2>
+
+<div class="search_form">
   <%= form_for :classifications, :url => subject_classifications_path(@subject), :html => {:method => 'get'} do -%>
     <p>
       <%= t('page.search_term') -%>: <%= search_field_tag 'query', h(@query), {:id => 'search_form_top', :class => 'search_form', :placeholder => t('page.search_term')} -%>
@@ -12,6 +14,7 @@
       <%- end -%>
     </p>
   <%- end -%>
+</div>
 
 <table class="index">
   <tr>

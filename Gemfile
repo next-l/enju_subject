@@ -7,7 +7,7 @@ gemspec
 gem 'inherited_resources'
 gem 'devise'
 gem 'cancan'
-gem 'sunspot_rails', '1.3.0.rc4'
+gem 'sunspot_rails', '~> 1.3'
 gem 'attribute_normalizer', '~> 1.0'
 
 # jquery-rails is used by the dummy application

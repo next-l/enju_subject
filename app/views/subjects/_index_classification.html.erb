@@ -1,16 +1,19 @@
 <div id="content_detail" class="ui-corner-all">
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.subject')) -%></h1>
 <div id="content_list">
-  <h2 class="resource_title"><%= link_to @classification.category, @classification -%></h2>
-<%= form_for :subjects, :url => classification_subjects_path(@classification), :html => {:method => 'get'} do -%>
-  <p>
-    <%= t('page.search_term') -%>: <%= search_field_tag 'query', h(@query), {:id => 'search_form_top', :class => 'search_form', :placeholder => t('page.search_term')} -%>
-    <%= submit_tag t('page.search') -%>
-    <%- if can? :create, WorkHasSubject -%>
-      <%= render 'page/add' %>
-    <%- end -%>
-  </p>
-<%- end -%>
+
+<h2 class="resource_title"><%= link_to @classification.category, @classification -%></h2>
+<div class="search_form">
+  <%= form_for :subjects, :url => classification_subjects_path(@classification), :html => {:method => 'get'} do -%>
+    <p>
+      <%= t('page.search_term') -%>: <%= search_field_tag 'query', h(@query), {:id => 'search_form_top', :class => 'search_form', :placeholder => t('page.search_term')} -%>
+      <%= submit_tag t('page.search') -%>
+      <%- if can? :create, WorkHasSubject -%>
+        <%= render 'page/add' %>
+      <%- end -%>
+    </p>
+  <%- end -%>
+</div>
 
 <table class="index">
   <tr>
