@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Subject do
-  fixtures :all
+  fixtures :subjects
 
   it "should get term" do
     subjects(:subject_00001).term.should be_true
