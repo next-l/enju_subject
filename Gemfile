@@ -10,6 +10,8 @@ gem 'cancan'
 gem 'sunspot_rails', '~> 1.3'
 gem 'attribute_normalizer', '~> 1.0'
 gem 'will_paginate', '~> 3.0'
+gem 'sunspot_solr', '~> 1.3'
+gem 'sunspot-rails-tester'
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"

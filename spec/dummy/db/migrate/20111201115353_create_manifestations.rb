@@ -8,6 +8,7 @@ class CreateManifestations < ActiveRecord::Migration
       t.string :isbn
       t.string :nbn
       t.string :ndc
+      t.integer :carrier_type_id
       t.integer :language_id
 
       t.timestamps

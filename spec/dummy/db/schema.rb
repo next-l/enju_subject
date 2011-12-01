@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20111201163718) do
 
+  create_table "carrier_types", :force => true do |t|
+    t.string   "name",         :null => false
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "classification_types", :force => true do |t|
     t.string   "name",         :null => false
     t.text     "display_name"
@@ -58,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20111201163718) do
     t.string   "isbn"
     t.string   "nbn"
     t.string   "ndc"
+    t.integer  "carrier_type_id"
     t.integer  "language_id"
     t.datetime "created_at"
     t.datetime "updated_at"

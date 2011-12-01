@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     @subject_heading_type = SubjectHeadingType.find(params[:subject_heading_type_id]) if params[:subject_heading_type_id]
   end
 
+  def get_subject
+    @subject = Subject.find(params[:subject_id]) if params[:subject_id]
+  end
+
   def get_classification
     @classification = Classification.find(params[:classification_id]) if params[:classification_id]
   end

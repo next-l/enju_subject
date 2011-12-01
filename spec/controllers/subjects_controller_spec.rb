@@ -8,8 +8,6 @@ describe SubjectsController do
   end
 
   describe "GET index", :solr => true do
-    use_vcr_cassette "enju_subject/index"
-
     describe "When logged in as Administrator" do
       login_fixture_admin
 
@@ -51,8 +49,6 @@ describe SubjectsController do
   end
 
   describe "GET show", :solr => true do
-    use_vcr_cassette "enju_subject/show"
-
     describe "When logged in as Administrator" do
       login_admin
 
@@ -131,8 +127,6 @@ describe SubjectsController do
   end
 
   describe "GET edit" do
-    use_vcr_cassette "enju_subject/edit"
-
     describe "When logged in as Administrator" do
       login_admin
 
@@ -184,8 +178,6 @@ describe SubjectsController do
   end
 
   describe "POST create" do
-    use_vcr_cassette "enju_subject/create"
-
     before(:each) do
       @attrs = FactoryGirl.attributes_for(:subject)
       @invalid_attrs = {:term => ''}
@@ -303,8 +295,6 @@ describe SubjectsController do
   end
 
   describe "PUT update" do
-    use_vcr_cassette "enju_subject/update"
-
     before(:each) do
       @subject = FactoryGirl.create(:subject)
       @attrs = FactoryGirl.attributes_for(:subject)
@@ -401,8 +391,6 @@ describe SubjectsController do
   end
 
   describe "DELETE destroy" do
-    use_vcr_cassette "enju_subject/delete"
-
     before(:each) do
       @subject = FactoryGirl.create(:subject)
     end
