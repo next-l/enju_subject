@@ -22,6 +22,10 @@ class Subject < ActiveRecord::Base
   end
 
   normalize_attributes :term
+
+  def self.per_page
+    10
+  end
 end
 
 # == Schema Information
