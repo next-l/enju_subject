@@ -4,14 +4,7 @@ source "http://rubygems.org"
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
-gem 'inherited_resources'
-gem 'devise'
-gem 'cancan'
-gem 'sunspot_rails', '~> 1.3'
-gem 'attribute_normalizer', '~> 1.0'
-gem 'will_paginate', '~> 3.0'
-gem 'sunspot_solr', '~> 1.3'
-gem 'sunspot-rails-tester'
+gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git'
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
@@ -20,8 +13,7 @@ gem "jquery-rails"
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
-gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git'
-gem 'friendly_id', '4.0.0.beta14'
+gem 'sunspot-rails-tester'
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 1.4'
