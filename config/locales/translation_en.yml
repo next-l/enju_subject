@@ -44,3 +44,8 @@ en:
         position: Position
       subject_has_classification:
 
+  work_has_subject:
+    add_work: "Add a work"
+    add_subject: "Add a subject"
+    subjectable: "Subjectable"
+
