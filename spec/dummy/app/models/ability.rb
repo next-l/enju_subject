@@ -7,6 +7,7 @@ class Ability
       can :manage, Classification
       can :manage, ClassificationType
       can :manage, Subject
+      can :manage, SubjectType
       can :manage, SubjectHeadingType
       can :manage, SubjectHeadingTypeHasSubject
       can :manage, WorkHasSubject
@@ -15,6 +16,7 @@ class Ability
       can :read, Classification
       can :read, ClassificationType
       can :read, Subject
+      can :read, SubjectType
       can :read, SubjectHeadingType
       can :read, SubjectHeadingTypeHasSubject
       can :manage, WorkHasSubject

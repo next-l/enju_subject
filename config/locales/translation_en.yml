@@ -9,6 +9,7 @@ en:
       classification: Classification
       classification_type: Classification type
       subject_has_classification: Subject has classification
+      work: Work
 
     attributes:
       subject:

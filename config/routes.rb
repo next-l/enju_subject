@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :subject_has_classifications
   end
   resources :classification_types do
-    resource :classifications
+    resources :classifications
   end
   resources :subject_types
 

@@ -43,3 +43,4 @@ module Dummy
   end
 end
 
+require 'localized_name'

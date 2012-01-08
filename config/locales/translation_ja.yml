@@ -9,6 +9,7 @@ ja:
       classification: 分類
       classification_type: 分類型
       subject_has_classification: 件名と分類の関係
+      work: 著作
 
     attributes:
       subject:
