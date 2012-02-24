@@ -16,8 +16,8 @@ gem "jquery-rails"
 gem 'sunspot-rails-tester'
 
 group :development, :test do
-  gem 'factory_girl_rails', '~> 1.4'
-  gem 'vcr', '~> 2.0.0.beta2'
+  gem 'factory_girl_rails', '~> 1.7'
+  gem 'vcr', '~> 2.0.0.rc2'
   gem 'fakeweb'
 end
 

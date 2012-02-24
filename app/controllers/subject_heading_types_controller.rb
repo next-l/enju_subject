@@ -4,9 +4,8 @@ class SubjectHeadingTypesController < InheritedResources::Base
 
   def update
     @subject_heading_type = SubjectHeadingType.find(params[:id])
-    if params[:position]
-      @subject_heading_type.insert_at(params[:position])
-      redirect_to subject_heading_types_url
+    if params[:move]
+      move_position(@subject_heading_type, params[:position])
       return
     end
     update!

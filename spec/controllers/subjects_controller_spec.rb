@@ -3,13 +3,13 @@ require 'spec_helper'
 describe SubjectsController do
   fixtures :all
 
-  it "should" do
-    assert_kind_of Module, EnjuSubject
+  def valid_attributes
+    FactoryGirl.attributes_for(:subject)
   end
 
   describe "GET index", :solr => true do
     describe "When logged in as Administrator" do
-      login_fixture_admin
+      login_admin
 
       it "assigns all subjects as @subjects" do
         get :index
@@ -18,7 +18,7 @@ describe SubjectsController do
     end
 
     describe "When logged in as Librarian" do
-      login_fixture_librarian
+      login_librarian
 
       it "assigns all subjects as @subjects" do
         get :index
@@ -27,7 +27,7 @@ describe SubjectsController do
     end
 
     describe "When logged in as User" do
-      login_fixture_user
+      login_user
 
       it "assigns all subjects as @subjects" do
         get :index
@@ -179,7 +179,7 @@ describe SubjectsController do
 
   describe "POST create" do
     before(:each) do
-      @attrs = FactoryGirl.attributes_for(:subject)
+      @attrs = valid_attributes
       @invalid_attrs = {:term => ''}
     end
 
@@ -297,7 +297,7 @@ describe SubjectsController do
   describe "PUT update" do
     before(:each) do
       @subject = FactoryGirl.create(:subject)
-      @attrs = FactoryGirl.attributes_for(:subject)
+      @attrs = valid_attributes
       @invalid_attrs = {:term => ''}
     end
 

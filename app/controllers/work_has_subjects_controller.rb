@@ -68,10 +68,12 @@ class WorkHasSubjectsController < ApplicationController
   # PUT /work_has_subjects/1.json
   def update
     get_work
-    if @work and params[:position]
-      @work_has_subject.insert_at(params[:position])
-      redirect_to work_work_has_subjects_url(@work)
-      return
+    if @work and params[:move]
+      if ['higher', 'lower'].include?(params[:move])
+        @work_has_subject.send("move_#{params[:move]}")
+        redirect_to work_work_has_subjects_url(@work)
+        return
+      end
     end
 
     respond_to do |format|
