@@ -7,18 +7,20 @@ class Ability
       can :manage, Classification
       can :manage, ClassificationType
       can :manage, Subject
-      can :manage, SubjectType
+      can :manage, SubjectHasClassification
       can :manage, SubjectHeadingType
       can :manage, SubjectHeadingTypeHasSubject
+      can :manage, SubjectType
       can :manage, WorkHasSubject
       can :manage, Manifestation
     when 'Librarian'
       can :read, Classification
       can :read, ClassificationType
       can :read, Subject
-      can :read, SubjectType
+      can :manage, SubjectHasClassification
       can :read, SubjectHeadingType
       can :read, SubjectHeadingTypeHasSubject
+      can :read, SubjectType
       can :manage, WorkHasSubject
       can :read, Manifestation
     when 'User'

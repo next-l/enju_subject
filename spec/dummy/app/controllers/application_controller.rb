@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     return if performed?
     if user_signed_in?
       respond_to do |format|
-        format.html {render :file => "#{Rails.root}/public/404.html", :status => 403}
+        format.html {render :file => "#{Rails.root}/public/404", :status => 403}
         format.xml
         format.json
       end
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def render_404
     return if performed?
     respond_to do |format|
-      format.html {render :file => "#{Rails.root}/public/404.html", :status => 404}
+      format.html {render :file => "#{Rails.root}/public/404", :status => 404}
       format.xml
       format.json
     end
