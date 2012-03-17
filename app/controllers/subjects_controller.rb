@@ -105,7 +105,7 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /subjects/1;edit
+  # GET /subjects/1/edit
   def edit
     if @work
       @subject = @work.subjects.find(params[:id])
@@ -137,7 +137,7 @@ class SubjectsController < ApplicationController
         @subject_heading_type = subject_heading_type
         prepare_options
         format.html { render :action => "new" }
-        format.json { render :json => @subject.errors.to_json }
+        format.json { render :json => @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -158,7 +158,7 @@ class SubjectsController < ApplicationController
       else
         prepare_options
         format.html { render :action => "edit" }
-        format.json { render :json => @subject.errors.to_json }
+        format.json { render :json => @subject.errors, status: :unprocessable_entity }
       end
     end
   end
