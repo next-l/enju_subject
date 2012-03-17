@@ -57,7 +57,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       format.html # index.rhtml
-      format.json { render :json => @subjects.to_json }
+      format.json { render :json => @subjects }
       format.rss
       format.atom
     end
@@ -88,7 +88,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.json { render :json => @subject.to_json }
+      format.json { render :json => @subject }
       format.js
     end
   end

@@ -27,6 +27,7 @@ class Ability
       can :read, Classification
       can :read, ClassificationType
       can :read, Subject
+      can :read, SubjectHasClassification
       can :read, SubjectHeadingType
       can :read, WorkHasSubject
       can :read, Manifestation
@@ -34,6 +35,7 @@ class Ability
       can :read, Classification
       can :read, ClassificationType
       can :read, Subject
+      can :read, SubjectHasClassification
       can :read, SubjectHeadingType
       can :read, WorkHasSubject
       can :read, Manifestation

@@ -41,8 +41,6 @@ class ClassificationsController < ApplicationController
   # GET /classifications/1
   # GET /classifications/1.json
   def show
-    @classification = Classification.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @classification }
@@ -64,7 +62,6 @@ class ClassificationsController < ApplicationController
 
   # GET /classifications/1/edit
   def edit
-    @classification = Classification.find(params[:id])
     @classification_types = ClassificationType.all
   end
 
@@ -88,8 +85,6 @@ class ClassificationsController < ApplicationController
   # PUT /classifications/1
   # PUT /classifications/1.json
   def update
-    @classification = Classification.find(params[:id])
-
     respond_to do |format|
       if @classification.update_attributes(params[:classification])
         format.html { redirect_to @classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.classification')) }
