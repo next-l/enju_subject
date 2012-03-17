@@ -53,8 +53,7 @@ class SubjectHasClassificationsController < ApplicationController
 
     respond_to do |format|
       if @subject_has_classification.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.subject_has_classification'))
-        format.html { redirect_to(@subject_has_classification) }
+        format.html { redirect_to @subject_has_classification, :notice => t('controller.successfully_created', :model => t('activerecord.models.subject_has_classification')) }
         format.json { render :json => @subject_has_classification, :status => :created, :location => @subject_has_classification }
       else
         format.html { render :action => "new" }
@@ -68,9 +67,8 @@ class SubjectHasClassificationsController < ApplicationController
   def update
     respond_to do |format|
       if @subject_has_classification.update_attributes(params[:subject_has_classification])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.subject_has_classification'))
-        format.html { redirect_to(@subject_has_classification) }
-        format.json { head :ok }
+        format.html { redirect_to @subject_has_classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.subject_has_classification')) }
+        format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @subject_has_classification.errors, :status => :unprocessable_entity }
@@ -84,14 +82,16 @@ class SubjectHasClassificationsController < ApplicationController
     @subject_has_classification.destroy
 
     respond_to do |format|
-      if @subject
-        format.html { redirect_to(subject_subject_has_classifications_url(@subject)) }
-      elsif @classification
-        format.html { redirect_to(classification_subject_has_classifications_url(@classification)) }
-      else
-        format.html { redirect_to(subject_has_classifications_url) }
-      end
-      format.json { head :ok }
+      format.html {
+        if @subject
+          redirect_to subject_subject_has_classifications_url(@subject)
+        elsif @classification
+          redirect_to classification_subject_has_classifications_url(@classification)
+        else
+          redirect_to subject_has_classifications_url
+        end
+      }
+      format.json { head :no_content }
     end
   end
 end

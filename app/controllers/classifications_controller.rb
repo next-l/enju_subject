@@ -75,8 +75,7 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       if @classification.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.classification'))
-        format.html { redirect_to(@classification) }
+        format.html { redirect_to @classification, :notice => t('controller.successfully_created', :model => t('activerecord.models.classification')) }
         format.json { render :json => @classification, :status => :created, :location => @classification }
       else
         @classification_types = ClassificationType.all
@@ -93,9 +92,8 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       if @classification.update_attributes(params[:classification])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.classification'))
-        format.html { redirect_to(@classification) }
-        format.json { head :ok }
+        format.html { redirect_to @classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.classification')) }
+        format.json { head :no_content }
       else
         @classification_types = ClassificationType.all
         format.html { render :action => "edit" }
@@ -111,8 +109,8 @@ class ClassificationsController < ApplicationController
     @classification.destroy
 
     respond_to do |format|
-      format.html { redirect_to(classifications_url) }
-      format.json { head :ok }
+      format.html { redirect_to classifications_url }
+      format.json { head :no_content }
     end
   end
 

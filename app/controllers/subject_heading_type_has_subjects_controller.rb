@@ -44,8 +44,7 @@ class SubjectHeadingTypeHasSubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject_heading_type_has_subject.save
-        flash[:notice] = 'SubjectHeadingTypeHasSubject was successfully created.'
-        format.html { redirect_to(@subject_heading_type_has_subject) }
+        format.html { redirect_to @subject_heading_type_has_subject, :notice => 'SubjectHeadingTypeHasSubject was successfully created.' }
         format.json { render :json => @subject_heading_type_has_subject, :status => :created, :location => @subject_heading_type_has_subject }
       else
         format.html { render :action => "new" }
@@ -59,9 +58,8 @@ class SubjectHeadingTypeHasSubjectsController < ApplicationController
   def update
     respond_to do |format|
       if @subject_heading_type_has_subject.update_attributes(params[:subject_heading_type_has_subject])
-        flash[:notice] = 'SubjectHeadingTypeHasSubject was successfully updated.'
-        format.html { redirect_to(@subject_heading_type_has_subject) }
-        format.json { head :ok }
+        format.html { redirect_to @subject_heading_type_has_subject, :notice => 'SubjectHeadingTypeHasSubject was successfully updated.' }
+        format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @subject_heading_type_has_subject.errors, :status => :unprocessable_entity }
@@ -75,8 +73,8 @@ class SubjectHeadingTypeHasSubjectsController < ApplicationController
     @subject_heading_type_has_subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to(subject_heading_type_has_subjects_url) }
-      format.json { head :ok }
+      format.html { redirect_to subject_heading_type_has_subjects_url }
+      format.json { head :no_content }
     end
   end
 end

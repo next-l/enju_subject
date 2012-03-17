@@ -54,8 +54,7 @@ class WorkHasSubjectsController < ApplicationController
 
     respond_to do |format|
       if @work_has_subject.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.work_has_subject'))
-        format.html { redirect_to(@work_has_subject) }
+        format.html { redirect_to @work_has_subject, :notice => t('controller.successfully_created', :model => t('activerecord.models.work_has_subject')) }
         format.json { render :json => @work_has_subject, :status => :created, :location => @work_has_subject }
       else
         format.html { render :action => "new" }
@@ -78,9 +77,8 @@ class WorkHasSubjectsController < ApplicationController
 
     respond_to do |format|
       if @work_has_subject.update_attributes(params[:work_has_subject])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.work_has_subject'))
-        format.html { redirect_to(@work_has_subject) }
-        format.json { head :ok }
+        format.html { redirect_to @work_has_subject, :notice => t('controller.successfully_updated', :model => t('activerecord.models.work_has_subject')) }
+        format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @work_has_subject.errors, :status => :unprocessable_entity }
@@ -95,17 +93,17 @@ class WorkHasSubjectsController < ApplicationController
     @work_has_subject.destroy
 
     respond_to do |format|
-      case
-      when @work
-        format.html { redirect_to(work_work_has_subjects_url(@work)) }
-        format.json { head :ok }
-      when @subject
-        format.html { redirect_to(subject_work_has_subjects_url(@subject)) }
-        format.json { head :ok }
-      else
-        format.html { redirect_to(work_has_subjects_url) }
-        format.json { head :ok }
-      end
+      format.html {
+        case
+        when @work
+          redirect_to work_work_has_subjects_url(@work)
+        when @subject
+          redirect_to subject_work_has_subjects_url(@subject)
+        else
+          redirect_to work_has_subjects_url
+        end
+      }
+      format.json { head :no_content }
     end
   end
 end
