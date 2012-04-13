@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201163718) do
+ActiveRecord::Schema.define(:version => 20120406020752) do
 
   create_table "carrier_types", :force => true do |t|
     t.string   "name",         :null => false
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20111201163718) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.string   "url"
   end
 
   add_index "subjects", ["parent_id"], :name => "index_subjects_on_parent_id"
