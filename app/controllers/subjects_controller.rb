@@ -137,7 +137,7 @@ class SubjectsController < ApplicationController
         @subject_heading_type = subject_heading_type
         prepare_options
         format.html { render :action => "new" }
-        format.json { render :json => @subject.errors, status: :unprocessable_entity }
+        format.json { render :json => @subject.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -158,7 +158,7 @@ class SubjectsController < ApplicationController
       else
         prepare_options
         format.html { render :action => "edit" }
-        format.json { render :json => @subject.errors, status: :unprocessable_entity }
+        format.json { render :json => @subject.errors, :status => :unprocessable_entity }
       end
     end
   end
