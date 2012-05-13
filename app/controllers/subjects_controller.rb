@@ -56,7 +56,7 @@ class SubjectsController < ApplicationController
     flash[:page_info] = {:page => page, :query => query}
 
     respond_to do |format|
-      format.html # index.rhtml
+      format.html # index.html.erb
       format.json { render :json => @subjects }
       format.rss
       format.atom
@@ -87,7 +87,7 @@ class SubjectsController < ApplicationController
     @works = search.execute!.results
 
     respond_to do |format|
-      format.html # show.rhtml
+      format.html # show.html.erb
       format.json { render :json => @subject }
       format.js
     end
