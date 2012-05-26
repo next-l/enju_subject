@@ -68,11 +68,9 @@ class WorkHasSubjectsController < ApplicationController
   def update
     get_work
     if @work and params[:move]
-      if ['higher', 'lower'].include?(params[:move])
-        @work_has_subject.send("move_#{params[:move]}")
-        redirect_to work_work_has_subjects_url(@work)
-        return
-      end
+      move_position(@work_has_subject, params[:move], false)
+      redirect_to work_work_has_subjects_url(@work)
+      return
     end
 
     respond_to do |format|
