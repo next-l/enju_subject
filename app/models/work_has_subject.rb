@@ -1,4 +1,5 @@
 class WorkHasSubject < ActiveRecord::Base
+  attr_accessible :subject_id, :work_id
   belongs_to :subject
   belongs_to :work, :class_name => 'Manifestation'
 

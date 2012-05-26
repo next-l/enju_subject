@@ -1,4 +1,7 @@
 class Subject < ActiveRecord::Base
+  attr_accessible :parent_id, :use_term_id, :term, :term_transcription,
+    :subject_type_id, :note, :required_role_id
+
   has_many :work_has_subjects, :dependent => :destroy
   has_many :works, :through => :work_has_subjects, :class_name => 'Manifestation'
   belongs_to :subject_type

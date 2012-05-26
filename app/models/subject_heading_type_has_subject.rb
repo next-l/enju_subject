@@ -1,4 +1,5 @@
 class SubjectHeadingTypeHasSubject < ActiveRecord::Base
+  attr_accessible :subject_id, :subject_heading_type_id
   belongs_to :subject #, :polymorphic => true
   belongs_to :subject_heading_type
 

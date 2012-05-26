@@ -1,4 +1,5 @@
 class SubjectHasClassification < ActiveRecord::Base
+  attr_accessible :subject_id, :classification_id
   belongs_to :subject #, :polymorphic => true, :validate => true
   belongs_to :classification, :validate => true
 
