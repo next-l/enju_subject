@@ -26,7 +26,7 @@
         <%= link_to t('page.edit'), edit_classification_type_path(classification_type) -%>
       <% end %>
       <%- if can? :destroy, classification_type -%>
-        <%= link_to t('page.destroy'), classification_type, :confirm => t('page.are_you_sure'), :method => :delete -%>
+        <%= link_to t('page.destroy'), classification_type, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <%- end -%>
     </td>
   </tr>

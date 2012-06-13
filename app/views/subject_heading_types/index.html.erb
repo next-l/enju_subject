@@ -26,7 +26,7 @@
         <%= link_to t('page.edit'), edit_subject_heading_type_path(subject_heading_type) -%>
       <% end %>
       <%- if can? :destroy, subject_heading_type -%>
-        <%= link_to t('page.destroy'), subject_heading_type, :confirm => t('page.are_you_sure'), :method => :delete -%>
+        <%= link_to t('page.destroy'), subject_heading_type, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <%- end -%>
     </td>
   </tr>

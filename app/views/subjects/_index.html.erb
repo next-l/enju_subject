@@ -24,7 +24,7 @@
           <%= link_to t('page.edit'), edit_subject_path(subject) -%>
         <%- end -%>
         <%- if can? :destroy, subject -%>
-          <%= link_to t('page.destroy'), subject, :confirm => t('page.are_you_sure'), :method => :delete -%>
+          <%= link_to t('page.destroy'), subject, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
         <%- end -%>
       </td>
     </tr>
