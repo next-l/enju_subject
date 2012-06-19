@@ -18,7 +18,7 @@
     <td>
       <% if can? :destroy, subject_has_classification %>
         <%= link_to t('page.edit'), edit_subject_has_classification_path(subject_has_classification) -%>
-        <%= link_to t('page.destroy'), subject_has_classification, :confirm => t('page.are_you_sure'), :method => :delete -%>
+        <%= link_to t('page.destroy'), subject_has_classification, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <% end %>
     </td>
   </tr>
