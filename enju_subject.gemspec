@@ -27,11 +27,13 @@ Gem::Specification.new do |s|
   s.add_dependency "sunspot_solr"
   s.add_dependency "dynamic_form"
   s.add_dependency "acts_as_list", "~> 0.1.6"
+  s.add_dependency "enju_core"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency "factory_girl_rails"
-  s.add_development_dependency "sunspot-rails-tester"
-  s.add_development_dependency "vcr", "~> 2.1"
+  s.add_development_dependency "vcr", "~> 2.2"
   s.add_development_dependency "fakeweb"
+  s.add_development_dependency "enju_biblio"
+  s.add_development_dependency "enju_manifestation_viewer"
 end
