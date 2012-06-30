@@ -30,7 +30,7 @@
     <%= render 'subjects/show_work_list' -%>
     <%- cache(:controller => :subjects, :action => :show, :id => @subject.id, :page => 'detail', :role => current_user_role_name, :locale => @locale, :subject_id => nil) do -%>
     <div id="classification">
-      <table class="index">
+      <table class="table table-striped index">
         <tr>
           <th><%= t('activerecord.attributes.classification.category') -%></th>
           <th><%= t('activerecord.models.classification_type') -%></th>
