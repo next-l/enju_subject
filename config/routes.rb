@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :classifications
   end
 
-  resources :works, :controller => 'manifestations' do
+  resources :works, :controller => 'manifestations', :except => [:index, :new, :create] do
     resources :subjects
     resources :work_has_subjects
   end
