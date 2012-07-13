@@ -25,7 +25,7 @@ class Classification < ActiveRecord::Base
 
   private
   def subject
-    self.subjects.collect(&:term) + self.subjects.collect(&:term_transcription)
+    subjects.collect{|s| [s.term, s.term_transcription]}
   end
 end
 
