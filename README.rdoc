@@ -1,3 +1,3 @@
-= EnjuSubject
+= EnjuSubject {<img src="https://secure.travis-ci.org/nabeta/enju_subject.png?branch=master" alt="Build Status" />}[http://travis-ci.org/nabeta/enju_subject]
 
 This project rocks and uses MIT-LICENSE.
