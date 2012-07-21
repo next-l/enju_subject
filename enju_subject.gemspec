@@ -17,17 +17,9 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2"
-  s.add_dependency "friendly_id", "~> 4.0"
-  s.add_dependency "will_paginate", "~> 3.0"
-  s.add_dependency "devise"
-  s.add_dependency "cancan"
-  s.add_dependency "inherited_resources"
-  s.add_dependency "attribute_normalizer", "~> 1.1"
-  s.add_dependency "sunspot_rails"
-  s.add_dependency "sunspot_solr"
-  s.add_dependency "dynamic_form"
-  s.add_dependency "acts_as_list", "~> 0.1.6"
   s.add_dependency "enju_core"
+  s.add_dependency "inherited_resources"
+  s.add_dependency "dynamic_form"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
@@ -36,4 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "fakeweb"
   s.add_development_dependency "enju_biblio"
   s.add_development_dependency "enju_manifestation_viewer"
+  s.add_development_dependency "sunspot_solr", "~> 2.0.0.pre.120720"
 end
