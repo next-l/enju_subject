@@ -11,10 +11,6 @@ class WorkHasSubject < ActiveRecord::Base
 
   acts_as_list :scope => :work_id
 
-  def self.per_page
-    10
-  end
-
   def reindex
     work.try(:index)
     subject.try(:index)
