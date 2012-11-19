@@ -21,12 +21,12 @@ end
 #
 # Table name: work_has_subjects
 #
-#  id           :integer         not null, primary key
+#  id           :integer          not null, primary key
 #  subject_id   :integer
 #  subject_type :string(255)
 #  work_id      :integer
+#  position     :integer
 #  created_at   :datetime
 #  updated_at   :datetime
-#  position     :integer
 #
 

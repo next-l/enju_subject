@@ -10,10 +10,10 @@ end
 #
 # Table name: subject_has_classifications
 #
-#  id                :integer         not null, primary key
+#  id                :integer          not null, primary key
 #  subject_id        :integer
 #  subject_type      :string(255)
-#  classification_id :integer         not null
+#  classification_id :integer          not null
 #  created_at        :datetime
 #  updated_at        :datetime
 #

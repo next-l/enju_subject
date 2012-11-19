@@ -12,10 +12,10 @@ end
 #
 # Table name: subject_heading_type_has_subjects
 #
-#  id                      :integer         not null, primary key
-#  subject_id              :integer         not null
+#  id                      :integer          not null, primary key
+#  subject_id              :integer          not null
 #  subject_type            :string(255)
-#  subject_heading_type_id :integer         not null
+#  subject_heading_type_id :integer          not null
 #  created_at              :datetime
 #  updated_at              :datetime
 #
