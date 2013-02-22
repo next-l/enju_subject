@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2"
-  s.add_dependency "enju_core"
+  s.add_dependency "enju_core", "~> 0.1.1.pre3"
   s.add_dependency "inherited_resources"
   s.add_dependency "dynamic_form"
 
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "vcr", "~> 2.4"
   s.add_development_dependency "fakeweb"
-  s.add_development_dependency "enju_biblio", "~> 0.1.0.pre13"
-  s.add_development_dependency "enju_manifestation_viewer", "~> 0.1.0.pre2"
+  s.add_development_dependency "enju_biblio", "~> 0.1.0.pre17"
+  s.add_development_dependency "enju_manifestation_viewer", "~> 0.1.0.pre3"
   s.add_development_dependency "sunspot_solr", "~> 2.0.0.pre.130115"
 end
