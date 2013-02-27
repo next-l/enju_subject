@@ -26,5 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "vcr", "~> 2.4"
   s.add_development_dependency "enju_biblio", "~> 0.1.0.pre19"
-  s.add_development_dependency "sunspot_solr", "~> 2.0.0.pre.130115"
+  s.add_development_dependency "sunspot_solr", "~> 2.0.0"
 end
