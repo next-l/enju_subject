@@ -1,21 +1,35 @@
-class Manifestation < ActiveRecord::Base
-  has_many :work_has_subjects, :foreign_key => 'work_id', :dependent => :destroy
-  has_many :subjects, :through => :work_has_subjects
+module EnjuSubject
+  module EnjuManifestation
+    def self.included(base)
+      base.extend ClassMethods
+    end
 
-  searchable do
-    text :subject do
-      subjects.collect(&:term) + subjects.collect(&:term_transcription)
-    end
-    string :subject, :multiple => true do
-      subjects.collect(&:term) + subjects.collect(&:term_transcription)
-    end
-    string :classification, :multiple => true do
-      classifications.collect(&:category)
-    end
-    integer :subject_ids, :multiple => true
-  end
+    module ClassMethods
+      def enju_subject_model
+        include InstanceMethods
+        attr_accessible :ndc, :classification_number
+        has_many :work_has_subjects, :foreign_key => 'work_id', :dependent => :destroy
+        has_many :subjects, :through => :work_has_subjects
 
-  def classifications
-    subjects.collect(&:classifications).flatten
+        searchable do
+          text :subject do
+            subjects.map{|s| [:term, :term_transcription]}.compact
+          end
+          string :subject, :multiple => true do
+            subjects.map{|s| [:term, :term_transcription]}.compact
+          end
+          string :classification, :multiple => true do
+            classifications.collect(&:category)
+          end
+          integer :subject_ids, :multiple => true
+        end
+      end
+    end
+
+    module InstanceMethods
+      def classifications
+        subjects.collect(&:classifications).flatten
+      end
+    end
   end
 end

@@ -1,4 +1,5 @@
 require "enju_subject/engine"
+require "enju_subject/manifestation"
 
 module EnjuSubject
   def self.included(base)
@@ -28,4 +29,5 @@ module EnjuSubject
   end
 end
 
-ActionController::Base.send(:include, EnjuSubject)
+ActionController::Base.send :include, EnjuSubject
+ActiveRecord::Base.send :include, EnjuSubject::EnjuManifestation

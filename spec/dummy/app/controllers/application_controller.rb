@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied, :with => :render_403
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
+  enju_biblio
+  enju_subject
+
   private
   def render_403
     return if performed?
@@ -28,23 +31,6 @@ class ApplicationController < ActionController::Base
       format.xml
       format.json
     end
-  end
-
-  def get_work
-    @work = Manifestation.find(params[:work_id]) if params[:work_id]
-    authorize! :show, @work if @work
-  end
-
-  def get_subject_heading_type
-    @subject_heading_type = SubjectHeadingType.find(params[:subject_heading_type_id]) if params[:subject_heading_type_id]
-  end
-
-  def get_subject
-    @subject = Subject.find(params[:subject_id]) if params[:subject_id]
-  end
-
-  def get_classification
-    @classification = Classification.find(params[:classification_id]) if params[:classification_id]
   end
 
   def solr_commit
