@@ -14,7 +14,7 @@
         can :manage, WorkHasSubject
         if LibraryGroup.site_config.network_access_allowed?(ip_address)
           can [:read, :create, :update], ClassificationType
-          can :destroy, ClassificationType do |classification_type|
+          can [:destroy, :delete], ClassificationType do |classification_type|
             classification_type.classifications.empty?
           end
           can :manage, [

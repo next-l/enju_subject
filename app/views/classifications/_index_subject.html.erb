@@ -31,12 +31,12 @@
     <td><%= classification.note -%></td>
     <td><%= classification.classification_type.display_name.localize -%></td>
     <td>
-      <%- if can? :destroy, classification -%>
+      <%- if can? :delete, classification -%>
         <%= link_to t('page.edit'), edit_classification_path(classification) -%>
       <% end %>
     </td>
     <td>
-      <%- if can? :destroy, classification -%>
+      <%- if can? :delete, classification -%>
         <%- if params[:mode] == 'add' -%>
           <%= link_to t('page.add'), new_subject_subject_has_classification_path(@subject, :classification_id => classification.id) unless @subject.classifications.include?(classification) -%>
         <%- else -%>

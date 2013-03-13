@@ -25,7 +25,7 @@
     <td><%= classification.note -%></td>
     <td><%= link_to classification.classification_type.display_name.localize, classification.classification_type -%></td>
     <td>
-      <%- if can? :destroy, classification -%>
+      <%- if can? :delete, classification -%>
         <%= link_to t('page.edit'), edit_classification_path(classification) -%>
         <%= link_to t('page.destroy'), classification, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <%- end -%>
