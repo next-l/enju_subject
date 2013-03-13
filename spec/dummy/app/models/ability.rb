@@ -2,14 +2,9 @@
   class Ability
     include CanCan::Ability
         
-    def initialize(user, ip_address = nil)
+    def initialize(user, ip_address = '0.0.0.0')
       case user.try(:role).try(:name)
       when 'Administrator'
-        can :read, [
-          ClassificationType,
-          SubjectHeadingType,
-          SubjectType
-        ]
         can :manage, [
           Classification,
           Subject,
@@ -18,7 +13,7 @@
         ]
         can :manage, WorkHasSubject
         if LibraryGroup.site_config.network_access_allowed?(ip_address)
-          can [:create, :update], ClassificationType
+          can [:read, :create, :update], ClassificationType
           can :destroy, ClassificationType do |classification_type|
             classification_type.classifications.empty?
           end
@@ -29,9 +24,19 @@
             SubjectHeadingType,
             SubjectType
           ]
+        else
+          can :read, [
+            ClassificationType,
+            SubjectHeadingType,
+            SubjectType
+          ]
         end
         can :read, Manifestation
       when 'Librarian'
+        can :manage, [
+          SubjectHasClassification,
+          WorkHasSubject
+        ]
         can :read, [
           Classification,
           ClassificationType,
@@ -39,10 +44,6 @@
           SubjectType,
           SubjectHeadingType,
           SubjectHeadingTypeHasSubject
-        ]
-        can :manage, [
-          SubjectHasClassification,
-          WorkHasSubject
         ]
         can :read, Manifestation
       when 'User'

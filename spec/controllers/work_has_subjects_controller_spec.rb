@@ -38,7 +38,7 @@ describe WorkHasSubjectsController do
     end
 
     describe "When not logged in" do
-      it "should not assign work_has_subjects as @work_has_subjects" do
+      it "assigns all work_has_subjects as @work_has_subjects" do
         get :index
         assigns(:work_has_subjects).should eq(WorkHasSubject.all)
       end
