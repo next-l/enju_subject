@@ -2,7 +2,7 @@
 class SubjectsController < ApplicationController
   load_and_authorize_resource :except => :index
   authorize_resource :only => :index
-  before_filter :get_work, :get_subject_heading_type, :get_classification
+  before_filter :get_subject, :get_subject_heading_type, :get_classification
   before_filter :prepare_options, :only => :new
   after_filter :solr_commit, :only => [:create, :update, :destroy]
   cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]

@@ -1,4 +1,4 @@
-#module EnjuSubject
+module EnjuSubject
   class Ability
     include CanCan::Ability
         
@@ -30,7 +30,6 @@
             SubjectType
           ]
         end
-        can :read, Manifestation
       when 'Librarian'
         can :read, [
           Classification,
@@ -44,7 +43,6 @@
           SubjectHasClassification,
           WorkHasSubject
         ]
-        can :read, Manifestation
       when 'User'
         can :read, [
           Classification,
@@ -54,7 +52,6 @@
           SubjectHeadingType,
           WorkHasSubject
         ]
-        can :read, Manifestation
       else
         can :read, [
           Classification,
@@ -64,8 +61,7 @@
           SubjectHeadingType,
           WorkHasSubject
         ]
-        can :read, Manifestation
       end
     end
   end
-#end
+end

@@ -42,11 +42,13 @@ describe SubjectsController do
     describe "When not logged in" do
       it "assigns all subjects as @subjects" do
         get :index
+        response.should be_success
         assigns(:subjects).should_not be_nil
       end
 
       it "assigns all subjects as @subjects with work_id" do
         get :index, :work_id => 1
+        response.should be_success
         assigns(:subjects).should_not be_nil
       end
     end
