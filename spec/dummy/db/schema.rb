@@ -825,6 +825,7 @@ ActiveRecord::Schema.define(:version => 20120602141129) do
     t.integer  "position"
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
+    t.datetime "deleted_at"
     t.integer  "number_of_day_to_notify_overdue",  :default => 1, :null => false
     t.integer  "number_of_day_to_notify_due_date", :default => 7, :null => false
     t.integer  "number_of_time_to_notify_overdue", :default => 3, :null => false
