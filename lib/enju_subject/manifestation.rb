@@ -13,10 +13,10 @@ module EnjuSubject
 
         searchable do
           text :subject do
-            subjects.map{|s| [:term, :term_transcription]}.compact
+            subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact
           end
           string :subject, :multiple => true do
-            subjects.map{|s| [:term, :term_transcription]}.compact
+            subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact
           end
           string :classification, :multiple => true do
             classifications.collect(&:category)
