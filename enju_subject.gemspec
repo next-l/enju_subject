@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "vcr", "~> 2.4"
-  s.add_development_dependency "enju_biblio", "~> 0.1.0.pre28"
-  s.add_development_dependency "enju_library", "~> 0.1.0.pre16"
+  s.add_development_dependency "enju_biblio", "~> 0.1.0.pre29"
+  s.add_development_dependency "enju_library", "~> 0.1.0.pre17"
   s.add_development_dependency "sunspot_solr", "~> 2.0.0"
 end
