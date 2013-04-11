@@ -5,7 +5,7 @@ module EnjuSubject
     end
 
     module ClassMethods
-      def enju_subject_model
+      def enju_subject_manifestation_model
         include InstanceMethods
         attr_accessible :ndc, :classification_number
         has_many :work_has_subjects, :foreign_key => 'work_id', :dependent => :destroy
