@@ -6,7 +6,5 @@ class EnjuSubject::SetupGenerator < Rails::Generators::Base
     rake("enju_subject_engine:install:migrations")
     inject_into_file 'app/controllers/application_controller.rb',
       "  enju_subject\n", :after => "enju_library\n"
-    inject_into_class 'app/models/manifestation.rb', Manifestation,
-      "  enju_subject_manifestation_model\n"
   end
 end
