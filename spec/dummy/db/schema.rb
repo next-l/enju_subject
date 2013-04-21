@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120602141129) do
+ActiveRecord::Schema.define(:version => 20130421164124) do
 
   create_table "accepts", :force => true do |t|
     t.integer  "basket_id"
@@ -199,28 +199,24 @@ ActiveRecord::Schema.define(:version => 20120602141129) do
   create_table "items", :force => true do |t|
     t.string   "call_number"
     t.string   "item_identifier"
-    t.integer  "circulation_status_id", :default => 5,     :null => false
-    t.integer  "checkout_type_id",      :default => 1,     :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.datetime "deleted_at"
-    t.integer  "shelf_id",              :default => 1,     :null => false
-    t.boolean  "include_supplements",   :default => false, :null => false
+    t.integer  "shelf_id",            :default => 1,     :null => false
+    t.boolean  "include_supplements", :default => false, :null => false
     t.text     "note"
     t.string   "url"
     t.integer  "price"
-    t.integer  "lock_version",          :default => 0,     :null => false
-    t.integer  "required_role_id",      :default => 1,     :null => false
+    t.integer  "lock_version",        :default => 0,     :null => false
+    t.integer  "required_role_id",    :default => 1,     :null => false
     t.string   "state"
-    t.integer  "required_score",        :default => 0,     :null => false
+    t.integer  "required_score",      :default => 0,     :null => false
     t.datetime "acquired_at"
     t.integer  "bookstore_id"
     t.integer  "budget_type_id"
   end
 
   add_index "items", ["bookstore_id"], :name => "index_items_on_bookstore_id"
-  add_index "items", ["checkout_type_id"], :name => "index_items_on_checkout_type_id"
-  add_index "items", ["circulation_status_id"], :name => "index_items_on_circulation_status_id"
   add_index "items", ["item_identifier"], :name => "index_items_on_item_identifier"
   add_index "items", ["required_role_id"], :name => "index_items_on_required_role_id"
   add_index "items", ["shelf_id"], :name => "index_items_on_shelf_id"
@@ -379,6 +375,7 @@ ActiveRecord::Schema.define(:version => 20120602141129) do
     t.integer  "year_of_publication"
     t.text     "attachment_meta"
     t.integer  "month_of_publication"
+    t.boolean  "periodical"
   end
 
   add_index "manifestations", ["access_address"], :name => "index_manifestations_on_access_address"
@@ -701,19 +698,23 @@ ActiveRecord::Schema.define(:version => 20120602141129) do
     t.text     "title_subseries"
     t.text     "numbering_subseries"
     t.integer  "position"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.text     "title_transcription"
     t.text     "title_alternative"
     t.string   "series_statement_identifier"
     t.string   "issn"
     t.boolean  "periodical"
-    t.integer  "root_manifestation_id"
+    t.integer  "manifestation_id"
     t.text     "note"
     t.text     "title_subseries_transcription"
+    t.text     "creator_string"
+    t.text     "volume_number_string"
+    t.text     "volume_number_transcription_string"
+    t.boolean  "series_master"
   end
 
-  add_index "series_statements", ["root_manifestation_id"], :name => "index_series_statements_on_manifestation_id"
+  add_index "series_statements", ["manifestation_id"], :name => "index_series_statements_on_manifestation_id"
   add_index "series_statements", ["series_statement_identifier"], :name => "index_series_statements_on_series_statement_identifier"
 
   create_table "shelves", :force => true do |t|
