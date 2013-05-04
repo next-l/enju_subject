@@ -44,5 +44,7 @@ end
 #  created_at         :datetime
 #  updated_at         :datetime
 #  deleted_at         :datetime
+#  url                :string(255)
+#  manifestation_id   :integer
 #
 

@@ -26,7 +26,7 @@ end
 #  subject_type :string(255)
 #  work_id      :integer
 #  position     :integer
-#  created_at   :datetime
-#  updated_at   :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
