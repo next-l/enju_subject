@@ -2,14 +2,10 @@ ja:
   activerecord:
     models:
       subject: 件名
-      work_has_subject: 資料と件名の関係
       subject_type: 件名の種類
       subject_heading_type: 件名標目の種類
-      subject_heading_type_has_subject: 件名標目と件名の関係
       classification: 分類
-      classification_type: 分類型
-      subject_has_classification: 件名と分類の関係
-      work: 著作
+      classification_type: 分類の種類
 
     attributes:
       subject:
@@ -18,10 +14,6 @@ ja:
         scope_note: スコープ注記
         note: 注記
         lock_version: ロックバージョン
-      work_has_subject:
-        work: 書いた資料
-        subject: 件名
-        subjectable_type: 件名付与対象の種類
       subject_type:
         name: 名前
         display_name: 表示名
@@ -32,7 +24,6 @@ ja:
         display_name: 表示名
         note: 注記
         position: 位置
-      subject_heading_type_has_subject:
       classification:
         category: カテゴリー
         name: 名前
@@ -42,10 +33,3 @@ ja:
         display_name: 表示名
         note: 注記
         position: 位置
-      subject_has_classification:
-
-  work_has_subject:
-    add_work: "書いた資料を追加する"
-    add_subject: "件名を追加する"
-    subjectable: "件名付与対象"
-
