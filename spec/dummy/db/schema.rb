@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504143515) do
+ActiveRecord::Schema.define(:version => 20130504195916) do
 
   create_table "accepts", :force => true do |t|
     t.integer  "basket_id"
@@ -734,16 +734,6 @@ ActiveRecord::Schema.define(:version => 20130504143515) do
 
   add_index "shelves", ["library_id"], :name => "index_shelves_on_library_id"
 
-  create_table "subject_heading_type_has_subjects", :force => true do |t|
-    t.integer  "subject_id",              :null => false
-    t.string   "subject_type"
-    t.integer  "subject_heading_type_id", :null => false
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "subject_heading_type_has_subjects", ["subject_id"], :name => "index_subject_heading_type_has_subjects_on_subject_id"
-
   create_table "subject_heading_types", :force => true do |t|
     t.string   "name",         :null => false
     t.text     "display_name"
@@ -767,16 +757,17 @@ ActiveRecord::Schema.define(:version => 20130504143515) do
     t.integer  "use_term_id"
     t.string   "term"
     t.text     "term_transcription"
-    t.integer  "subject_type_id",                   :null => false
+    t.integer  "subject_type_id",                        :null => false
     t.text     "scope_note"
     t.text     "note"
-    t.integer  "required_role_id",   :default => 1, :null => false
-    t.integer  "lock_version",       :default => 0, :null => false
+    t.integer  "required_role_id",        :default => 1, :null => false
+    t.integer  "lock_version",            :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.string   "url"
     t.integer  "manifestation_id"
+    t.integer  "subject_heading_type_id"
   end
 
   add_index "subjects", ["manifestation_id"], :name => "index_subjects_on_manifestation_id"
@@ -873,17 +864,5 @@ ActiveRecord::Schema.define(:version => 20130504143515) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
-
-  create_table "work_has_subjects", :force => true do |t|
-    t.integer  "subject_id"
-    t.string   "subject_type"
-    t.integer  "work_id"
-    t.integer  "position"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "work_has_subjects", ["subject_id"], :name => "index_work_has_subjects_on_subject_id"
-  add_index "work_has_subjects", ["work_id"], :name => "index_work_has_subjects_on_work_id"
 
 end

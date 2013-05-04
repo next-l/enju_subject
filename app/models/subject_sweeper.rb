@@ -1,6 +1,5 @@
 class SubjectSweeper < ActionController::Caching::Sweeper
-  observe Subject, Classification,  SubjectHeadingTypeHasSubject,
-    SubjectHeadingType
+  observe Subject, Classification
   include ExpireEditableFragment
 
   def after_save(record)
@@ -12,8 +11,6 @@ class SubjectSweeper < ActionController::Caching::Sweeper
       end
     when :Classification
       expire_editable_fragment(record)
-    when :SubjectHeadingTypeHasSubject
-      expire_editable_fragment(record.subject)
     end
   end
 

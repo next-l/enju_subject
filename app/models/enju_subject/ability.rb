@@ -7,10 +7,8 @@ module EnjuSubject
       when 'Administrator'
         can :manage, [
           Classification,
-          Subject,
-          SubjectHeadingTypeHasSubject
+          Subject
         ]
-        can :manage, WorkHasSubject
         if LibraryGroup.site_config.network_access_allowed?(ip_address)
           can [:read, :create, :update], ClassificationType
           can [:destroy, :delete], ClassificationType do |classification_type|
@@ -30,32 +28,26 @@ module EnjuSubject
           ]
         end
       when 'Librarian'
-        can :manage, [
-          WorkHasSubject
-        ]
         can :read, [
           Classification,
           ClassificationType,
           Subject,
           SubjectType,
-          SubjectHeadingType,
-          SubjectHeadingTypeHasSubject
+          SubjectHeadingType
         ]
       when 'User'
         can :read, [
           Classification,
           ClassificationType,
           Subject,
-          SubjectHeadingType,
-          WorkHasSubject
+          SubjectHeadingType
         ]
       else
         can :read, [
           Classification,
           ClassificationType,
           Subject,
-          SubjectHeadingType,
-          WorkHasSubject
+          SubjectHeadingType
         ]
       end
     end

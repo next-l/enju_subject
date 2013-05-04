@@ -7,10 +7,8 @@
       when 'Administrator'
         can :manage, [
           Classification,
-          Subject,
-          SubjectHeadingTypeHasSubject
+          Subject
         ]
-        can :manage, WorkHasSubject
         if LibraryGroup.site_config.network_access_allowed?(ip_address)
           can [:read, :create, :update], ClassificationType
           can [:destroy, :delete], ClassificationType do |classification_type|
@@ -31,16 +29,12 @@
         end
         can :read, Manifestation
       when 'Librarian'
-        can :manage, [
-          WorkHasSubject
-        ]
         can :read, [
           Classification,
           ClassificationType,
           Subject,
           SubjectType,
-          SubjectHeadingType,
-          SubjectHeadingTypeHasSubject
+          SubjectHeadingType
         ]
         can :read, Manifestation
       when 'User'
@@ -48,8 +42,7 @@
           Classification,
           ClassificationType,
           Subject,
-          SubjectHeadingType,
-          WorkHasSubject
+          SubjectHeadingType
         ]
         can :read, Manifestation
       else
@@ -57,8 +50,7 @@
           Classification,
           ClassificationType,
           Subject,
-          SubjectHeadingType,
-          WorkHasSubject
+          SubjectHeadingType
         ]
         can :read, Manifestation
       end

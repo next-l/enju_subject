@@ -2,7 +2,6 @@
 class SubjectsController < ApplicationController
   load_and_authorize_resource :except => :index
   authorize_resource :only => :index
-  before_filter :get_work, :get_subject_heading_type
   before_filter :prepare_options, :only => :new
   after_filter :solr_commit, :only => [:create, :update, :destroy]
   cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]
@@ -17,7 +16,7 @@ class SubjectsController < ApplicationController
     end
     sort[:order] = 'asc' if params[:order] == 'asc'
 
-    search = Subject.search(:include => [:manifestation])
+    search = Subject.search
     query = params[:query].to_s.strip
     unless query.blank?
       @query = query.dup
@@ -29,15 +28,6 @@ class SubjectsController < ApplicationController
 
     search.build do
       order_by sort[:sort_by], sort[:order]
-    end
-
-    unless params[:mode] == 'add'
-      work = @work
-      subject_heading_type = @subject_heading_type
-      search.build do
-        with(:work_id).equal_to work.id if work
-        with(:subject_heading_type_ids).equal_to subject_heading_type.id if subject_heading_type
-      end
     end
 
     role = current_user.try(:role) || Role.default_role
@@ -70,11 +60,6 @@ class SubjectsController < ApplicationController
       return
     end
 
-    if @work
-      @subject = @work.subjects.find(params[:id])
-    #else
-    #  @subject = Subject.find(params[:id])
-    end
     search = Sunspot.new_search(Manifestation)
     subject = @subject
     search.build do
@@ -82,19 +67,16 @@ class SubjectsController < ApplicationController
     end
     page = params[:work_page] || 1
     search.query.paginate(page.to_i, Manifestation.default_per_page)
-    @works = search.execute!.results
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @subject }
-      format.js
     end
   end
 
   # GET /subjects/new
   def new
     @subject = Subject.new
-    @subject.subject_heading_type_id = @subject_heading_type.id if @subject_heading_type
 
     respond_to do |format|
       format.html # new.html.erb
@@ -104,31 +86,18 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
-    if @work
-      @subject = @work.subjects.find(params[:id])
-    #else
-    #  @subject = Subject.find(params[:id])
-    end
-    @subject_types = SubjectType.all
   end
 
   # POST /subjects
   # POST /subjects.json
   def create
-    if @work
-      @subject = @work.subjects.new(params[:subject])
-    else
-      @subject = Subject.new(params[:subject])
-    end
-    subject_heading_type = SubjectHeadingType.find(@subject.subject_heading_type_id) if @subject.subject_heading_type_id.present?
+    @subject = Subject.new(params[:subject])
 
     respond_to do |format|
       if @subject.save
-        @subject.subject_heading_types << subject_heading_type if subject_heading_type
         format.html { redirect_to @subject, :notice => t('controller.successfully_created', :model => t('activerecord.models.subject')) }
         format.json { render :json => @subject, :status => :created, :location => @subject }
       else
-        @subject_heading_type = subject_heading_type
         prepare_options
         format.html { render :action => "new" }
         format.json { render :json => @subject.errors, :status => :unprocessable_entity }
@@ -139,12 +108,6 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1
   # PUT /subjects/1.json
   def update
-    if @work
-      @subject = @work.subjects.find(params[:id])
-    #else
-    #  @subject = Subject.find(params[:id])
-    end
-
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
         format.html { redirect_to @subject, :notice => t('controller.successfully_updated', :model => t('activerecord.models.subject')) }
@@ -160,11 +123,6 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
-    if @work
-      @subject = @work.subjects.find(params[:id])
-    #else
-    #  @subject = Subject.find(params[:id])
-    end
     @subject.destroy
 
     respond_to do |format|
@@ -175,6 +133,6 @@ class SubjectsController < ApplicationController
 
   private
   def prepare_options
-    @subject_types = SubjectType.all
+    @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
   end
 end
