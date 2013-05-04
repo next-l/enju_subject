@@ -2,7 +2,7 @@
 class SubjectsController < ApplicationController
   load_and_authorize_resource :except => :index
   authorize_resource :only => :index
-  before_filter :get_work, :get_subject_heading_type, :get_classification
+  before_filter :get_work, :get_subject_heading_type
   before_filter :prepare_options, :only => :new
   after_filter :solr_commit, :only => [:create, :update, :destroy]
   cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]
@@ -17,7 +17,7 @@ class SubjectsController < ApplicationController
     end
     sort[:order] = 'asc' if params[:order] == 'asc'
 
-    search = Subject.search(:include => [:works])
+    search = Subject.search(:include => [:manifestation])
     query = params[:query].to_s.strip
     unless query.blank?
       @query = query.dup
@@ -33,11 +33,9 @@ class SubjectsController < ApplicationController
 
     unless params[:mode] == 'add'
       work = @work
-      classification = @classification
       subject_heading_type = @subject_heading_type
       search.build do
-        with(:work_ids).equal_to work.id if work
-        with(:classification_ids).equal_to classification.id if classification
+        with(:work_id).equal_to work.id if work
         with(:subject_heading_type_ids).equal_to subject_heading_type.id if subject_heading_type
       end
     end
@@ -96,7 +94,6 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = Subject.new
-    @subject.classification_id = @classification.id if @classification
     @subject.subject_heading_type_id = @subject_heading_type.id if @subject_heading_type
 
     respond_to do |format|
@@ -123,17 +120,14 @@ class SubjectsController < ApplicationController
     else
       @subject = Subject.new(params[:subject])
     end
-    classification = Classification.find(@subject.classification_id) if @subject.classification_id.present?
     subject_heading_type = SubjectHeadingType.find(@subject.subject_heading_type_id) if @subject.subject_heading_type_id.present?
 
     respond_to do |format|
       if @subject.save
-        @subject.classifications << classification if classification
         @subject.subject_heading_types << subject_heading_type if subject_heading_type
         format.html { redirect_to @subject, :notice => t('controller.successfully_created', :model => t('activerecord.models.subject')) }
         format.json { render :json => @subject, :status => :created, :location => @subject }
       else
-        @classification = classification
         @subject_heading_type = subject_heading_type
         prepare_options
         format.html { render :action => "new" }

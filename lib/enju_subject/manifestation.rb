@@ -7,9 +7,11 @@ module EnjuSubject
     module ClassMethods
       def enju_subject_manifestation_model
         include InstanceMethods
-        attr_accessible :ndc, :classification_number
-        has_many :work_has_subjects, :foreign_key => 'work_id', :dependent => :destroy
-        has_many :subjects, :through => :work_has_subjects
+        attr_accessible :subjects_attributes, :classifications_attributes
+        has_many :subjects
+        has_many :classifications
+        accepts_nested_attributes_for :subjects, :allow_destroy => true, :reject_if => :all_blank
+        accepts_nested_attributes_for :classifications, :allow_destroy => true, :reject_if => :all_blank
 
         searchable do
           text :subject do
@@ -23,12 +25,6 @@ module EnjuSubject
           end
           integer :subject_ids, :multiple => true
         end
-      end
-    end
-
-    module InstanceMethods
-      def classifications
-        subjects.collect(&:classifications).flatten
       end
     end
   end

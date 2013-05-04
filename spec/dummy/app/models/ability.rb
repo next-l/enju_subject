@@ -8,7 +8,6 @@
         can :manage, [
           Classification,
           Subject,
-          SubjectHasClassification,
           SubjectHeadingTypeHasSubject
         ]
         can :manage, WorkHasSubject
@@ -20,7 +19,6 @@
           can :manage, [
             Classification,
             Subject,
-            SubjectHasClassification,
             SubjectHeadingType,
             SubjectType
           ]
@@ -34,7 +32,6 @@
         can :read, Manifestation
       when 'Librarian'
         can :manage, [
-          SubjectHasClassification,
           WorkHasSubject
         ]
         can :read, [
@@ -51,7 +48,6 @@
           Classification,
           ClassificationType,
           Subject,
-          SubjectHasClassification,
           SubjectHeadingType,
           WorkHasSubject
         ]
@@ -61,7 +57,6 @@
           Classification,
           ClassificationType,
           Subject,
-          SubjectHasClassification,
           SubjectHeadingType,
           WorkHasSubject
         ]

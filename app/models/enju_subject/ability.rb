@@ -8,7 +8,6 @@ module EnjuSubject
         can :manage, [
           Classification,
           Subject,
-          SubjectHasClassification,
           SubjectHeadingTypeHasSubject
         ]
         can :manage, WorkHasSubject
@@ -20,7 +19,6 @@ module EnjuSubject
           can :manage, [
             Classification,
             Subject,
-            SubjectHasClassification,
             SubjectHeadingType,
             SubjectType
           ]
@@ -33,7 +31,6 @@ module EnjuSubject
         end
       when 'Librarian'
         can :manage, [
-          SubjectHasClassification,
           WorkHasSubject
         ]
         can :read, [
@@ -49,7 +46,6 @@ module EnjuSubject
           Classification,
           ClassificationType,
           Subject,
-          SubjectHasClassification,
           SubjectHeadingType,
           WorkHasSubject
         ]
@@ -58,7 +54,6 @@ module EnjuSubject
           Classification,
           ClassificationType,
           Subject,
-          SubjectHasClassification,
           SubjectHeadingType,
           WorkHasSubject
         ]
