@@ -5,7 +5,6 @@ class Classification < ActiveRecord::Base
 
   validates_associated :classification_type
   validates_presence_of :category, :classification_type
-  validates_uniqueness_of :category, :scope => :classification_type_id
   searchable do
     text :category, :note
     integer :classification_type_id
