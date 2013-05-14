@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504195916) do
+ActiveRecord::Schema.define(:version => 20130509185724) do
 
   create_table "accepts", :force => true do |t|
     t.integer  "basket_id"
@@ -184,6 +184,28 @@ ActiveRecord::Schema.define(:version => 20130504195916) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "identifier_types", :force => true do |t|
+    t.string   "name"
+    t.text     "display_name"
+    t.text     "note"
+    t.integer  "position"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "identifiers", :force => true do |t|
+    t.string   "body",               :null => false
+    t.integer  "identifier_type_id", :null => false
+    t.integer  "manifestation_id"
+    t.boolean  "primary"
+    t.integer  "position"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "identifiers", ["body", "identifier_type_id"], :name => "index_identifiers_on_body_and_identifier_type_id"
+  add_index "identifiers", ["manifestation_id"], :name => "index_identifiers_on_manifestation_id"
 
   create_table "import_requests", :force => true do |t|
     t.string   "isbn"
@@ -378,6 +400,7 @@ ActiveRecord::Schema.define(:version => 20130504195916) do
     t.text     "attachment_meta"
     t.integer  "month_of_publication"
     t.boolean  "periodical"
+    t.text     "statement_of_responsibility"
   end
 
   add_index "manifestations", ["access_address"], :name => "index_manifestations_on_access_address"
