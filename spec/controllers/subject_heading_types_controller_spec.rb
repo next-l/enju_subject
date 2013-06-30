@@ -184,7 +184,7 @@ describe SubjectHeadingTypesController do
           assigns(:subject_heading_type).should be_valid
         end
 
-        it "redirects to the created patron" do
+        it "redirects to the created agent" do
           post :create, :subject_heading_type => @attrs
           response.should redirect_to(assigns(:subject_heading_type))
         end
