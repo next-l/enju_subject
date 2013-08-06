@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
   #s.add_dependency "enju_core", "~> 0.1.1.pre4"
   s.add_dependency "inherited_resources"
   s.add_dependency "dynamic_form"
-  s.add_dependency "protected_attributes"
-  s.add_dependency "rails-observers"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
