@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "enju_subject"
   s.version     = EnjuSubject::VERSION
   s.authors     = ["Kosuke Tanabe"]
-  s.email       = ["tanabe@mwr.mediacom.keio.ac.jp"]
+  s.email       = ["kosuke@e23.jp"]
   s.homepage    = "https://github.com/next-l/enju_subject"
   s.summary     = "enju_subject plugin"
   s.description = "Subject and classification management for Next-L Enju"
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"] - Dir["spec/dummy/solr/{data,pids}/*"]
 
-  s.add_dependency "enju_core", "~> 0.2.0.pre1"
+  #s.add_dependency "enju_seed", "~> 0.2.0.pre1"
   s.add_dependency "inherited_resources"
   s.add_dependency "dynamic_form"
 
