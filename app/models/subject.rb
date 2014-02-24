@@ -1,6 +1,6 @@
 class Subject < ActiveRecord::Base
-  attr_accessible :parent_id, :use_term_id, :term, :term_transcription,
-    :subject_type_id, :note, :required_role_id, :subject_heading_type_id
+  #attr_accessible :parent_id, :use_term_id, :term, :term_transcription,
+  #  :subject_type_id, :note, :required_role_id, :subject_heading_type_id
 
   belongs_to :manifestation
   belongs_to :subject_type

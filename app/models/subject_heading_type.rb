@@ -1,5 +1,5 @@
 class SubjectHeadingType < ActiveRecord::Base
-  attr_accessible :name, :display_name, :note
+  #attr_accessible :name, :display_name, :note
   include MasterModel
   has_many :subjects
   validates :name, :format => {:with => /\A[0-9a-z][0-9a-z_\-]*[0-9a-z]\Z/}

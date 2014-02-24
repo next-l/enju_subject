@@ -1,5 +1,5 @@
 class Classification < ActiveRecord::Base
-  attr_accessible :parent_id, :category, :note, :classification_type_id
+  #attr_accessible :parent_id, :category, :note, :classification_type_id
   belongs_to :classification_type
   belongs_to :manifestation
 
