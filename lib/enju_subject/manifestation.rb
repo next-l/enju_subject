@@ -7,7 +7,7 @@ module EnjuSubject
     module ClassMethods
       def enju_subject_manifestation_model
         include InstanceMethods
-        attr_accessible :subjects_attributes, :classifications_attributes
+        #attr_accessible :subjects_attributes, :classifications_attributes
         has_many :subjects
         has_many :classifications
         accepts_nested_attributes_for :subjects, :allow_destroy => true, :reject_if => :all_blank
