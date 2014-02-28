@@ -109,6 +109,7 @@ class ClassificationsController < ApplicationController
     end
   end
 
+  private
   def get_classification_type
     @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
   end
