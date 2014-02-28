@@ -823,6 +823,8 @@ ActiveRecord::Schema.define(version: 20130509185724) do
     t.integer  "number_of_day_to_notify_overdue",  default: 1, null: false
     t.integer  "number_of_day_to_notify_due_date", default: 7, null: false
     t.integer  "number_of_time_to_notify_overdue", default: 3, null: false
+    t.integer  "valid_period_for_new_user",        default: 0, null: false
+    t.datetime "expired_at"
   end
 
   create_table "user_has_roles", force: true do |t|

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 class ClassificationsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:index, :create]
+  authorize_resource :only => [:index, :create]
   before_action :get_subject, :get_classification_type
   after_action :solr_commit, :only => [:create, :update, :destroy]
 
@@ -67,7 +68,7 @@ class ClassificationsController < ApplicationController
   # POST /classifications
   # POST /classifications.json
   def create
-    @classification = Classification.new(params[:classification])
+    @classification = Classification.new(classification_params)
 
     respond_to do |format|
       if @classification.save
@@ -85,7 +86,7 @@ class ClassificationsController < ApplicationController
   # PUT /classifications/1.json
   def update
     respond_to do |format|
-      if @classification.update_attributes(params[:classification])
+      if @classification.update_attributes(classification_params)
         format.html { redirect_to @classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.classification')) }
         format.json { head :no_content }
       else
@@ -108,7 +109,14 @@ class ClassificationsController < ApplicationController
     end
   end
 
+  private
   def get_classification_type
     @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
+  end
+
+  def classification_params
+    params.require(:classification).permit(
+      :parent_id, :category, :note, :classification_type_id
+    )
   end
 end

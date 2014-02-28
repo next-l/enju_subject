@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
-  load_and_authorize_resource :except => :index
-  authorize_resource :only => :index
+  load_and_authorize_resource :except => [:index, :create]
+  authorize_resource :only => [:index, :create]
   before_action :prepare_options, :only => :new
   after_action :solr_commit, :only => [:create, :update, :destroy]
 
@@ -90,7 +90,7 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    @subject = Subject.new(params[:subject])
+    @subject = Subject.new(subject_params)
 
     respond_to do |format|
       if @subject.save
@@ -108,7 +108,7 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1.json
   def update
     respond_to do |format|
-      if @subject.update_attributes(params[:subject])
+      if @subject.update_attributes(subject_params)
         format.html { redirect_to @subject, :notice => t('controller.successfully_updated', :model => t('activerecord.models.subject')) }
         format.json { head :no_content }
       else
@@ -133,5 +133,12 @@ class SubjectsController < ApplicationController
   private
   def prepare_options
     @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
+  end
+
+  def subject_params
+    params.require(:subject).permit(
+      :parent_id, :use_term_id, :term, :term_transcription,
+      :subject_type_id, :note, :required_role_id, :subject_heading_type_id
+    )
   end
 end
