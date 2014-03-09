@@ -20,10 +20,10 @@
     <tr class="line<%= cycle("0", "1") -%>">
       <td><%= link_to subject.term, subject -%></td>
       <td>
-        <%- if can? :update, subject -%>
+        <%- if policy(subject).update? -%>
           <%= link_to t('page.edit'), edit_subject_path(subject) -%>
         <%- end -%>
-        <%- if can? :delete, subject -%>
+        <%- if policy(subject).destroy? -%>
           <%= link_to t('page.destroy'), subject, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
         <%- end -%>
       </td>
@@ -37,7 +37,7 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <%- if can? :create, Subject -%>
+    <%- if policy(Subject).create? -%>
       <li><%= link_to t('page.new', :model => t('activerecord.models.subject')), new_subject_path -%></li>
     <%- end -%>
   </ul>

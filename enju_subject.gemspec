@@ -17,13 +17,12 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"] - Dir["spec/dummy/solr/{data,pids}/*"]
 
   s.add_dependency "enju_seed", "~> 0.2.0.pre4"
-  s.add_dependency "inherited_resources"
   s.add_dependency "dynamic_form"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency "factory_girl_rails"
-  s.add_development_dependency "vcr", "~> 2.7"
+  s.add_development_dependency "vcr", "~> 2.8"
   #s.add_development_dependency "enju_leaf", "~> 1.2.0.pre1"
   s.add_development_dependency "sunspot_solr", "~> 2.1"
   s.add_development_dependency "sunspot-rails-tester"

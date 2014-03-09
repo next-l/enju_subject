@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
-  load_and_authorize_resource :except => [:index, :create]
-  authorize_resource :only => [:index, :create]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy]
   before_action :prepare_options, :only => :new
+  after_action :verify_authorized
+  after_action :verify_policy_scoped, :only => :index
   after_action :solr_commit, :only => [:create, :update, :destroy]
 
   # GET /subjects
@@ -75,6 +76,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
+    authorize Subject
     @subject = Subject.new
 
     respond_to do |format|
@@ -90,6 +92,7 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
+    authorize Subject
     @subject = Subject.new(subject_params)
 
     respond_to do |format|
@@ -131,6 +134,11 @@ class SubjectsController < ApplicationController
   end
 
   private
+  def set_subject
+    @subject = Subject.find(params[:id])
+    authorize @subject
+  end
+
   def prepare_options
     @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
   end
