@@ -51,9 +51,9 @@ class ClassificationsController < ApplicationController
   # GET /classifications/new
   # GET /classifications/new.json
   def new
-    authorize Classification
-    @classification_types = ClassificationType.all
     @classification = Classification.new
+    authorize @classification
+    @classification_types = ClassificationType.all
     @classification.classification_type = @classification_type
 
     respond_to do |format|
@@ -70,8 +70,8 @@ class ClassificationsController < ApplicationController
   # POST /classifications
   # POST /classifications.json
   def create
-    authorize Classification
     @classification = Classification.new(classification_params)
+    authorize @classification
 
     respond_to do |format|
       if @classification.save

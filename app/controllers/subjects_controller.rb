@@ -76,8 +76,8 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
-    authorize Subject
     @subject = Subject.new
+    authorize @subject
 
     respond_to do |format|
       format.html # new.html.erb
@@ -92,8 +92,8 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    authorize Subject
     @subject = Subject.new(subject_params)
+    authorize @subject
 
     respond_to do |format|
       if @subject.save

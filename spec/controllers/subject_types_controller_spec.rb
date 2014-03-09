@@ -19,7 +19,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should eq(SubjectType.all)
+        assigns(:subject_types).should eq(SubjectType.order(:position))
       end
     end
 
@@ -28,7 +28,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should eq(SubjectType.all)
+        assigns(:subject_types).should eq(SubjectType.order(:position))
       end
     end
 
