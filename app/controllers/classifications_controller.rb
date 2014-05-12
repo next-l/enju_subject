@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 class ClassificationsController < ApplicationController
-  load_and_authorize_resource
-  before_filter :get_subject, :get_classification_type
-  after_filter :solr_commit, :only => [:create, :update, :destroy]
-  cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]
+  before_action :set_classification, only: [:show, :edit, :update, :destroy]
+  before_action :get_subject, :get_classification_type
+  after_action :verify_authorized
+  after_action :verify_policy_scoped, :only => :index
+  after_action :solr_commit, :only => [:create, :update, :destroy]
 
   # GET /classifications
   # GET /classifications.json
@@ -50,8 +51,9 @@ class ClassificationsController < ApplicationController
   # GET /classifications/new
   # GET /classifications/new.json
   def new
-    @classification_types = ClassificationType.all
     @classification = Classification.new
+    authorize @classification
+    @classification_types = ClassificationType.all
     @classification.classification_type = @classification_type
 
     respond_to do |format|
@@ -68,7 +70,8 @@ class ClassificationsController < ApplicationController
   # POST /classifications
   # POST /classifications.json
   def create
-    @classification = Classification.new(params[:classification])
+    @classification = Classification.new(classification_params)
+    authorize @classification
 
     respond_to do |format|
       if @classification.save
@@ -86,7 +89,7 @@ class ClassificationsController < ApplicationController
   # PUT /classifications/1.json
   def update
     respond_to do |format|
-      if @classification.update_attributes(params[:classification])
+      if @classification.update_attributes(classification_params)
         format.html { redirect_to @classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.classification')) }
         format.json { head :no_content }
       else
@@ -100,7 +103,6 @@ class ClassificationsController < ApplicationController
   # DELETE /classifications/1
   # DELETE /classifications/1.json
   def destroy
-    @classification = Classification.find(params[:id])
     @classification.destroy
 
     respond_to do |format|
@@ -110,7 +112,18 @@ class ClassificationsController < ApplicationController
   end
 
   private
+  def set_classification
+    @classification = Classification.find(params[:id])
+    authorize @classification
+  end
+
   def get_classification_type
     @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
+  end
+
+  def classification_params
+    params.require(:classification).permit(
+      :parent_id, :category, :note, :classification_type_id
+    )
   end
 end

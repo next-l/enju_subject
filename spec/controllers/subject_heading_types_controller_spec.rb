@@ -19,7 +19,7 @@ describe SubjectHeadingTypesController do
 
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        assigns(:subject_heading_types).should eq(SubjectHeadingType.all)
+        assigns(:subject_heading_types).should eq(SubjectHeadingType.order(:position))
       end
     end
 
@@ -28,7 +28,7 @@ describe SubjectHeadingTypesController do
 
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        assigns(:subject_heading_types).should eq(SubjectHeadingType.all)
+        assigns(:subject_heading_types).should eq(SubjectHeadingType.order(:position))
       end
     end
 
@@ -37,14 +37,14 @@ describe SubjectHeadingTypesController do
 
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        assigns(:subject_heading_types).should eq(SubjectHeadingType.all)
+        assigns(:subject_heading_types).should eq(SubjectHeadingType.order(:position))
       end
     end
 
     describe "When not logged in" do
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        assigns(:subject_heading_types).should eq(SubjectHeadingType.all)
+        assigns(:subject_heading_types).should eq(SubjectHeadingType.order(:position))
       end
     end
   end

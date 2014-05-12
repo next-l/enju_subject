@@ -19,7 +19,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should eq(SubjectType.all)
+        assigns(:subject_types).should eq(SubjectType.order(:position))
       end
     end
 
@@ -28,7 +28,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should eq(SubjectType.all)
+        assigns(:subject_types).should eq(SubjectType.order(:position))
       end
     end
 
@@ -37,7 +37,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should be_empty
+        assigns(:subject_types).should be_nil
         response.should be_forbidden
       end
     end
@@ -45,7 +45,7 @@ describe SubjectTypesController do
     describe "When not logged in" do
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should be_empty
+        assigns(:subject_types).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end

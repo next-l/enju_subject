@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
-  load_and_authorize_resource :except => :index
-  authorize_resource :only => :index
-  before_filter :prepare_options, :only => :new
-  after_filter :solr_commit, :only => [:create, :update, :destroy]
-  cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_options, :only => :new
+  after_action :verify_authorized
+  after_action :verify_policy_scoped, :only => :index
+  after_action :solr_commit, :only => [:create, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
@@ -77,6 +77,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = Subject.new
+    authorize @subject
 
     respond_to do |format|
       format.html # new.html.erb
@@ -91,7 +92,8 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    @subject = Subject.new(params[:subject])
+    @subject = Subject.new(subject_params)
+    authorize @subject
 
     respond_to do |format|
       if @subject.save
@@ -109,7 +111,7 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1.json
   def update
     respond_to do |format|
-      if @subject.update_attributes(params[:subject])
+      if @subject.update_attributes(subject_params)
         format.html { redirect_to @subject, :notice => t('controller.successfully_updated', :model => t('activerecord.models.subject')) }
         format.json { head :no_content }
       else
@@ -132,7 +134,19 @@ class SubjectsController < ApplicationController
   end
 
   private
+  def set_subject
+    @subject = Subject.find(params[:id])
+    authorize @subject
+  end
+
   def prepare_options
     @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
+  end
+
+  def subject_params
+    params.require(:subject).permit(
+      :parent_id, :use_term_id, :term, :term_transcription,
+      :subject_type_id, :note, :required_role_id, :subject_heading_type_id
+    )
   end
 end

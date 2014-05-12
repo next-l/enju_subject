@@ -19,7 +19,7 @@ describe ClassificationTypesController do
 
       it "assigns all classification_types as @classification_types" do
         get :index
-        assigns(:classification_types).should eq(ClassificationType.all)
+        assigns(:classification_types).should eq(ClassificationType.order(:position))
       end
     end
 
@@ -28,7 +28,7 @@ describe ClassificationTypesController do
 
       it "assigns all classification_types as @classification_types" do
         get :index
-        assigns(:classification_types).should eq(ClassificationType.all)
+        assigns(:classification_types).should eq(ClassificationType.order(:position))
       end
     end
 
@@ -37,14 +37,14 @@ describe ClassificationTypesController do
 
       it "assigns all classification_types as @classification_types" do
         get :index
-        assigns(:classification_types).should eq(ClassificationType.all)
+        assigns(:classification_types).should eq(ClassificationType.order(:position))
       end
     end
 
     describe "When not logged in" do
       it "assigns all classification_types as @classification_types" do
         get :index
-        assigns(:classification_types).should eq(ClassificationType.all)
+        assigns(:classification_types).should eq(ClassificationType.order(:position))
       end
     end
   end

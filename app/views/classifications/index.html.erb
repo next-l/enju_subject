@@ -1,4 +1,4 @@
-<div id="content_detail" class="ui-corner-all">
+<div id="content_detail" class="ui-corner-all ui-widget-content">
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.classification')) -%></h1>
 <div id="content_list">
 
@@ -25,7 +25,7 @@
     <td><%= classification.note -%></td>
     <td><%= link_to classification.classification_type.display_name.localize, classification.classification_type -%></td>
     <td>
-      <%- if can? :delete, classification -%>
+      <%- if policy(classification).destroy? -%>
         <%= link_to t('page.edit'), edit_classification_path(classification) -%>
         <%= link_to t('page.destroy'), classification, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <%- end -%>
@@ -34,14 +34,14 @@
 <%- end -%>
 </table>
 
-<%= paginate(@classifications) -%>
+<%= paginate(@classifications, :theme => 'enju_leaf') -%>
 
 </div>
 </div>
 
-<div id="submenu" class="ui-corner-all">
+<div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <%- if can? :create, Classification -%>
+    <%- if policy(Classification).create? -%>
       <%- if @classification_type -%>
         <li><%= link_to t('page.new', :model => t('activerecord.models.classification')), new_classification_type_classification_path(@classification_type) -%></li>
       <%- else -%>
