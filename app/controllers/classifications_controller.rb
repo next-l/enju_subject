@@ -3,12 +3,12 @@ class ClassificationsController < ApplicationController
   before_action :set_classification, only: [:show, :edit, :update, :destroy]
   before_action :get_subject, :get_classification_type
   after_action :verify_authorized
-  after_action :verify_policy_scoped, :only => :index
   after_action :solr_commit, :only => [:create, :update, :destroy]
 
   # GET /classifications
   # GET /classifications.json
   def index
+    authorize Classification
     search = Sunspot.new_search(Classification)
     query = params[:query].to_s.strip
     unless query.blank?

@@ -3,12 +3,12 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
   before_action :prepare_options, :only => :new
   after_action :verify_authorized
-  after_action :verify_policy_scoped, :only => :index
   after_action :solr_commit, :only => [:create, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
   def index
+    authorize Subject
     sort = {:sort_by => 'created_at', :order => 'desc'}
     case params[:sort_by]
     when 'name'
