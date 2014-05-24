@@ -51,7 +51,7 @@ class SubjectTypesController < ApplicationController
   # DELETE /subject_types/1
   def destroy
     @subject_type.destroy
-    redirect_to subject_types_url, notice: 'Subject type was successfully destroyed.'
+    redirect_to subject_types_url, notice: t('controller.successfully_destroyed', model: t('activerecord.models.subject_type'))
   end
 
   private

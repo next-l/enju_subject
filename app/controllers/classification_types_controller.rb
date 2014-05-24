@@ -51,7 +51,7 @@ class ClassificationTypesController < ApplicationController
   # DELETE /classification_types/1
   def destroy
     @classification_type.destroy
-    redirect_to classification_types_url, notice: 'Classification type was successfully destroyed.'
+    redirect_to classification_types_url, notice: t('controller.successfully_destroyed', model: t('activerecord.models.classification_type'))
   end
 
   private

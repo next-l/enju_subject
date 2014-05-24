@@ -42,10 +42,6 @@ class ClassificationsController < ApplicationController
   # GET /classifications/1
   # GET /classifications/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @classification }
-    end
   end
 
   # GET /classifications/new
@@ -104,11 +100,7 @@ class ClassificationsController < ApplicationController
   # DELETE /classifications/1.json
   def destroy
     @classification.destroy
-
-    respond_to do |format|
-      format.html { redirect_to classifications_url }
-      format.json { head :no_content }
-    end
+    redirect_to classifications_url, notice: t('controller.successfully_destroyed', model: t('activerecord.models.classification'))
   end
 
   private

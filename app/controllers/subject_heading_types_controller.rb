@@ -42,7 +42,7 @@ class SubjectHeadingTypesController < ApplicationController
       return
     end
     if @subject_heading_type.update(subject_heading_type_params)
-      redirect_to @subject_heading_type, notice:  t('controller.successfully_updated', :model => t('activerecord.models.subject_heading_type'))
+      redirect_to @subject_heading_type, notice: t('controller.successfully_updated', :model => t('activerecord.models.subject_heading_type'))
     else
       render action: 'edit'
     end
@@ -51,7 +51,7 @@ class SubjectHeadingTypesController < ApplicationController
   # DELETE /subject_heading_types/1
   def destroy
     @subject_heading_type.destroy
-    redirect_to subject_heading_types_url, notice: 'Subject type was successfully destroyed.'
+    redirect_to subject_heading_types_url, notice: t('controller.successfully_destroyed', model: t('activerecord.models.subject_heading_type'))
   end
 
   private
