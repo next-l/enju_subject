@@ -134,5 +134,6 @@ class SubjectsController < ApplicationController
   private
   def prepare_options
     @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
+    @subject_types = SubjectType.select([:id, :display_name, :position])
   end
 end
