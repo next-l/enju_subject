@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-  before_action :prepare_options, :only => :new
+  before_action :prepare_options, only: [:new, :edit]
   after_action :verify_authorized
   after_action :solr_commit, :only => [:create, :update, :destroy]
 
@@ -137,6 +137,7 @@ class SubjectsController < ApplicationController
 
   def prepare_options
     @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
+    @subject_types = SubjectType.select([:id, :display_name, :position])
   end
 
   def subject_params
