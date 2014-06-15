@@ -38,6 +38,8 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <li><%= link_to t('page.new', :model => t('activerecord.models.subject_type')), new_subject_type_path -%></li>
+    <% if policy(SubjectType).create? %>
+      <li><%= link_to t('page.new', :model => t('activerecord.models.subject_type')), new_subject_type_path -%></li>
+    <% end %>
   </ul>
 </div>
