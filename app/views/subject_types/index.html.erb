@@ -38,7 +38,7 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <% if policy(SubjectType).create? %>
+    <% if can? :create, SubjectType %>
       <li><%= link_to t('page.new', :model => t('activerecord.models.subject_type')), new_subject_type_path -%></li>
     <% end %>
   </ul>
