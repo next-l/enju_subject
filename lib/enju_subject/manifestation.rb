@@ -13,18 +13,24 @@ module EnjuSubject
         accepts_nested_attributes_for :subjects, :allow_destroy => true, :reject_if => :all_blank
         accepts_nested_attributes_for :classifications, :allow_destroy => true, :reject_if => :all_blank
 
-        searchable do
-          text :subject do
-            subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact
+        settings do
+          mappings dynamic: 'false', _routing: {required: false} do
+            indexes :subject
+            indexes :classification
+            indexes :subject_ids, type: 'integer'
           end
-          string :subject, :multiple => true do
-            subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact
-          end
-          string :classification, :multiple => true do
-            classifications.collect(&:category)
-          end
-          integer :subject_ids, :multiple => true
         end
+        #attr_accessible :item_has_use_restriction_attributes
+      end
+    end
+
+    module InstanceMethods
+      def as_indexed_json(options={})
+        super.merge(
+          subject: subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact,
+          classification: classifications.collect(&:category),
+          subject_ids: subject_ids
+        )
       end
     end
   end

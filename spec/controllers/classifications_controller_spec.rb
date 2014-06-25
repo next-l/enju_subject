@@ -9,7 +9,8 @@ describe ClassificationsController do
 
   describe "GET index", :solr => true do
     before do
-      Classification.reindex
+      Classification.__elasticsearch__.create_index!
+      Classification.import
     end
 
     describe "When logged in as Administrator" do
