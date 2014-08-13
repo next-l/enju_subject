@@ -4,7 +4,6 @@ class SubjectsController < ApplicationController
   authorize_resource :only => :index
   before_filter :prepare_options, :only => [:new, :edit]
   after_filter :solr_commit, :only => [:create, :update, :destroy]
-  cache_sweeper :subject_sweeper, :only => [:create, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
