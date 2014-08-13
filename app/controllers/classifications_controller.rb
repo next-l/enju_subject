@@ -2,7 +2,7 @@
 class ClassificationsController < ApplicationController
   load_and_authorize_resource
   before_filter :get_subject, :get_classification_type
-  after_filter :solr_commit, :only => [:create, :update, :destroy]
+  after_filter :solr_commit, only: [:create, :update, :destroy]
 
   # GET /classifications
   # GET /classifications.json
@@ -33,7 +33,7 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @classifications }
+      format.json { render json: @classifications }
     end
   end
 
@@ -42,7 +42,7 @@ class ClassificationsController < ApplicationController
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @classification }
+      format.json { render json: @classification }
     end
   end
 
@@ -55,7 +55,7 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @classification }
+      format.json { render json: @classification }
     end
   end
 
@@ -71,12 +71,12 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       if @classification.save
-        format.html { redirect_to @classification, :notice => t('controller.successfully_created', :model => t('activerecord.models.classification')) }
-        format.json { render :json => @classification, :status => :created, :location => @classification }
+        format.html { redirect_to @classification, notice: t('controller.successfully_created', model: t('activerecord.models.classification')) }
+        format.json { render json: @classification, status: :created, location: @classification }
       else
         @classification_types = ClassificationType.all
-        format.html { render :action => "new" }
-        format.json { render :json => @classification.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @classification.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -86,12 +86,12 @@ class ClassificationsController < ApplicationController
   def update
     respond_to do |format|
       if @classification.update_attributes(params[:classification])
-        format.html { redirect_to @classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.classification')) }
+        format.html { redirect_to @classification, notice: t('controller.successfully_updated', model: t('activerecord.models.classification')) }
         format.json { head :no_content }
       else
         @classification_types = ClassificationType.all
-        format.html { render :action => "edit" }
-        format.json { render :json => @classification.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @classification.errors, status: :unprocessable_entity }
       end
     end
   end

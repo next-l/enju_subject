@@ -4,7 +4,7 @@
       <%= subject_form.select(:subject_heading_type_id, @subject_heading_types.collect{|s| [s.display_name.localize, s.id]}) %>
       <%= subject_form.text_field :term %>
       <%= subject_form.select(:subject_type_id, @subject_types.collect{|s| [s.display_name.localize, s.id]}) %>
-      <%= subject_form.link_to_remove t('page.remove'), :confirm => t('page.are_you_sure')  %>
+      <%= subject_form.link_to_remove t('page.remove'), confirm: t('page.are_you_sure')  %>
     <% end %>
     <p><%= f.link_to_add t('page.add'), :subjects %></p>
   </div>
@@ -14,7 +14,7 @@
     <%= f.fields_for :classifications do |classification_form| %>
       <%= classification_form.select(:classification_type_id, @classification_types.collect{|c| [c.display_name.localize, c.id]}) %>
       <%= classification_form.text_field :category %>
-      <%= classification_form.link_to_remove t('page.remove'), :confirm => t('page.are_you_sure')  %>
+      <%= classification_form.link_to_remove t('page.remove'), confirm: t('page.are_you_sure')  %>
     <% end %>
     <p><%= f.link_to_add t('page.add'), :classifications %></p>
   </div>
