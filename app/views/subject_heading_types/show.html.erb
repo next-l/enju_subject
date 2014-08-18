@@ -4,6 +4,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong><%= t('activerecord.attributes.subject_heading_type.name') -%>:</strong>
+  <%= @subject_heading_type.name -%>
+</p>
+
+<p>
   <strong><%= t('activerecord.attributes.subject_heading_type.display_name') -%>:</strong>
   <%= @subject_heading_type.display_name.localize -%>
 </p>
