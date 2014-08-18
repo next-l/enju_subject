@@ -6,8 +6,11 @@
   <tr>
     <th id="position"></th>
     <th><%= t('activerecord.attributes.subject_heading_type.name') -%></th>
-    <th><%= t('activerecord.attributes.subject_heading_type.display_name') -%></th>
-    <th><%= t('activerecord.attributes.subject_heading_type.note') -%></th>
+    <th>
+      <%= t('activerecord.attributes.subject_heading_type.display_name') -%>
+      /
+      <%= t('activerecord.attributes.subject_heading_type.note') -%>
+    </th>
     <th></th>
   </tr>
 
@@ -18,15 +21,18 @@
         <%= move_position(subject_heading_type) -%>
       <%- end -%>
     </td>
-    <td><%= link_to subject_heading_type.name, subject_heading_type -%></td>
-    <td><%= link_to subject_heading_type.display_name.localize, subject_heading_type -%></td>
-    <td><%= subject_heading_type.note -%></td>
+    <td><%= subject_heading_type.name -%></td>
+    <td>
+      <%= link_to subject_heading_type.display_name.localize, subject_heading_type -%>
+      <br />
+      <%= subject_heading_type.note %>
+    </td>
     <td>
       <%- if can? :update, subject_heading_type -%>
         <%= link_to t('page.edit'), edit_subject_heading_type_path(subject_heading_type) -%>
       <% end %>
       <%- if can? :delete, subject_heading_type -%>
-        <%= link_to t('page.destroy'), subject_heading_type, data: {confirm: t('page.are_you_sure')}, method: :delete -%>
+        <%= link_to t('page.destroy'), subject_heading_type_path(subject_heading_type), data: {confirm: t('page.are_you_sure')}, method: :delete -%>
       <%- end -%>
     </td>
   </tr>
@@ -38,6 +44,8 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <li><%= link_to t('page.new', model: t('activerecord.models.subject_heading_type')), new_subject_heading_type_path -%></li>
+    <%- if can? :create, SubjectHeadingType -%>
+      <li><%= link_to t('page.new', model: t('activerecord.models.subject_heading_type')), new_subject_heading_type_path -%></li>
+    <%- end -%>
   </ul>
 </div>

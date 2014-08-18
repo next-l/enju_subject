@@ -6,8 +6,11 @@
   <tr>
     <th id="position"></th>
     <th><%= t('activerecord.attributes.classification_type.name') -%></th>
-    <th><%= t('activerecord.attributes.classification_type.display_name') -%></th>
-    <th><%= t('activerecord.attributes.classification_type.note') -%></th>
+    <th>
+      <%= t('activerecord.attributes.classification_type.display_name') -%>
+      /
+      <%= t('activerecord.attributes.classification_type.note') -%>
+    </th>
     <th></th>
   </tr>
 
@@ -18,15 +21,18 @@
         <%= move_position(classification_type) -%>
       <%- end -%>
     </td>
-    <td><%= link_to classification_type.name, classification_type -%></td>
-    <td><%= link_to classification_type.display_name.localize, classification_type -%></td>
-    <td><%= classification_type.note -%></td>
+    <td><%= classification_type.name -%></td>
+    <td>
+      <%= link_to classification_type.display_name.localize, classification_type -%>
+      <br />
+      <%= classification_type.note %>
+    </td>
     <td>
       <%- if can? :update, classification_type -%>
         <%= link_to t('page.edit'), edit_classification_type_path(classification_type) -%>
       <% end %>
       <%- if can? :delete, classification_type -%>
-        <%= link_to t('page.destroy'), classification_type, data: {confirm: t('page.are_you_sure')}, method: :delete -%>
+        <%= link_to t('page.destroy'), classification_type_path(classification_type), data: {confirm: t('page.are_you_sure')}, method: :delete -%>
       <%- end -%>
     </td>
   </tr>

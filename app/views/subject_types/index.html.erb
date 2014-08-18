@@ -6,8 +6,11 @@
   <tr>
     <th id="position"></th>
     <th><%= t('activerecord.attributes.subject_type.name') -%></th>
-    <th><%= t('activerecord.attributes.subject_type.display_name') -%></th>
-    <th><%= t('activerecord.attributes.subject_type.note') -%></th>
+    <th>
+      <%= t('activerecord.attributes.subject_type.display_name') -%>
+      /
+      <%= t('activerecord.attributes.subject_type.note') -%>
+    </th>
     <th></th>
   </tr>
 
@@ -18,15 +21,18 @@
         <%= move_position(subject_type) -%>
       <%- end -%>
     </td>
-    <td><%= link_to subject_type.name, subject_type -%></td>
-    <td><%= link_to subject_type.display_name.localize, subject_type -%></td>
-    <td><%= subject_type.note -%></td>
+    <td><%= subject_type.name -%></td>
+    <td>
+      <%= link_to subject_type.display_name.localize, subject_type -%>
+      <br />
+      <%= subject_type.note %>
+    </td>
     <td>
       <%- if can? :update, subject_type -%>
         <%= link_to t('page.edit'), edit_subject_type_path(subject_type) -%>
       <% end %>
       <%- if can? :delete, subject_type -%>
-        <%= link_to t('page.destroy'), subject_type, data: {confirm: t('page.are_you_sure')}, method: :delete -%>
+        <%= link_to t('page.destroy'), subject_type_path(subject_type), data: {confirm: t('page.are_you_sure')}, method: :delete -%>
       <%- end -%>
     </td>
   </tr>
@@ -38,8 +44,8 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <% if can? :create, SubjectType %>
+    <%- if can? :create, SubjectType -%>
       <li><%= link_to t('page.new', model: t('activerecord.models.subject_type')), new_subject_type_path -%></li>
-    <% end %>
+    <%- end -%>
   </ul>
 </div>
