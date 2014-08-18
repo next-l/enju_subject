@@ -18,5 +18,6 @@ namespace :enju_subject do
       update_subject_type
       update_subject_heading_type
     end
+    puts 'enju_subject: The upgrade completed successfully.'
   end
 end
