@@ -14,10 +14,13 @@ module EnjuSubject
           can [:destroy, :delete], ClassificationType do |classification_type|
             classification_type.classifications.empty?
           end
+          can [:read, :create, :update], SubjectHeadingType
+          can [:destroy, :delete], SubjectHeadingType do |subject_heading_type|
+            subject_heading_type.subjects.empty?
+          end
           can :manage, [
             Classification,
             Subject,
-            SubjectHeadingType,
             SubjectType
           ]
         else

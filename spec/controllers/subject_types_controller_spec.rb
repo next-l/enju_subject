@@ -19,7 +19,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should eq(SubjectType.all)
+        expect(assigns(:subject_types)).to eq(SubjectType.all)
       end
     end
 
@@ -28,7 +28,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should eq(SubjectType.all)
+        expect(assigns(:subject_types)).to eq(SubjectType.all)
       end
     end
 
@@ -37,7 +37,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should be_empty
+        expect(assigns(:subject_types)).to be_empty
         response.should be_forbidden
       end
     end
@@ -45,7 +45,7 @@ describe SubjectTypesController do
     describe "When not logged in" do
       it "assigns all subject_types as @subject_types" do
         get :index
-        assigns(:subject_types).should be_empty
+        expect(assigns(:subject_types)).to be_empty
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -58,7 +58,7 @@ describe SubjectTypesController do
       it "assigns the requested subject_type as @subject_type" do
         subject_type = FactoryGirl.create(:subject_type)
         get :show, :id => subject_type.id
-        assigns(:subject_type).should eq(subject_type)
+        expect(assigns(:subject_type)).to eq(subject_type)
       end
     end
 
@@ -68,7 +68,7 @@ describe SubjectTypesController do
       it "assigns the requested subject_type as @subject_type" do
         subject_type = FactoryGirl.create(:subject_type)
         get :show, :id => subject_type.id
-        assigns(:subject_type).should eq(subject_type)
+        expect(assigns(:subject_type)).to eq(subject_type)
       end
     end
 
@@ -78,7 +78,7 @@ describe SubjectTypesController do
       it "assigns the requested subject_type as @subject_type" do
         subject_type = FactoryGirl.create(:subject_type)
         get :show, :id => subject_type.id
-        assigns(:subject_type).should eq(subject_type)
+        expect(assigns(:subject_type)).to eq(subject_type)
       end
     end
 
@@ -86,7 +86,7 @@ describe SubjectTypesController do
       it "assigns the requested subject_type as @subject_type" do
         subject_type = FactoryGirl.create(:subject_type)
         get :show, :id => subject_type.id
-        assigns(:subject_type).should eq(subject_type)
+        expect(assigns(:subject_type)).to eq(subject_type)
       end
     end
   end
@@ -97,7 +97,7 @@ describe SubjectTypesController do
 
       it "assigns the requested subject_type as @subject_type" do
         get :new
-        assigns(:subject_type).should_not be_valid
+        expect(assigns(:subject_type)).not_to be_valid
         response.should be_success
       end
     end
@@ -107,7 +107,7 @@ describe SubjectTypesController do
 
       it "should not assign the requested subject_type as @subject_type" do
         get :new
-        assigns(:subject_type).should_not be_valid
+        expect(assigns(:subject_type)).not_to be_valid
         response.should be_forbidden
       end
     end
@@ -117,7 +117,7 @@ describe SubjectTypesController do
 
       it "should not assign the requested subject_type as @subject_type" do
         get :new
-        assigns(:subject_type).should_not be_valid
+        expect(assigns(:subject_type)).not_to be_valid
         response.should be_forbidden
       end
     end
@@ -125,7 +125,7 @@ describe SubjectTypesController do
     describe "When not logged in" do
       it "should not assign the requested subject_type as @subject_type" do
         get :new
-        assigns(:subject_type).should_not be_valid
+        expect(assigns(:subject_type)).not_to be_valid
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -138,7 +138,7 @@ describe SubjectTypesController do
       it "assigns the requested subject_type as @subject_type" do
         subject_type = FactoryGirl.create(:subject_type)
         get :edit, :id => subject_type.id
-        assigns(:subject_type).should eq(subject_type)
+        expect(assigns(:subject_type)).to eq(subject_type)
       end
     end
 
@@ -183,7 +183,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          assigns(:subject_type).should be_valid
+          expect(assigns(:subject_type)).to be_valid
         end
 
         it "redirects to the created agent" do
@@ -195,7 +195,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          assigns(:subject_type).should_not be_valid
+          expect(assigns(:subject_type)).not_to be_valid
         end
 
         it "should be successful" do
@@ -211,7 +211,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          assigns(:subject_type).should be_valid
+          expect(assigns(:subject_type)).to be_valid
         end
 
         it "should be forbidden" do
@@ -223,7 +223,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          assigns(:subject_type).should_not be_valid
+          expect(assigns(:subject_type)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -239,7 +239,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          assigns(:subject_type).should be_valid
+          expect(assigns(:subject_type)).to be_valid
         end
 
         it "should be forbidden" do
@@ -251,7 +251,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          assigns(:subject_type).should_not be_valid
+          expect(assigns(:subject_type)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -265,7 +265,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          assigns(:subject_type).should be_valid
+          expect(assigns(:subject_type)).to be_valid
         end
 
         it "should be forbidden" do
@@ -277,7 +277,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          assigns(:subject_type).should_not be_valid
+          expect(assigns(:subject_type)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -305,7 +305,7 @@ describe SubjectTypesController do
 
         it "assigns the requested subject_type as @subject_type" do
           put :update, :id => @subject_type.id, :subject_type => @attrs
-          assigns(:subject_type).should eq(@subject_type)
+          expect(assigns(:subject_type)).to eq(@subject_type)
         end
 
         it "moves its position when specified" do
@@ -332,7 +332,7 @@ describe SubjectTypesController do
 
         it "assigns the requested subject_type as @subject_type" do
           put :update, :id => @subject_type.id, :subject_type => @attrs
-          assigns(:subject_type).should eq(@subject_type)
+          expect(assigns(:subject_type)).to eq(@subject_type)
           response.should be_forbidden
         end
       end
@@ -355,7 +355,7 @@ describe SubjectTypesController do
 
         it "assigns the requested subject_type as @subject_type" do
           put :update, :id => @subject_type.id, :subject_type => @attrs
-          assigns(:subject_type).should eq(@subject_type)
+          expect(assigns(:subject_type)).to eq(@subject_type)
           response.should be_forbidden
         end
       end
