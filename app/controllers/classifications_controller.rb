@@ -103,7 +103,7 @@ class ClassificationsController < ApplicationController
     @classification.destroy
 
     respond_to do |format|
-      format.html { redirect_to classifications_url }
+      format.html { redirect_to classifications_url, notice: t('controller.successfully_deleted', model: t('activerecord.models.classification')) }
       format.json { head :no_content }
     end
   end
