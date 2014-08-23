@@ -1,7 +1,7 @@
 class SubjectType < ActiveRecord::Base
   attr_accessible :name, :display_name, :note
   include MasterModel
-  default_scope order: "position"
+  default_scope { order("subject_types.position") }
   has_many :subjects
   validates :name, format: {with: /\A[0-9A-Za-z][0-9a-z_\-]*[0-9a-z]\Z/}
 end
