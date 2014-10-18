@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.add_dependency "dynamic_form"
 
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "mysql2"
+  s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.1"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "factory_girl_rails"
