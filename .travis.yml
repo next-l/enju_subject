@@ -39,3 +39,4 @@ matrix:
 notifications:
   slack:
     secure: qmxqNdreAdu1Z3F2V1yORYuEAJV/Se4Df8LeRJnDZEEKM9boREUNUatY7N0cwHeiN7vZnQDrtMgkhYCT7J0MVwbWahuTzow/wPbI4TesEExRHyzrkPqAsjHI1wqySlkJ3kUAQpZs4vtr0kYTotHiqXlxmUaTADpPGUo3XrHyRIE=
+sudo: false
