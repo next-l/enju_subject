@@ -38,7 +38,7 @@ class SubjectHeadingTypesController < ApplicationController
   # POST /subject_heading_types
   # POST /subject_heading_types.json
   def create
-    @subject_heading_type = SubjectHeadingType.new(params[:subject_heading_type])
+    @subject_heading_type = SubjectHeadingType.new(subject_heading_type_params)
 
     respond_to do |format|
       if @subject_heading_type.save
@@ -60,7 +60,7 @@ class SubjectHeadingTypesController < ApplicationController
     end
 
     respond_to do |format|
-      if @subject_heading_type.update_attributes(params[:subject_heading_type])
+      if @subject_heading_type.update_attributes(subject_heading_type_params)
         format.html { redirect_to @subject_heading_type, notice:  t('controller.successfully_updated', model:  t('activerecord.models.subject_heading_type')) }
         format.json { head :no_content }
       else

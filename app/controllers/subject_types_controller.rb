@@ -38,7 +38,7 @@ class SubjectTypesController < ApplicationController
   # POST /subject_types
   # POST /subject_types.json
   def create
-    @subject_type = SubjectType.new(params[:subject_type])
+    @subject_type = SubjectType.new(subject_type_params)
 
     respond_to do |format|
       if @subject_type.save
@@ -60,7 +60,7 @@ class SubjectTypesController < ApplicationController
     end
 
     respond_to do |format|
-      if @subject_type.update_attributes(params[:subject_type])
+      if @subject_type.update_attributes(subject_type_params)
         format.html { redirect_to @subject_type, notice:  t('controller.successfully_updated', model:  t('activerecord.models.subject_type')) }
         format.json { head :no_content }
       else
@@ -82,7 +82,7 @@ class SubjectTypesController < ApplicationController
   end
 
   private
-  def subject_type
+  def subject_type_params
     params.require(:subject_type).permit(:name, :display_name, :note)
   end
 end

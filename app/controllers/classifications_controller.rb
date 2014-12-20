@@ -67,7 +67,7 @@ class ClassificationsController < ApplicationController
   # POST /classifications
   # POST /classifications.json
   def create
-    @classification = Classification.new(params[:classification])
+    @classification = Classification.new(classification_params)
 
     respond_to do |format|
       if @classification.save
@@ -85,7 +85,7 @@ class ClassificationsController < ApplicationController
   # PUT /classifications/1.json
   def update
     respond_to do |format|
-      if @classification.update_attributes(params[:classification])
+      if @classification.update_attributes(classification_params)
         format.html { redirect_to @classification, notice: t('controller.successfully_updated', model: t('activerecord.models.classification')) }
         format.json { head :no_content }
       else

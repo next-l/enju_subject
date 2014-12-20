@@ -38,7 +38,7 @@ class ClassificationTypesController < ApplicationController
   # POST /classification_types
   # POST /classification_types.json
   def create
-    @classification_type = ClassificationType.new(params[:classification_type])
+    @classification_type = ClassificationType.new(classification_type_params)
 
     respond_to do |format|
       if @classification_type.save
@@ -60,7 +60,7 @@ class ClassificationTypesController < ApplicationController
     end
 
     respond_to do |format|
-      if @classification_type.update_attributes(params[:classification_type])
+      if @classification_type.update_attributes(classification_type_params)
         format.html { redirect_to @classification_type, notice:  t('controller.successfully_updated', model:  t('activerecord.models.classification_type')) }
         format.json { head :no_content }
       else
