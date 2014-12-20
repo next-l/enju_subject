@@ -109,6 +109,12 @@ class ClassificationsController < ApplicationController
   end
 
   private
+  def classification_params
+    params.require(:classification).permit(
+      :parent_id, :category, :note, :classification_type_id
+    )
+  end
+
   def get_classification_type
     @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
   end

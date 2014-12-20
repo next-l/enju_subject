@@ -131,6 +131,13 @@ class SubjectsController < ApplicationController
   end
 
   private
+  def subject_params
+    params.require(:subject).permit(
+      :parent_id, :use_term_id, :term, :term_transcription,
+      :subject_type_id, :note, :required_role_id, :subject_heading_type_id
+    )
+  end
+
   def prepare_options
     @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
     @subject_types = SubjectType.select([:id, :display_name, :position])

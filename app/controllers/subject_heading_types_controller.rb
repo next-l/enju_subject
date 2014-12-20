@@ -80,4 +80,9 @@ class SubjectHeadingTypesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def subject_heading_type_params
+    params.require(:subject_heading_type).permit(:name, :display_name, :note)
+  end
 end

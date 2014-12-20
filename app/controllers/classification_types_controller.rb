@@ -80,4 +80,9 @@ class ClassificationTypesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def classification_type_params
+    params.require(:classification_type).permit(:name, :display_name, :note)
+  end
 end

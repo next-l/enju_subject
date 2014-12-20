@@ -80,4 +80,9 @@ class SubjectTypesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def subject_type
+    params.require(:subject_type).permit(:name, :display_name, :note)
+  end
 end
