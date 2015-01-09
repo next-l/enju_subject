@@ -1,33 +1,16 @@
 class Subject < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-  belongs_to :manifestation
+  belongs_to :manifestation, touch: true
   belongs_to :subject_type
   belongs_to :subject_heading_type
-  belongs_to :required_role, :class_name => 'Role', :foreign_key => 'required_role_id'
+  belongs_to :required_role, class_name: 'Role', foreign_key: 'required_role_id'
 
   validates_associated :subject_type, :subject_heading_type
   validates_presence_of :term, :subject_type_id, :subject_heading_type_id
 
-  index_name "#{name.downcase.pluralize}-#{Rails.env}"
-
-  after_commit on: :create do
-    index_document
-  end
-
-  after_commit on: :update do
-    update_document
-  end
-
-  after_commit on: :destroy do
-    delete_document
-  end
-
-  settings do
-    mappings dynamic: 'false', _routing: {required: true, path: :required_role_id} do
-      indexes :term
-      indexes :created_at, type: 'date'
-    end
+  searchable do
+    text :term
+    time :created_at
+    integer :required_role_id
   end
 
   normalize_attributes :term

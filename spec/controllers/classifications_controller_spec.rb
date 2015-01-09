@@ -9,8 +9,7 @@ describe ClassificationsController do
 
   describe "GET index", :solr => true do
     before do
-      Classification.__elasticsearch__.create_index!
-      Classification.import
+      Classification.reindex
     end
 
     describe "When logged in as Administrator" do
@@ -18,7 +17,7 @@ describe ClassificationsController do
 
       it "assigns all classifications as @classifications" do
         get :index
-        assigns(:classifications).should_not be_empty
+        expect(assigns(:classifications)).not_to be_empty
       end
     end
 
@@ -27,7 +26,7 @@ describe ClassificationsController do
 
       it "assigns all classifications as @classifications" do
         get :index
-        assigns(:classifications).should_not be_empty
+        expect(assigns(:classifications)).not_to be_empty
       end
     end
 
@@ -36,20 +35,20 @@ describe ClassificationsController do
 
       it "assigns all classifications as @classifications" do
         get :index
-        assigns(:classifications).should_not be_empty
+        expect(assigns(:classifications)).not_to be_empty
       end
     end
 
     describe "When not logged in" do
       it "assigns all classifications as @classifications" do
         get :index
-        assigns(:classifications).should_not be_empty
+        expect(assigns(:classifications)).not_to be_empty
       end
 
       it "should get index with query" do
         get :index, :query => '500'
         response.should be_success
-        assigns(:classifications).should_not be_empty
+        expect(assigns(:classifications)).not_to be_empty
       end
     end
   end
@@ -64,7 +63,7 @@ describe ClassificationsController do
 
       it "assigns the requested classification as @classification" do
         get :show, :id => @classification.id
-        assigns(:classification).should eq(@classification)
+        expect(assigns(:classification)).to eq(@classification)
       end
     end
 
@@ -73,7 +72,7 @@ describe ClassificationsController do
 
       it "assigns the requested classification as @classification" do
         get :show, :id => @classification.id
-        assigns(:classification).should eq(@classification)
+        expect(assigns(:classification)).to eq(@classification)
       end
     end
 
@@ -82,14 +81,14 @@ describe ClassificationsController do
 
       it "assigns the requested classification as @classification" do
         get :show, :id => @classification.id
-        assigns(:classification).should eq(@classification)
+        expect(assigns(:classification)).to eq(@classification)
       end
     end
 
     describe "When not logged in" do
       it "assigns the requested classification as @classification" do
         get :show, :id => @classification.id
-        assigns(:classification).should eq(@classification)
+        expect(assigns(:classification)).to eq(@classification)
       end
     end
   end
@@ -100,7 +99,7 @@ describe ClassificationsController do
 
       it "assigns the requested classification as @classification" do
         get :new
-        assigns(:classification).should_not be_valid
+        expect(assigns(:classification)).not_to be_valid
       end
     end
 
@@ -109,7 +108,7 @@ describe ClassificationsController do
 
       it "assigns the requested classification as @classification" do
         get :new
-        assigns(:classification).should_not be_valid
+        expect(assigns(:classification)).not_to be_valid
       end
     end
 
@@ -118,14 +117,14 @@ describe ClassificationsController do
 
       it "should assign the requested classification as @classification" do
         get :new
-        assigns(:classification).should_not be_valid
+        expect(assigns(:classification)).not_to be_valid
       end
     end
 
     describe "When not logged in" do
       it "should not assign the requested classification as @classification" do
         get :new
-        assigns(:classification).should_not be_valid
+        expect(assigns(:classification)).not_to be_valid
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -138,7 +137,7 @@ describe ClassificationsController do
       it "assigns the requested classification as @classification" do
         classification = FactoryGirl.create(:classification)
         get :edit, :id => classification.id
-        assigns(:classification).should eq(classification)
+        expect(assigns(:classification)).to eq(classification)
       end
     end
 
@@ -148,7 +147,7 @@ describe ClassificationsController do
       it "assigns the requested classification as @classification" do
         classification = FactoryGirl.create(:classification)
         get :edit, :id => classification.id
-        assigns(:classification).should eq(classification)
+        expect(assigns(:classification)).to eq(classification)
       end
     end
 
@@ -183,7 +182,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          assigns(:classification).should be_valid
+          expect(assigns(:classification)).to be_valid
         end
 
         it "redirects to the created classification" do
@@ -195,7 +194,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          assigns(:classification).should_not be_valid
+          expect(assigns(:classification)).not_to be_valid
         end
 
         it "re-renders the 'new' template" do
@@ -211,7 +210,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          assigns(:classification).should be_valid
+          expect(assigns(:classification)).to be_valid
         end
 
         it "should be forbidden" do
@@ -223,7 +222,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          assigns(:classification).should_not be_valid
+          expect(assigns(:classification)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -239,7 +238,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          assigns(:classification).should be_valid
+          expect(assigns(:classification)).to be_valid
         end
 
         it "should be forbidden" do
@@ -251,7 +250,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          assigns(:classification).should_not be_valid
+          expect(assigns(:classification)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -265,7 +264,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          assigns(:classification).should be_valid
+          expect(assigns(:classification)).to be_valid
         end
 
         it "should be forbidden" do
@@ -277,7 +276,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          assigns(:classification).should_not be_valid
+          expect(assigns(:classification)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -305,7 +304,7 @@ describe ClassificationsController do
 
         it "assigns the requested classification as @classification" do
           put :update, :id => @classification.id, :classification => @attrs
-          assigns(:classification).should eq(@classification)
+          expect(assigns(:classification)).to eq(@classification)
         end
       end
 
@@ -327,7 +326,7 @@ describe ClassificationsController do
 
         it "should be forbidden" do
           put :update, :id => @classification.id, :classification => @attrs
-          assigns(:classification).should eq(@classification)
+          expect(assigns(:classification)).to eq(@classification)
           response.should be_forbidden
         end
       end
@@ -350,7 +349,7 @@ describe ClassificationsController do
 
         it "assigns the requested classification as @classification" do
           put :update, :id => @classification.id, :classification => @attrs
-          assigns(:classification).should eq(@classification)
+          expect(assigns(:classification)).to eq(@classification)
           response.should be_forbidden
         end
       end

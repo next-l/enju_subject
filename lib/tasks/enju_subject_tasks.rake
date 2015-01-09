@@ -1,4 +1,7 @@
 require 'active_record/fixtures'
+require 'tasks/subject_type'
+require 'tasks/subject_heading_type'
+
 desc "create initial records for enju_subject"
 namespace :enju_subject do
   task :setup => :environment do
@@ -7,5 +10,14 @@ namespace :enju_subject do
     end
 
     puts 'initial fixture files loaded.'
+  end
+
+  desc "upgrade enju_subject"
+  task :upgrade => :environment do
+    SubjectType.transaction do
+      update_subject_type
+      update_subject_heading_type
+    end
+    puts 'enju_subject: The upgrade completed successfully.'
   end
 end

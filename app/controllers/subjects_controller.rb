@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
-  before_action :prepare_options, only: [:new, :edit]
-  after_action :verify_authorized
+  load_and_authorize_resource except: :index
+  authorize_resource only: :index
+  before_filter :prepare_options, only: [:new, :edit]
+  after_filter :solr_commit, only: [:create, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
   def index
-    authorize Subject
-    sort = {:sort_by => 'created_at', :order => 'desc'}
+    sort = {sort_by: 'created_at', order: 'desc'}
     case params[:sort_by]
     when 'name'
       sort[:sort_by] = 'term'
@@ -40,11 +40,11 @@ class SubjectsController < ApplicationController
     session[:params] = {} unless session[:params]
     session[:params][:subject] = params
 
-    flash[:page_info] = {:page => page, :query => query}
+    flash[:page_info] = {page: page, query: query}
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @subjects }
+      format.json { render json: @subjects }
       format.rss
       format.atom
     end
@@ -54,7 +54,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.json
   def show
     if params[:term]
-      subject = Subject.where(:term => params[:term]).first
+      subject = Subject.where(term: params[:term]).first
       redirected_to subject
       return
     end
@@ -69,18 +69,17 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @subject }
+      format.json { render json: @subject }
     end
   end
 
   # GET /subjects/new
   def new
     @subject = Subject.new
-    authorize @subject
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @subject }
+      format.json { render json: @subject }
     end
   end
 
@@ -92,16 +91,15 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
-    authorize @subject
 
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, :notice => t('controller.successfully_created', :model => t('activerecord.models.subject')) }
-        format.json { render :json => @subject, :status => :created, :location => @subject }
+        format.html { redirect_to @subject, notice: t('controller.successfully_created', model: t('activerecord.models.subject')) }
+        format.json { render json: @subject, status: :created, location: @subject }
       else
         prepare_options
-        format.html { render :action => "new" }
-        format.json { render :json => @subject.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -111,12 +109,12 @@ class SubjectsController < ApplicationController
   def update
     respond_to do |format|
       if @subject.update_attributes(subject_params)
-        format.html { redirect_to @subject, :notice => t('controller.successfully_updated', :model => t('activerecord.models.subject')) }
+        format.html { redirect_to @subject, notice: t('controller.successfully_updated', model: t('activerecord.models.subject')) }
         format.json { head :no_content }
       else
         prepare_options
-        format.html { render :action => "edit" }
-        format.json { render :json => @subject.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -125,24 +123,23 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1.json
   def destroy
     @subject.destroy
-    redirect_to subjects_url, notice: t('controller.successfully_destroyed', model: t('activerecord.models.subject'))
+
+    respond_to do |format|
+      format.html { redirect_to subjects_url, notice: t('controller.successfully_deleted', model: t('activerecord.models.subjects')) }
+      format.json { head :no_content }
+    end
   end
 
   private
-  def set_subject
-    @subject = Subject.find(params[:id])
-    authorize @subject
-  end
-
-  def prepare_options
-    @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
-    @subject_types = SubjectType.select([:id, :display_name, :position])
-  end
-
   def subject_params
     params.require(:subject).permit(
       :parent_id, :use_term_id, :term, :term_transcription,
       :subject_type_id, :note, :required_role_id, :subject_heading_type_id
     )
+  end
+
+  def prepare_options
+    @subject_heading_types = SubjectHeadingType.select([:id, :display_name, :position])
+    @subject_types = SubjectType.select([:id, :display_name, :position])
   end
 end

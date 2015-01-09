@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
 class ClassificationsController < ApplicationController
-  before_action :set_classification, only: [:show, :edit, :update, :destroy]
-  before_action :get_subject, :get_classification_type
-  after_action :verify_authorized
+  load_and_authorize_resource
+  before_filter :get_subject, :get_classification_type
+  after_filter :solr_commit, only: [:create, :update, :destroy]
 
   # GET /classifications
   # GET /classifications.json
   def index
-    authorize Classification
     search = Sunspot.new_search(Classification)
     query = params[:query].to_s.strip
     unless query.blank?
@@ -34,26 +33,29 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @classifications }
+      format.json { render json: @classifications }
     end
   end
 
   # GET /classifications/1
   # GET /classifications/1.json
   def show
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @classification }
+    end
   end
 
   # GET /classifications/new
   # GET /classifications/new.json
   def new
-    @classification = Classification.new
-    authorize @classification
     @classification_types = ClassificationType.all
+    @classification = Classification.new
     @classification.classification_type = @classification_type
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @classification }
+      format.json { render json: @classification }
     end
   end
 
@@ -66,16 +68,15 @@ class ClassificationsController < ApplicationController
   # POST /classifications.json
   def create
     @classification = Classification.new(classification_params)
-    authorize @classification
 
     respond_to do |format|
       if @classification.save
-        format.html { redirect_to @classification, :notice => t('controller.successfully_created', :model => t('activerecord.models.classification')) }
-        format.json { render :json => @classification, :status => :created, :location => @classification }
+        format.html { redirect_to @classification, notice: t('controller.successfully_created', model: t('activerecord.models.classification')) }
+        format.json { render json: @classification, status: :created, location: @classification }
       else
         @classification_types = ClassificationType.all
-        format.html { render :action => "new" }
-        format.json { render :json => @classification.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @classification.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -85,12 +86,12 @@ class ClassificationsController < ApplicationController
   def update
     respond_to do |format|
       if @classification.update_attributes(classification_params)
-        format.html { redirect_to @classification, :notice => t('controller.successfully_updated', :model => t('activerecord.models.classification')) }
+        format.html { redirect_to @classification, notice: t('controller.successfully_updated', model: t('activerecord.models.classification')) }
         format.json { head :no_content }
       else
         @classification_types = ClassificationType.all
-        format.html { render :action => "edit" }
-        format.json { render :json => @classification.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @classification.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -98,23 +99,23 @@ class ClassificationsController < ApplicationController
   # DELETE /classifications/1
   # DELETE /classifications/1.json
   def destroy
+    @classification = Classification.find(params[:id])
     @classification.destroy
-    redirect_to classifications_url, notice: t('controller.successfully_destroyed', model: t('activerecord.models.classification'))
+
+    respond_to do |format|
+      format.html { redirect_to classifications_url, notice: t('controller.successfully_deleted', model: t('activerecord.models.classification')) }
+      format.json { head :no_content }
+    end
   end
 
   private
-  def set_classification
-    @classification = Classification.find(params[:id])
-    authorize @classification
-  end
-
-  def get_classification_type
-    @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
-  end
-
   def classification_params
     params.require(:classification).permit(
       :parent_id, :category, :note, :classification_type_id
     )
+  end
+
+  def get_classification_type
+    @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
   end
 end

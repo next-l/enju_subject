@@ -5,7 +5,7 @@ describe Subject do
   fixtures :subjects
 
   it "should get term" do
-    subjects(:subject_00001).term.should be_true
+    subjects(:subject_00001).term.should be_truthy
   end
 end
 

@@ -1,7 +1,12 @@
 <div id="content_detail" class="ui-corner-all ui-widget-content">
-<h1 class="title"><%= t('page.showing', :model => t('activerecord.models.subject_heading_type')) -%></h1>
+<h1 class="title"><%= t('page.showing', model: t('activerecord.models.subject_heading_type')) -%></h1>
 <div id="content_list">
 <p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t('activerecord.attributes.subject_heading_type.name') -%>:</strong>
+  <%= @subject_heading_type.name -%>
+</p>
 
 <p>
   <strong><%= t('activerecord.attributes.subject_heading_type.display_name') -%>:</strong>

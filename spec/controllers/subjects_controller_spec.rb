@@ -9,8 +9,7 @@ describe SubjectsController do
 
   describe "GET index", :solr => true do
     before do
-      Subject.__elasticsearch__.create_index!
-      Subject.import
+      Subject.reindex
     end
 
     describe "When logged in as Administrator" do
@@ -18,7 +17,7 @@ describe SubjectsController do
 
       it "assigns all subjects as @subjects" do
         get :index
-        assigns(:subjects).should_not be_nil
+        expect(assigns(:subjects)).not_to be_nil
       end
     end
 
@@ -27,7 +26,7 @@ describe SubjectsController do
 
       it "assigns all subjects as @subjects" do
         get :index
-        assigns(:subjects).should_not be_nil
+        expect(assigns(:subjects)).not_to be_nil
       end
     end
 
@@ -36,7 +35,7 @@ describe SubjectsController do
 
       it "assigns all subjects as @subjects" do
         get :index
-        assigns(:subjects).should_not be_nil
+        expect(assigns(:subjects)).not_to be_nil
       end
     end
 
@@ -44,7 +43,7 @@ describe SubjectsController do
       it "assigns all subjects as @subjects" do
         get :index
         response.should be_success
-        assigns(:subjects).should_not be_nil
+        expect(assigns(:subjects)).not_to be_nil
       end
     end
   end
@@ -56,7 +55,7 @@ describe SubjectsController do
       it "assigns the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :show, :id => subject.id
-        assigns(:subject).should eq(subject)
+        expect(assigns(:subject)).to eq(subject)
       end
     end
 
@@ -66,7 +65,7 @@ describe SubjectsController do
       it "assigns the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :show, :id => subject.id
-        assigns(:subject).should eq(subject)
+        expect(assigns(:subject)).to eq(subject)
       end
     end
 
@@ -76,7 +75,7 @@ describe SubjectsController do
       it "assigns the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :show, :id => subject.id
-        assigns(:subject).should eq(subject)
+        expect(assigns(:subject)).to eq(subject)
       end
     end
 
@@ -84,7 +83,7 @@ describe SubjectsController do
       it "assigns the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :show, :id => subject.id
-        assigns(:subject).should eq(subject)
+        expect(assigns(:subject)).to eq(subject)
       end
     end
   end
@@ -95,7 +94,7 @@ describe SubjectsController do
 
       it "assigns the requested subject as @subject" do
         get :new
-        assigns(:subject).should_not be_valid
+        expect(assigns(:subject)).not_to be_valid
       end
     end
 
@@ -104,7 +103,7 @@ describe SubjectsController do
 
       it "assigns the requested subject as @subject" do
         get :new
-        assigns(:subject).should_not be_valid
+        expect(assigns(:subject)).not_to be_valid
       end
     end
 
@@ -113,7 +112,7 @@ describe SubjectsController do
 
       it "should not assign the requested subject as @subject" do
         get :new
-        assigns(:subject).should_not be_valid
+        expect(assigns(:subject)).not_to be_valid
         response.should be_forbidden
       end
     end
@@ -121,7 +120,7 @@ describe SubjectsController do
     describe "When not logged in" do
       it "should not assign the requested subject as @subject" do
         get :new
-        assigns(:subject).should_not be_valid
+        expect(assigns(:subject)).not_to be_valid
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -134,7 +133,7 @@ describe SubjectsController do
       it "assigns the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :edit, :id => subject.id
-        assigns(:subject).should eq(subject)
+        expect(assigns(:subject)).to eq(subject)
       end
     end
 
@@ -144,7 +143,7 @@ describe SubjectsController do
       it "assigns the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :edit, :id => subject.id
-        assigns(:subject).should eq(subject)
+        expect(assigns(:subject)).to eq(subject)
       end
     end
 
@@ -179,7 +178,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          assigns(:subject).should be_valid
+          expect(assigns(:subject)).to be_valid
         end
 
         it "redirects to the created subject" do
@@ -191,7 +190,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          assigns(:subject).should_not be_valid
+          expect(assigns(:subject)).not_to be_valid
         end
 
         it "re-renders the 'new' template" do
@@ -207,7 +206,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          assigns(:subject).should be_valid
+          expect(assigns(:subject)).to be_valid
         end
 
         it "should be forbidden" do
@@ -219,7 +218,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          assigns(:subject).should_not be_valid
+          expect(assigns(:subject)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -235,7 +234,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          assigns(:subject).should be_valid
+          expect(assigns(:subject)).to be_valid
         end
 
         it "should be forbidden" do
@@ -247,7 +246,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          assigns(:subject).should_not be_valid
+          expect(assigns(:subject)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -261,7 +260,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          assigns(:subject).should be_valid
+          expect(assigns(:subject)).to be_valid
         end
 
         it "should be forbidden" do
@@ -273,7 +272,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          assigns(:subject).should_not be_valid
+          expect(assigns(:subject)).not_to be_valid
         end
 
         it "should be forbidden" do
@@ -301,7 +300,7 @@ describe SubjectsController do
 
         it "assigns the requested subject as @subject" do
           put :update, :id => @subject.id, :subject => @attrs
-          assigns(:subject).should eq(@subject)
+          expect(assigns(:subject)).to eq(@subject)
         end
       end
 
@@ -323,7 +322,7 @@ describe SubjectsController do
 
         it "should be forbidden" do
           put :update, :id => @subject.id, :subject => @attrs
-          assigns(:subject).should eq(@subject)
+          expect(assigns(:subject)).to eq(@subject)
           response.should be_forbidden
         end
       end
@@ -346,7 +345,7 @@ describe SubjectsController do
 
         it "assigns the requested subject as @subject" do
           put :update, :id => @subject.id, :subject => @attrs
-          assigns(:subject).should eq(@subject)
+          expect(assigns(:subject)).to eq(@subject)
           response.should be_forbidden
         end
       end
