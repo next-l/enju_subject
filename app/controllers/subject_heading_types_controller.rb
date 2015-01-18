@@ -1,9 +1,11 @@
 class SubjectHeadingTypesController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_subject_heading_type, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+
   # GET /subject_heading_types
   # GET /subject_heading_types.json
   def index
-    @subject_heading_types = SubjectHeadingType.all
+    @subject_heading_types = SubjectHeadingType.order(:position)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,6 +84,16 @@ class SubjectHeadingTypesController < ApplicationController
   end
 
   private
+  def set_subject_heading_type
+    @subject_heading_type = SubjectHeadingType.find(params[:id])
+    authorize @subject_heading_type
+    access_denied unless LibraryGroup.site_config.network_access_allowed?(request.ip)
+  end
+
+  def check_policy
+    authorize SubjectHeadingType
+  end
+
   def subject_heading_type_params
     params.require(:subject_heading_type).permit(:name, :display_name, :note)
   end

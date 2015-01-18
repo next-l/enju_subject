@@ -19,7 +19,7 @@ describe SubjectHeadingTypesController do
 
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.all)
+        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.order(:position))
       end
     end
 
@@ -28,7 +28,7 @@ describe SubjectHeadingTypesController do
 
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.all)
+        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.order(:position))
       end
     end
 
@@ -37,14 +37,14 @@ describe SubjectHeadingTypesController do
 
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.all)
+        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.order(:position))
       end
     end
 
     describe "When not logged in" do
       it "assigns all subject_heading_types as @subject_heading_types" do
         get :index
-        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.all)
+        expect(assigns(:subject_heading_types)).to eq(SubjectHeadingType.order(:position))
       end
     end
   end
@@ -105,7 +105,7 @@ describe SubjectHeadingTypesController do
 
       it "should not assign the requested subject_heading_type as @subject_heading_type" do
         get :new
-        expect(assigns(:subject_heading_type)).not_to be_valid
+        expect(assigns(:subject_heading_type)).to be_nil
         response.should be_forbidden
       end
     end
@@ -115,7 +115,7 @@ describe SubjectHeadingTypesController do
 
       it "should not assign the requested subject_heading_type as @subject_heading_type" do
         get :new
-        expect(assigns(:subject_heading_type)).not_to be_valid
+        expect(assigns(:subject_heading_type)).to be_nil
         response.should be_forbidden
       end
     end
@@ -123,7 +123,7 @@ describe SubjectHeadingTypesController do
     describe "When not logged in" do
       it "should not assign the requested subject_heading_type as @subject_heading_type" do
         get :new
-        expect(assigns(:subject_heading_type)).not_to be_valid
+        expect(assigns(:subject_heading_type)).to be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -209,7 +209,7 @@ describe SubjectHeadingTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_heading_type as @subject_heading_type" do
           post :create, :subject_heading_type => @attrs
-          expect(assigns(:subject_heading_type)).to be_valid
+          expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -221,7 +221,7 @@ describe SubjectHeadingTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_heading_type as @subject_heading_type" do
           post :create, :subject_heading_type => @invalid_attrs
-          expect(assigns(:subject_heading_type)).not_to be_valid
+          expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -237,7 +237,7 @@ describe SubjectHeadingTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_heading_type as @subject_heading_type" do
           post :create, :subject_heading_type => @attrs
-          expect(assigns(:subject_heading_type)).to be_valid
+          expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -249,7 +249,7 @@ describe SubjectHeadingTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_heading_type as @subject_heading_type" do
           post :create, :subject_heading_type => @invalid_attrs
-          expect(assigns(:subject_heading_type)).not_to be_valid
+          expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -263,7 +263,7 @@ describe SubjectHeadingTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_heading_type as @subject_heading_type" do
           post :create, :subject_heading_type => @attrs
-          expect(assigns(:subject_heading_type)).to be_valid
+          expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -275,7 +275,7 @@ describe SubjectHeadingTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_heading_type as @subject_heading_type" do
           post :create, :subject_heading_type => @invalid_attrs
-          expect(assigns(:subject_heading_type)).not_to be_valid
+          expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it "should be forbidden" do

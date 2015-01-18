@@ -1,9 +1,11 @@
 class SubjectTypesController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_subject_type, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+
   # GET /subject_types
   # GET /subject_types.json
   def index
-    @subject_types = SubjectType.all
+    @subject_types = SubjectType.order(:position)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,6 +84,16 @@ class SubjectTypesController < ApplicationController
   end
 
   private
+  def set_subject_type
+    @subject_type = SubjectType.find(params[:id])
+    authorize @subject_type
+    access_denied unless LibraryGroup.site_config.network_access_allowed?(request.ip)
+  end
+
+  def check_policy
+    authorize SubjectType
+  end
+
   def subject_type_params
     params.require(:subject_type).permit(:name, :display_name, :note)
   end

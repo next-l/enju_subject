@@ -1,9 +1,11 @@
 class ClassificationTypesController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_classification_type, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+
   # GET /classification_types
   # GET /classification_types.json
   def index
-    @classification_types = ClassificationType.all
+    @classification_types = ClassificationType.order(:position)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,6 +84,16 @@ class ClassificationTypesController < ApplicationController
   end
 
   private
+  def set_classification_type
+    @classification_type = ClassificationType.find(params[:id])
+    authorize @classification_type
+    access_denied unless LibraryGroup.site_config.network_access_allowed?(request.ip)
+  end
+
+  def check_policy
+    authorize ClassificationType
+  end
+
   def classification_type_params
     params.require(:classification_type).permit(:name, :display_name, :note)
   end

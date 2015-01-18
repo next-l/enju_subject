@@ -33,10 +33,10 @@
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
     <li><%= back_to_index(flash[:page_info]) -%></li>
-    <% if can? :update, @subject %>
+    <% if policy(@subject).update? %>
       <li><%= link_to t('page.edit'), edit_subject_path(@subject) -%></li>
     <% end %>
-    <% if can? :delete, @subject %>
+    <% if policy(@subject).destroy? %>
       <li><%= link_to t('page.destroy'), subject_path(@subject), data: {confirm: t('page.are_you_sure')}, method: :delete -%></li>
     <% end %>
   </ul>

@@ -108,7 +108,7 @@ describe ClassificationsController do
 
       it "assigns the requested classification as @classification" do
         get :new
-        expect(assigns(:classification)).not_to be_valid
+        expect(assigns(:classification)).to be_nil
       end
     end
 
@@ -117,14 +117,14 @@ describe ClassificationsController do
 
       it "should assign the requested classification as @classification" do
         get :new
-        expect(assigns(:classification)).not_to be_valid
+        expect(assigns(:classification)).to be_nil
       end
     end
 
     describe "When not logged in" do
       it "should not assign the requested classification as @classification" do
         get :new
-        expect(assigns(:classification)).not_to be_valid
+        expect(assigns(:classification)).to be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -210,7 +210,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          expect(assigns(:classification)).to be_valid
+          expect(assigns(:classification)).to be_nil
         end
 
         it "should be forbidden" do
@@ -222,7 +222,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          expect(assigns(:classification)).not_to be_valid
+          expect(assigns(:classification)).to be_nil
         end
 
         it "should be forbidden" do
@@ -238,7 +238,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          expect(assigns(:classification)).to be_valid
+          expect(assigns(:classification)).to be_nil
         end
 
         it "should be forbidden" do
@@ -250,7 +250,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          expect(assigns(:classification)).not_to be_valid
+          expect(assigns(:classification)).to be_nil
         end
 
         it "should be forbidden" do
@@ -264,7 +264,7 @@ describe ClassificationsController do
       describe "with valid params" do
         it "assigns a newly created classification as @classification" do
           post :create, :classification => @attrs
-          expect(assigns(:classification)).to be_valid
+          expect(assigns(:classification)).to be_nil
         end
 
         it "should be forbidden" do
@@ -276,7 +276,7 @@ describe ClassificationsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification as @classification" do
           post :create, :classification => @invalid_attrs
-          expect(assigns(:classification)).not_to be_valid
+          expect(assigns(:classification)).to be_nil
         end
 
         it "should be forbidden" do
