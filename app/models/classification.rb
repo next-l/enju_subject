@@ -8,7 +8,7 @@ class Classification < ActiveRecord::Base
     text :category, :note
     integer :classification_type_id
   end
-  normalize_attributes :category
+  strip_attributes only: :category
 
   paginates_per 10
 end
