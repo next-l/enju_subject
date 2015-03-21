@@ -1,0 +1,27 @@
+#content_detail.ui-corner-all.ui-widget-content
+  h1.title
+    = t('page.showing', model: t('activerecord.models.classification'))
+  #content_list
+    p#notice
+      = notice
+    p
+      strong
+        = t('activerecord.attributes.classification.category')
+        | :
+      = @classification.category
+    p
+      strong
+        = t('activerecord.attributes.classification.note')
+        | :
+      = @classification.note
+    p
+      strong
+        = t('activerecord.models.classification_type')
+        | :
+      = link_to @classification.classification_type.display_name.localize, @classification.classification_type
+#submenu.ui-corner-all.ui-widget-content
+  ul
+    li
+      = link_to t('page.edit'), edit_classification_path(@classification)
+    li
+      = back_to_index(flash[:page_info])
