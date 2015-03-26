@@ -1,7 +1,7 @@
-#content_detail.ui-corner-all.ui-widget-content
+#col1.row
   h1.title
     = t('page.listing', model: t('activerecord.models.classification'))
-  #content_list
+  #content_list.col-md-9
     p#notice
       = notice
     .search_form
@@ -35,7 +35,7 @@
             = link_to t('page.edit'), edit_classification_path(classification)
             = link_to t('page.destroy'), classification, data: {confirm: t('page.are_you_sure')}, method: :delete
     = paginate(@classifications)
-#submenu.ui-corner-all.ui-widget-content
+  #submenu.col-md-3
   ul
     - if policy(Classification).create?
       - if @classification_type

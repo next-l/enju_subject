@@ -1,7 +1,7 @@
-#content_detail.ui-corner-all.ui-widget-content
+#col1.row
   h1.title
     = t('page.listing', model: t('activerecord.models.subject'))
-  #content_list
+  #content_list.col-md-9
     p#notice
       = notice
     .search_form
@@ -28,7 +28,7 @@
             - if policy(subject).destroy?
               = link_to t('page.destroy'), subject, data: {confirm: t('page.are_you_sure')}, method: :delete
     = paginate(@subjects)
-#submenu.ui-corner-all.ui-widget-content
+  #submenu.col-md-3
   ul
     - if policy(Subject).create?
       li

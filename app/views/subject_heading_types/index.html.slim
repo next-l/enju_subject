@@ -1,7 +1,7 @@
-#content_detail.ui-corner-all.ui-widget-content
+#col1.row
   h1.title
     = t('page.listing', model: t('activerecord.models.subject_heading_type'))
-  #content_list
+  #content_list.col-md-9
     p#notice
       = notice
     table.table.table-striped.index
@@ -32,7 +32,7 @@
             = link_to t('page.edit'), edit_subject_heading_type_path(subject_heading_type)
           - if policy(subject_heading_type).destroy?
             = link_to t('page.destroy'), subject_heading_type_path(subject_heading_type), data: {confirm: t('page.are_you_sure')}, method: :delete
-#submenu.ui-corner-all.ui-widget-content
+  #submenu.col-md-3
   ul
     - if policy(SubjectHeadingType).create?
       li
