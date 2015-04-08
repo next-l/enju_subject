@@ -13,4 +13,4 @@
     br
     = f.select(:classification_type_id, @classification_types.collect{|c| [c.name, c.id]})
   .actions
-    = f.submit
+    = f.submit class: 'btn btn-default'
