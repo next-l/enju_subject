@@ -1,9 +1,9 @@
 #col1.row
-  h1.title
-    =  t('page.new', model: t('activerecord.models.classification'))
   #content_list.col-md-9
+    h1.title
+      =  t('page.new', model: t('activerecord.models.classification'))
     = render 'form'
   #submenu.col-md-3
-  ul
-    li
-      = link_to t('page.back'), :back
+    ul
+      li
+        = link_to t('page.back'), :back

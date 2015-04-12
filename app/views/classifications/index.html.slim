@@ -1,7 +1,7 @@
 #col1.row
-  h1.title
-    = t('page.listing', model: t('activerecord.models.classification'))
   #content_list.col-md-9
+    h1.title
+      = t('page.listing', model: t('activerecord.models.classification'))
     p#notice
       = notice
     .search_form
@@ -36,11 +36,11 @@
             = link_to t('page.destroy'), classification, data: {confirm: t('page.are_you_sure')}, method: :delete
     = paginate(@classifications)
   #submenu.col-md-3
-  ul
-    - if policy(Classification).create?
-      - if @classification_type
-        li
-          = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_type_classification_path(@classification_type)
-      - else
-        li
-          = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_path
+    ul
+      - if policy(Classification).create?
+        - if @classification_type
+          li
+            = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_type_classification_path(@classification_type)
+        - else
+          li
+            = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_path

@@ -1,11 +1,11 @@
 #col1.row
-  h1.title
-    = t('page.editing', model: t('activerecord.models.subject'))
   #content_list.col-md-9
+    h1.title
+      = t('page.editing', model: t('activerecord.models.subject'))
     = render 'form'
   #submenu.col-md-3
-  ul
-    li
-      = link_to t('page.show'), @subject
-    li
-      = link_to t('page.back'), subjects_path
+    ul
+      li
+        = link_to t('page.show'), @subject
+      li
+        = link_to t('page.back'), subjects_path
