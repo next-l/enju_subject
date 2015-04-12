@@ -1,22 +1,22 @@
 = form_for(@subject) do |f|
   = f.error_messages
-  .field
+  .form-group
     = f.label t('activerecord.models.subject_heading_type')
     = f.select(:subject_heading_type_id, @subject_heading_types.collect{|s| [s.display_name.localize, s.id]})
-  .field
+  .form-group
     = f.label t('activerecord.models.subject_type')
     = f.select(:subject_type_id, @subject_types.collect{|s| [s.display_name.localize, s.id]})
-  .field
+  .form-group
     = f.label :term
     br
     = f.text_field :term
-  .field
+  .form-group
     = f.label :term_transcription
     br
     = f.text_field :term_transcription
-  .field
+  .form-group
     = f.label :note
     br
     = f.text_area :note
-  .actions
+  .form-control
     = f.submit class: 'btn btn-default'

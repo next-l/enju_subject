@@ -1,4 +1,4 @@
-.field
+.form-group
   = f.label :subject
   br
   = f.fields_for :subjects do |subject_form|
@@ -8,7 +8,7 @@
     = subject_form.link_to_remove t('page.remove'), confirm: t('page.are_you_sure')
   p
     = f.link_to_add t('page.add'), :subjects
-.field
+.form-group
   = f.label :classification
   br
   = f.fields_for :classifications do |classification_form|
