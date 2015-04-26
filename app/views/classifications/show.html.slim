@@ -1,4 +1,10 @@
-#col1.row
+.row
+  #submenu.col-md-3
+    ul
+      li
+        = link_to t('page.edit'), edit_classification_path(@classification)
+      li
+        = back_to_index(flash[:page_info])
   #content_list.col-md-9
     h1.title
       = t('page.showing', model: t('activerecord.models.classification'))
@@ -19,9 +25,3 @@
         = t('activerecord.models.classification_type')
         | :
       = link_to @classification.classification_type.display_name.localize, @classification.classification_type
-  #submenu.col-md-3
-    ul
-      li
-        = link_to t('page.edit'), edit_classification_path(@classification)
-      li
-        = back_to_index(flash[:page_info])

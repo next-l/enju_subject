@@ -1,4 +1,9 @@
-#col1.row
+.row
+  #submenu.col-md-3
+    ul
+      - if policy(Subject).create?
+        li
+          = link_to t('page.new', model: t('activerecord.models.subject')), new_subject_path
   #content_list.col-md-9
     h1.title
       = t('page.listing', model: t('activerecord.models.subject'))
@@ -24,12 +29,7 @@
           = link_to subject.term, subject
         td
           - if policy(subject).update?
-            = link_to t('page.edit'), edit_subject_path(subject)
+            => link_to t('page.edit'), edit_subject_path(subject)
             - if policy(subject).destroy?
-              = link_to t('page.destroy'), subject, data: {confirm: t('page.are_you_sure')}, method: :delete
+              => link_to t('page.destroy'), subject, data: {confirm: t('page.are_you_sure')}, method: :delete
     = paginate(@subjects)
-  #submenu.col-md-3
-    ul
-      - if policy(Subject).create?
-        li
-          = link_to t('page.new', model: t('activerecord.models.subject')), new_subject_path

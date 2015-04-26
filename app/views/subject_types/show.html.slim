@@ -1,4 +1,10 @@
-#col1.row
+.row
+  #submenu.col-md-3
+    ul
+      li
+        = link_to t('page.edit'), edit_subject_type_path(@subject_type)
+      li
+        = back_to_index(flash[:page_info])
   #content_list.col-md-9
     h1.title
       = t('page.showing', model: t('activerecord.models.subject_type'))
@@ -19,9 +25,3 @@
         = t('activerecord.attributes.subject_type.note')
         | :
       = @subject_type.note
-  #submenu.col-md-3
-    ul
-      li
-        = link_to t('page.edit'), edit_subject_type_path(@subject_type)
-      li
-        = back_to_index(flash[:page_info])
