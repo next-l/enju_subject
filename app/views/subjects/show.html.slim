@@ -1,13 +1,13 @@
 .row
   #submenu.col-md-3
-    ul
-      li
+    ul.list-group
+      li.list-group-item
         = back_to_index(flash[:page_info])
       - if policy(@subject).update?
-        li
+        li.list-group-item
           = link_to t('page.edit'), edit_subject_path(@subject)
       - if policy(@subject).destroy?
-        li
+        li.list-group-item
           = link_to t('page.destroy'), subject_path(@subject), data: {confirm: t('page.are_you_sure')}, method: :delete
   #content_list.col-md-9
     h1.title

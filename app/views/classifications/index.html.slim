@@ -1,12 +1,12 @@
 .row
   #submenu.col-md-3
-    ul
+    ul.list-group
       - if policy(Classification).create?
         - if @classification_type
-          li
+          li.list-group-item
             = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_type_classification_path(@classification_type)
         - else
-          li
+          li.list-group-item
             = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_path
   #content_list.col-md-9
     h1.title
