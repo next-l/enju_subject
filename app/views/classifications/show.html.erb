@@ -23,7 +23,10 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <li><%= link_to t('page.edit'), edit_classification_path(@classification) %></li>
+    <%- if can? :update, classification -%>
+
+      <li><%= link_to t('page.edit'), edit_classification_path(@classification) %></li>
+    <%- end -%>
     <li><%= back_to_index(flash[:page_info]) -%></li>
   </ul>
 </div>
