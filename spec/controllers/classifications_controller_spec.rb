@@ -125,7 +125,7 @@ describe ClassificationsController do
       it "should not assign the requested classification as @classification" do
         get :new
         expect(assigns(:classification)).to be_nil
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -165,7 +165,7 @@ describe ClassificationsController do
       it "should not assign the requested classification as @classification" do
         classification = FactoryGirl.create(:classification)
         get :edit, :id => classification.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -269,7 +269,7 @@ describe ClassificationsController do
 
         it "should be forbidden" do
           post :create, :classification => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
@@ -281,7 +281,7 @@ describe ClassificationsController do
 
         it "should be forbidden" do
           post :create, :classification => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -370,14 +370,14 @@ describe ClassificationsController do
 
         it "should be forbidden" do
           put :update, :id => @classification.id, :classification => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested classification as @classification" do
           put :update, :id => @classification.id, :classification => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -434,7 +434,7 @@ describe ClassificationsController do
 
       it "should be forbidden" do
         delete :destroy, :id => @classification.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end

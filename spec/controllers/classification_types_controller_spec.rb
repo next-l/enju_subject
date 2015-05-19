@@ -124,7 +124,7 @@ describe ClassificationTypesController do
       it "should not assign the requested classification_type as @classification_type" do
         get :new
         expect(assigns(:classification_type)).to be_nil
-        expect(response).to redirect_to(new_session_url)
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end
@@ -164,7 +164,7 @@ describe ClassificationTypesController do
       it "should not assign the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
         get :edit, :id => classification_type.id
-        expect(response).to redirect_to(new_session_url)
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end
@@ -268,7 +268,7 @@ describe ClassificationTypesController do
 
         it "should be forbidden" do
           post :create, :classification_type => @attrs
-          expect(response).to redirect_to(new_session_url)
+          expect(response).to redirect_to(new_user_session_url)
         end
       end
 
@@ -280,7 +280,7 @@ describe ClassificationTypesController do
 
         it "should be forbidden" do
           post :create, :classification_type => @invalid_attrs
-          expect(response).to redirect_to(new_session_url)
+          expect(response).to redirect_to(new_user_session_url)
         end
       end
     end
@@ -374,14 +374,14 @@ describe ClassificationTypesController do
 
         it "should be forbidden" do
           put :update, :id => @classification_type.id, :classification_type => @attrs
-          expect(response).to redirect_to(new_session_url)
+          expect(response).to redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested classification_type as @classification_type" do
           put :update, :id => @classification_type.id, :classification_type => @invalid_attrs
-          expect(response).to redirect_to(new_session_url)
+          expect(response).to redirect_to(new_user_session_url)
         end
       end
     end
@@ -438,7 +438,7 @@ describe ClassificationTypesController do
 
       it "should be forbidden" do
         delete :destroy, :id => @classification_type.id
-        expect(response).to redirect_to(new_session_url)
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end

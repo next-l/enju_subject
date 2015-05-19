@@ -121,7 +121,7 @@ describe SubjectsController do
       it "should not assign the requested subject as @subject" do
         get :new
         expect(assigns(:subject)).to be_nil
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -161,7 +161,7 @@ describe SubjectsController do
       it "should not assign the requested subject as @subject" do
         subject = FactoryGirl.create(:subject)
         get :edit, :id => subject.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -265,7 +265,7 @@ describe SubjectsController do
 
         it "should be forbidden" do
           post :create, :subject => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
@@ -277,7 +277,7 @@ describe SubjectsController do
 
         it "should be forbidden" do
           post :create, :subject => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -366,14 +366,14 @@ describe SubjectsController do
 
         it "should be forbidden" do
           put :update, :id => @subject.id, :subject => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested subject as @subject" do
           put :update, :id => @subject.id, :subject => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -430,7 +430,7 @@ describe SubjectsController do
 
       it "should be forbidden" do
         delete :destroy, :id => @subject.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end

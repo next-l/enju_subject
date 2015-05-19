@@ -124,7 +124,7 @@ describe SubjectHeadingTypesController do
       it "should not assign the requested subject_heading_type as @subject_heading_type" do
         get :new
         expect(assigns(:subject_heading_type)).to be_nil
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -164,7 +164,7 @@ describe SubjectHeadingTypesController do
       it "should not assign the requested subject_heading_type as @subject_heading_type" do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
         get :edit, :id => subject_heading_type.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -268,7 +268,7 @@ describe SubjectHeadingTypesController do
 
         it "should be forbidden" do
           post :create, :subject_heading_type => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
@@ -280,7 +280,7 @@ describe SubjectHeadingTypesController do
 
         it "should be forbidden" do
           post :create, :subject_heading_type => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -374,14 +374,14 @@ describe SubjectHeadingTypesController do
 
         it "should be forbidden" do
           put :update, :id => @subject_heading_type.id, :subject_heading_type => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested subject_heading_type as @subject_heading_type" do
           put :update, :id => @subject_heading_type.id, :subject_heading_type => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -438,7 +438,7 @@ describe SubjectHeadingTypesController do
 
       it "should be forbidden" do
         delete :destroy, :id => @subject_heading_type.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end

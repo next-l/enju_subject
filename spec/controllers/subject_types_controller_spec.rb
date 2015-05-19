@@ -46,7 +46,7 @@ describe SubjectTypesController do
       it "assigns all subject_types as @subject_types" do
         get :index
         expect(assigns(:subject_types)).to be_nil
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -90,7 +90,7 @@ describe SubjectTypesController do
         subject_type = FactoryGirl.create(:subject_type)
         get :show, :id => subject_type.id
         expect(assigns(:subject_type)).to eq(subject_type)
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -130,7 +130,7 @@ describe SubjectTypesController do
       it "should not assign the requested subject_type as @subject_type" do
         get :new
         expect(assigns(:subject_type)).to be_nil
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -170,7 +170,7 @@ describe SubjectTypesController do
       it "should not assign the requested subject_type as @subject_type" do
         subject_type = FactoryGirl.create(:subject_type)
         get :edit, :id => subject_type.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
@@ -274,7 +274,7 @@ describe SubjectTypesController do
 
         it "should be forbidden" do
           post :create, :subject_type => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
@@ -286,7 +286,7 @@ describe SubjectTypesController do
 
         it "should be forbidden" do
           post :create, :subject_type => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -380,14 +380,14 @@ describe SubjectTypesController do
 
         it "should be forbidden" do
           put :update, :id => @subject_type.id, :subject_type => @attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested subject_type as @subject_type" do
           put :update, :id => @subject_type.id, :subject_type => @invalid_attrs
-          response.should redirect_to(new_session_url)
+          response.should redirect_to(new_user_session_url)
         end
       end
     end
@@ -444,7 +444,7 @@ describe SubjectTypesController do
 
       it "should be forbidden" do
         delete :destroy, :id => @subject_type.id
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
     end
   end
