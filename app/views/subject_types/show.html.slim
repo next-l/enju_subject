@@ -1,10 +1,14 @@
 .row
   #submenu.col-md-3
-    ul.list-group
-      li.list-group-item
-        = link_to t('page.edit'), edit_subject_type_path(@subject_type)
-      li.list-group-item
-        = back_to_index(flash[:page_info])
+    .panel.panel-default
+      .panel-heading
+        h2.panel-title
+          = t('activerecord.models.subject_type')
+      ul.list-group
+        li.list-group-item
+          = link_to t('page.edit'), edit_subject_type_path(@subject_type)
+        li.list-group-item
+          = back_to_index(flash[:page_info])
   #content_list.col-md-9
     h1.title
       = t('page.showing', model: t('activerecord.models.subject_type'))

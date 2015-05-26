@@ -1,13 +1,17 @@
 .row
   #submenu.col-md-3
-    ul.list-group
-      - if policy(Classification).create?
-        - if @classification_type
-          li.list-group-item
-            = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_type_classification_path(@classification_type)
-        - else
-          li.list-group-item
-            = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_path
+    .panel.panel-default
+      .panel-heading
+        h2.panel-title
+          = t('activerecord.models.classification')
+      ul.list-group
+        - if policy(Classification).create?
+          - if @classification_type
+            li.list-group-item
+              = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_type_classification_path(@classification_type)
+          - else
+            li.list-group-item
+              = link_to t('page.new', model: t('activerecord.models.classification')), new_classification_path
   #content_list.col-md-9
     h1.title
       = t('page.listing', model: t('activerecord.models.classification'))
@@ -41,6 +45,6 @@
           = link_to classification.classification_type.display_name.localize, classification.classification_type
         td
           - if policy(classification).destroy?
-            = link_to t('page.edit'), edit_classification_path(classification)
-            = link_to t('page.destroy'), classification, data: {confirm: t('page.are_you_sure')}, method: :delete
+            => link_to t('page.edit'), edit_classification_path(classification)
+            => link_to t('page.destroy'), classification, data: {confirm: t('page.are_you_sure')}, method: :delete
     = paginate(@classifications)

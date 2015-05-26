@@ -1,10 +1,14 @@
 .row
   #submenu.col-md-3
-    ul.list-group
-      li.list-group-item
-        = back_to_index(flash[:page_info])
-      li.list-group-item
-        = link_to t('page.edit'), edit_classification_type_path(@classification_type)
+    .panel.panel-default
+      .panel-heading
+        h2.panel-title
+          = t('activerecord.models.classification_type')
+      ul.list-group
+        li.list-group-item
+          = back_to_index(flash[:page_info])
+        li.list-group-item
+          = link_to t('page.edit'), edit_classification_type_path(@classification_type)
   #content_list.col-md-9
     h1.title
       = t('page.showing', model: t('activerecord.models.classification_type'))

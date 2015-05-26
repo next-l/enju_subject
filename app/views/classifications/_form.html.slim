@@ -11,6 +11,6 @@
   .form-group
     = f.label t('activerecord.models.classification_type')
     br
-    = f.select(:classification_type_id, @classification_types.collect{|c| [c.name, c.id]})
+    = f.select(:classification_type_id, @classification_types.collect{|c| [c.name, c.id]}, {}, {class: 'form-control'})
   .form-group
     = f.submit class: 'btn btn-default'
