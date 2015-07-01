@@ -23,7 +23,7 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <%- if can? :update, classification -%>
+    <%- if can? :update, @classification -%>
 
       <li><%= link_to t('page.edit'), edit_classification_path(@classification) %></li>
     <%- end -%>
