@@ -125,7 +125,7 @@ class SubjectsController < ApplicationController
     @subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to subjects_url, notice: t('controller.successfully_deleted', model: t('activerecord.models.subjects')) }
+      format.html { redirect_to subjects_url, notice: t('controller.successfully_deleted', model: t('activerecord.models.subject')) }
       format.json { head :no_content }
     end
   end
