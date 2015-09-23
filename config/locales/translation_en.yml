@@ -27,6 +27,7 @@ en:
       classification:
         category: Category
         name: Name
+        url: URL
         note: Note
       classification_type:
         name: Name

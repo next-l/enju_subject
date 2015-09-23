@@ -29,8 +29,6 @@
         th
           = t('activerecord.attributes.classification.category')
         th
-          = t('activerecord.attributes.classification.note')
-        th
           = t('activerecord.models.classification_type')
         th
       - @classifications.each do |classification|
@@ -39,8 +37,8 @@
         | "> 
         td
           = link_to classification.category, classification
-        td
-          = classification.note
+          br
+          = link_to classification.url, classification.url
         td
           = link_to classification.classification_type.display_name.localize, classification.classification_type
         td

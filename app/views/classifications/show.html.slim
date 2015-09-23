@@ -21,6 +21,11 @@
       = @classification.category
     p
       strong
+        = t('activerecord.attributes.classification.url')
+        | :
+      = link_to @classification.url, @classification.url
+    p
+      strong
         = t('activerecord.attributes.classification.note')
         | :
       = @classification.note

@@ -27,4 +27,5 @@ end
 #  lft                    :integer
 #  rgt                    :integer
 #  manifestation_id       :integer
+#  url                    :string
 #
