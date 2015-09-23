@@ -8,7 +8,7 @@ class Classification < ActiveRecord::Base
     text :category, :note
     integer :classification_type_id
   end
-  normalize_attributes :category
+  normalize_attributes :category, :url
 
   paginates_per 10
 end
@@ -27,4 +27,5 @@ end
 #  lft                    :integer
 #  rgt                    :integer
 #  manifestation_id       :integer
+#  url                    :string
 #
