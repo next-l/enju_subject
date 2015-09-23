@@ -16,7 +16,7 @@ end
 #  id                      :integer          not null, primary key
 #  parent_id               :integer
 #  use_term_id             :integer
-#  term                    :string(255)
+#  term                    :string
 #  term_transcription      :text
 #  subject_type_id         :integer          not null
 #  scope_note              :text
@@ -26,8 +26,7 @@ end
 #  created_at              :datetime
 #  updated_at              :datetime
 #  deleted_at              :datetime
-#  url                     :string(255)
+#  url                     :string
 #  manifestation_id        :integer
 #  subject_heading_type_id :integer
 #
-

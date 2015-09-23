@@ -27,6 +27,7 @@ ja:
       classification:
         category: カテゴリー
         name: 名前
+        url: URL
         note: 注記
       classification_type:
         name: 名前
