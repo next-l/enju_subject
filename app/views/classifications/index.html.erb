@@ -23,8 +23,10 @@
   <tr class="line<%= cycle("0", "1") -%>">
     <td>
       <%= link_to classification.category, classification -%>
-      <br />
-      <%= link_to classification.url, classification.url -%>
+      <% if classification.url %>
+        <br />
+        <%= link_to classification.url, classification.url -%>
+      <% end %>
     </td>
     <td><%= link_to classification.classification_type.display_name.localize, classification.classification_type -%></td>
     <td>
