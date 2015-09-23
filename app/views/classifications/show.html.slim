@@ -23,7 +23,7 @@
       strong
         = t('activerecord.attributes.classification.url')
         | :
-      = link_to @classification.url, @classification.url
+      = link_to @classification.url, @classification.url if @classification.url
     p
       strong
         = t('activerecord.attributes.classification.note')
