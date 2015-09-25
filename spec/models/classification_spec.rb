@@ -2,12 +2,8 @@
 require 'spec_helper'
 
 describe Classification do
-  fixtures :classifications
+  #pending "add some examples to (or delete) #{__FILE__}"
 
-  it "should not create duplicate category" do
-    classification = Classification.create(category: '000', classification_type_id: 1)
-    classification.should_not be_valid
-  end
 end
 
 # == Schema Information
