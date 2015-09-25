@@ -122,7 +122,7 @@ class ClassificationsController < ApplicationController
 
   def classification_params
     params.require(:classification).permit(
-      :parent_id, :category, :note, :classification_type_id, :url
+      :parent_id, :category, :note, :classification_type_id, :url, :label
     )
   end
 

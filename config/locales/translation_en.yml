@@ -26,7 +26,7 @@ en:
         position: Position
       classification:
         category: Category
-        name: Name
+        label: Label
         url: URL
         note: Note
       classification_type:

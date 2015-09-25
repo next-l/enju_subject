@@ -26,7 +26,7 @@ ja:
         position: 位置
       classification:
         category: 分類記号
-        name: 名前
+        label: 分類項目名
         url: URL
         note: 注記
       classification_type:
