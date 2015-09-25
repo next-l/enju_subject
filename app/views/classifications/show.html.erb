@@ -9,6 +9,11 @@
 </p>
 
 <p>
+  <strong><%= t('activerecord.attributes.classification.label') -%>:</strong>
+  <%= @classification.label %>
+</p>
+
+<p>
   <strong><%= t('activerecord.attributes.classification.url') -%>:</strong>
   <%= link_to @classification.url, @classification.url if @classification.url %>
 </p>
