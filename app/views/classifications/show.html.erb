@@ -4,6 +4,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong><%= t('activerecord.models.classification_type') -%>:</strong>
+  <%= link_to @classification.classification_type.display_name.localize, @classification.classification_type %>
+</p>
+
+<p>
   <strong><%= t('activerecord.attributes.classification.category') -%>:</strong>
   <%= @classification.category %>
 </p>
@@ -21,11 +26,6 @@
 <p>
   <strong><%= t('activerecord.attributes.classification.note') -%>:</strong>
   <%= @classification.note %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.models.classification_type') -%>:</strong>
-  <%= link_to @classification.classification_type.display_name.localize, @classification.classification_type %>
 </p>
 
 </div>
