@@ -18,7 +18,7 @@
 <%- @classification_types.each do |classification_type| -%>
   <tr class="line<%= cycle("0", "1") -%>">
     <td>
-      <%- if can? :update, classification_type -%>
+      <%- if policy(classification_type).update? -%>
         <%= move_position(classification_type) -%>
       <%- end -%>
     </td>
@@ -29,10 +29,10 @@
       <%= classification_type.note %>
     </td>
     <td>
-      <%- if can? :update, classification_type -%>
+      <%- if policy(classification_type).update? -%>
         <%= link_to t('page.edit'), edit_classification_type_path(classification_type) -%>
       <% end %>
-      <%- if can? :delete, classification_type -%>
+      <%- if policy(classification_type).destroy? -%>
         <%= link_to t('page.destroy'), classification_type_path(classification_type), data: {confirm: t('page.are_you_sure')}, method: :delete -%>
       <%- end -%>
     </td>
@@ -45,7 +45,7 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <%- if can? :create, ClassificationType -%>
+    <%- if policy(ClassificationType).create? -%>
       <li><%= link_to t('page.new', model: t('activerecord.models.classification_type')), new_classification_type_path -%></li>
     <%- end -%>
   </ul>

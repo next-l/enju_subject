@@ -1,6 +1,5 @@
 class ClassificationType < ActiveRecord::Base
   include MasterModel
-  default_scope { order('classification_types.position') }
   has_many :classifications
   validates :name, format: { with: /\A[0-9a-z][0-9a-z_\-]*[0-9a-z]\Z/ }
 end

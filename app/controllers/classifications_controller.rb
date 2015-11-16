@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 class ClassificationsController < ApplicationController
-  load_and_authorize_resource
-  before_filter :get_subject, :get_classification_type
-  after_filter :solr_commit, only: [:create, :update, :destroy]
+  before_action :set_classification, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+  before_action :get_subject, :get_classification_type
+  after_action :solr_commit, only: [:create, :update, :destroy]
 
   # GET /classifications
   # GET /classifications.json
@@ -109,6 +110,15 @@ class ClassificationsController < ApplicationController
   end
 
   private
+  def set_classification
+    @classification = Classification.find(params[:id])
+    authorize @classification
+  end
+
+  def check_policy
+    authorize Classification
+  end
+
   def classification_params
     params.require(:classification).permit(
       :parent_id, :category, :note, :classification_type_id, :url, :label

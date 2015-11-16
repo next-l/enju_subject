@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923173139) do
+ActiveRecord::Schema.define(version: 20150925092505) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer  "basket_id"
@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(version: 20150923173139) do
     t.integer  "rgt"
     t.integer  "manifestation_id"
     t.string   "url"
+    t.string   "label"
   end
 
   add_index "classifications", ["category"], name: "index_classifications_on_category"

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
-  load_and_authorize_resource except: :index
-  authorize_resource only: :index
-  before_filter :prepare_options, only: [:new, :edit]
-  after_filter :solr_commit, only: [:create, :update, :destroy]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+  before_action :prepare_options, only: [:new, :edit]
+  after_action :solr_commit, only: [:create, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
@@ -131,6 +131,15 @@ class SubjectsController < ApplicationController
   end
 
   private
+  def set_subject
+    @subject = Subject.find(params[:id])
+    authorize @subject
+  end
+
+  def check_policy
+    authorize Subject
+  end
+
   def subject_params
     params.require(:subject).permit(
       :parent_id, :use_term_id, :term, :term_transcription,

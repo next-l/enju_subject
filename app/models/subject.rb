@@ -13,7 +13,7 @@ class Subject < ActiveRecord::Base
     integer :required_role_id
   end
 
-  normalize_attributes :term
+  strip_attributes only: :term
 
   paginates_per 10
 end

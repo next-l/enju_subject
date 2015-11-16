@@ -19,7 +19,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        expect(assigns(:subject_types)).to eq(SubjectType.all)
+        expect(assigns(:subject_types)).to eq(SubjectType.order(:position))
       end
     end
 
@@ -28,7 +28,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        expect(assigns(:subject_types)).to eq(SubjectType.all)
+        expect(assigns(:subject_types)).to eq(SubjectType.order(:position))
       end
     end
 
@@ -37,7 +37,7 @@ describe SubjectTypesController do
 
       it "assigns all subject_types as @subject_types" do
         get :index
-        expect(assigns(:subject_types)).to be_empty
+        expect(assigns(:subject_types)).to be_nil
         response.should be_forbidden
       end
     end
@@ -45,7 +45,7 @@ describe SubjectTypesController do
     describe "When not logged in" do
       it "assigns all subject_types as @subject_types" do
         get :index
-        expect(assigns(:subject_types)).to be_empty
+        expect(assigns(:subject_types)).to be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -107,7 +107,7 @@ describe SubjectTypesController do
 
       it "should not assign the requested subject_type as @subject_type" do
         get :new
-        expect(assigns(:subject_type)).not_to be_valid
+        expect(assigns(:subject_type)).to be_nil
         response.should be_forbidden
       end
     end
@@ -117,7 +117,7 @@ describe SubjectTypesController do
 
       it "should not assign the requested subject_type as @subject_type" do
         get :new
-        expect(assigns(:subject_type)).not_to be_valid
+        expect(assigns(:subject_type)).to be_nil
         response.should be_forbidden
       end
     end
@@ -125,7 +125,7 @@ describe SubjectTypesController do
     describe "When not logged in" do
       it "should not assign the requested subject_type as @subject_type" do
         get :new
-        expect(assigns(:subject_type)).not_to be_valid
+        expect(assigns(:subject_type)).to be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -211,7 +211,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          expect(assigns(:subject_type)).to be_valid
+          expect(assigns(:subject_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -223,7 +223,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          expect(assigns(:subject_type)).not_to be_valid
+          expect(assigns(:subject_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -239,7 +239,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          expect(assigns(:subject_type)).to be_valid
+          expect(assigns(:subject_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -251,7 +251,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          expect(assigns(:subject_type)).not_to be_valid
+          expect(assigns(:subject_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -265,7 +265,7 @@ describe SubjectTypesController do
       describe "with valid params" do
         it "assigns a newly created subject_type as @subject_type" do
           post :create, :subject_type => @attrs
-          expect(assigns(:subject_type)).to be_valid
+          expect(assigns(:subject_type)).to be_nil
         end
 
         it "should be forbidden" do
@@ -277,7 +277,7 @@ describe SubjectTypesController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject_type as @subject_type" do
           post :create, :subject_type => @invalid_attrs
-          expect(assigns(:subject_type)).not_to be_valid
+          expect(assigns(:subject_type)).to be_nil
         end
 
         it "should be forbidden" do

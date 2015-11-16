@@ -103,7 +103,7 @@ describe SubjectsController do
 
       it "assigns the requested subject as @subject" do
         get :new
-        expect(assigns(:subject)).not_to be_valid
+        expect(assigns(:subject)).to be_nil
       end
     end
 
@@ -112,7 +112,7 @@ describe SubjectsController do
 
       it "should not assign the requested subject as @subject" do
         get :new
-        expect(assigns(:subject)).not_to be_valid
+        expect(assigns(:subject)).to be_nil
         response.should be_forbidden
       end
     end
@@ -120,7 +120,7 @@ describe SubjectsController do
     describe "When not logged in" do
       it "should not assign the requested subject as @subject" do
         get :new
-        expect(assigns(:subject)).not_to be_valid
+        expect(assigns(:subject)).to be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -206,7 +206,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          expect(assigns(:subject)).to be_valid
+          expect(assigns(:subject)).to be_nil
         end
 
         it "should be forbidden" do
@@ -218,7 +218,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          expect(assigns(:subject)).not_to be_valid
+          expect(assigns(:subject)).to be_nil
         end
 
         it "should be forbidden" do
@@ -234,7 +234,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          expect(assigns(:subject)).to be_valid
+          expect(assigns(:subject)).to be_nil
         end
 
         it "should be forbidden" do
@@ -246,7 +246,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          expect(assigns(:subject)).not_to be_valid
+          expect(assigns(:subject)).to be_nil
         end
 
         it "should be forbidden" do
@@ -260,7 +260,7 @@ describe SubjectsController do
       describe "with valid params" do
         it "assigns a newly created subject as @subject" do
           post :create, :subject => @attrs
-          expect(assigns(:subject)).to be_valid
+          expect(assigns(:subject)).to be_nil
         end
 
         it "should be forbidden" do
@@ -272,7 +272,7 @@ describe SubjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved subject as @subject" do
           post :create, :subject => @invalid_attrs
-          expect(assigns(:subject)).not_to be_valid
+          expect(assigns(:subject)).to be_nil
         end
 
         it "should be forbidden" do
