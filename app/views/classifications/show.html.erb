@@ -33,7 +33,7 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <%- if policy().update?@classification -%>
+    <%- if policy(@classification).update? -%>
 
       <li><%= link_to t('page.edit'), edit_classification_path(@classification) %></li>
     <%- end -%>
