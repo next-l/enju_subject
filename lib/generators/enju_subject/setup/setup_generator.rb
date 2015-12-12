@@ -5,6 +5,6 @@ class EnjuSubject::SetupGenerator < Rails::Generators::Base
     directory("db/fixtures", "db/fixtures/enju_subject")
     rake("enju_subject_engine:install:migrations")
     inject_into_file 'app/controllers/application_controller.rb',
-      "  enju_subject\n", :after => "enju_library\n"
+      "  EnjuSubject::Controller\n", after: "EnjuLibrary::Controller\n"
   end
 end

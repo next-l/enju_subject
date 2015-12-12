@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  enju_leaf
-  enju_biblio
-  enju_library
-  enju_subject
+  include EnjuLeaf::Controller
+  include EnjuBiblio::Controller
+  include EnjuLibrary::Controller
+  include EnjuSubject::Controller
   after_action :verify_authorized
 
   include Pundit
