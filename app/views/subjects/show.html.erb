@@ -32,7 +32,7 @@
 
 <div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <li><%= back_to_index(flash[:page_info]) -%></li>
+    <li><%= link_to t('page.back'), :back -%></li>
     <% if policy(@subject).update? %>
       <li><%= link_to t('page.edit'), edit_subject_path(@subject) -%></li>
     <% end %>
