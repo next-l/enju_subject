@@ -11,3 +11,9 @@ classification_type_00002:
   id: 2
   note: ""
   position: 2
+classification_type_00003: 
+  name: ndc8
+  display_name: NDC8
+  id: 3
+  note: ""
+  position: 3
