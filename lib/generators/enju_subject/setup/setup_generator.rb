@@ -10,5 +10,6 @@ class EnjuSubject::SetupGenerator < Rails::Generators::Base
       <<"EOS"
 Manifestation.include(EnjuSubject::EnjuManifestation)
 EOS
+    end
   end
 end
