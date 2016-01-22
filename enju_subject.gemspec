@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sunspot-rails-tester"
   s.add_development_dependency "annotate"
   s.add_development_dependency "coveralls"
+  s.add_development_dependency "generator_spec"
 end
