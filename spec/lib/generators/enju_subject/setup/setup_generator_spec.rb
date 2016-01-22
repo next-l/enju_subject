@@ -16,5 +16,19 @@ describe EnjuSubject::SetupGenerator, type: :generator do
     run_generator
   end
   it "does work" do
+    expect(destination_root).to have_structure do
+      directory "config" do
+        directory "initializers" do
+          file "enju_leaf.rb" do
+            contains "Manifestation.include(EnjuSubject::EnjuManifestation)"
+          end
+        end
+      end
+      directory "app" do
+        directory "controllers" do
+          file "application_controller.rb"
+        end
+      end
+    end
   end
 end
