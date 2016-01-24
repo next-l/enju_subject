@@ -5,7 +5,7 @@ class EnjuSubject::SetupGenerator < Rails::Generators::Base
     directory("db/fixtures", "db/fixtures/enju_subject")
     rake("enju_subject_engine:install:migrations")
     inject_into_file 'app/controllers/application_controller.rb',
-      "  include EnjuSubject::Controller\n", after: "include EnjuLibrary::Controller\n"
+      "  include EnjuSubject::Controller\n", after: "EnjuLibrary::Controller\n"
     append_to_file("config/initializers/enju_leaf.rb") do
       <<"EOS"
 Manifestation.include(EnjuSubject::EnjuManifestation)
