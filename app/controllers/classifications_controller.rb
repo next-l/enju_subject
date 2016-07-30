@@ -3,7 +3,6 @@ class ClassificationsController < ApplicationController
   before_action :set_classification, only: [:show, :edit, :update, :destroy]
   before_action :check_policy, only: [:index, :new, :create]
   before_action :get_subject, :get_classification_type
-  after_action :solr_commit, only: [:create, :update, :destroy]
 
   # GET /classifications
   # GET /classifications.json
