@@ -12,12 +12,8 @@ namespace :enju_subject do
     puts 'initial fixture files loaded.'
   end
 
-  desc "upgrade enju_subject"
-  task :upgrade => :environment do
-    SubjectType.transaction do
-      update_subject_type
-      update_subject_heading_type
-    end
-    puts 'enju_subject: The upgrade completed successfully.'
-  end
+  #desc "upgrade enju_subject"
+  #task :upgrade => :environment do
+  #  puts 'enju_subject: The upgrade completed successfully.'
+  #end
 end
