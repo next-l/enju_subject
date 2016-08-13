@@ -115,4 +115,5 @@ classification_00005:
 #  rgt                    :integer
 #  manifestation_id       :integer
 #  url                    :string
+#  label                  :string
 #

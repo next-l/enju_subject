@@ -21,4 +21,5 @@ end
 #  rgt                    :integer
 #  manifestation_id       :integer
 #  url                    :string
+#  label                  :string
 #
