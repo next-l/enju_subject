@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Subjects" do
   describe "GET /subjects", :solr => true do
