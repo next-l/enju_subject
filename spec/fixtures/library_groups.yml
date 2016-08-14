@@ -9,6 +9,7 @@ one:
   url: "http://localhost:3000/"
   position: 1
   login_banner: "*Next-L Enju*"
+  user_id: 1
 
 # == Schema Information
 #
