@@ -10,10 +10,17 @@ before_script:
   - bundle exec rake db:migrate
 services:
   - redis-server
+gemfile:
+  - gemfiles/rails_4.2.gemfile
+  - gemfiles/rails_5.0.gemfile
 env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
+matrix:
+  exclude:
+    - rvm: 2.1.9
+      gemfile: gemfiles/rails_5.0.gemfile
 notifications:
   slack:
     secure: qmxqNdreAdu1Z3F2V1yORYuEAJV/Se4Df8LeRJnDZEEKM9boREUNUatY7N0cwHeiN7vZnQDrtMgkhYCT7J0MVwbWahuTzow/wPbI4TesEExRHyzrkPqAsjHI1wqySlkJ3kUAQpZs4vtr0kYTotHiqXlxmUaTADpPGUo3XrHyRIE=
