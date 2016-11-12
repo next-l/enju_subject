@@ -3,7 +3,7 @@ class Classification < ActiveRecord::Base
   belongs_to :manifestation, touch: true
 
   validates_associated :classification_type
-  validates_presence_of :category, :classification_type
+  validates :category, :classification_type, presence: true
   searchable do
     text :category, :note
     integer :classification_type_id
@@ -28,4 +28,5 @@ end
 #  rgt                    :integer
 #  manifestation_id       :integer
 #  url                    :string
+#  label                  :string
 #

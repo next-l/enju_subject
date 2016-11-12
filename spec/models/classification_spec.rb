@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 
 describe Classification do
   #pending "add some examples to (or delete) #{__FILE__}"
@@ -21,4 +20,5 @@ end
 #  rgt                    :integer
 #  manifestation_id       :integer
 #  url                    :string
+#  label                  :string
 #

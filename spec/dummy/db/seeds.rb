@@ -27,6 +27,6 @@ user.username = username
 user.email = email
 user.password = password
 user.password_confirmation = password
-user.role = Role.find_by_name('Administrator')
+user.role = Role.find_by(name: 'Administrator')
 user.save!
 puts 'Administrator account created.'

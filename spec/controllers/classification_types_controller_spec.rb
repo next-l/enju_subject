@@ -55,7 +55,7 @@ describe ClassificationTypesController do
 
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :show, :id => classification_type.id
+        get :show, params: { :id => classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
     end
@@ -65,7 +65,7 @@ describe ClassificationTypesController do
 
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :show, :id => classification_type.id
+        get :show, params: { :id => classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
     end
@@ -75,7 +75,7 @@ describe ClassificationTypesController do
 
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :show, :id => classification_type.id
+        get :show, params: { :id => classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
     end
@@ -83,7 +83,7 @@ describe ClassificationTypesController do
     describe "When not logged in" do
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :show, :id => classification_type.id
+        get :show, params: { :id => classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
     end
@@ -135,7 +135,7 @@ describe ClassificationTypesController do
 
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :edit, :id => classification_type.id
+        get :edit, params: { :id => classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
     end
@@ -145,7 +145,7 @@ describe ClassificationTypesController do
 
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :edit, :id => classification_type.id
+        get :edit, params: { :id => classification_type.id }
         expect(response).to be_forbidden
       end
     end
@@ -155,7 +155,7 @@ describe ClassificationTypesController do
 
       it "assigns the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :edit, :id => classification_type.id
+        get :edit, params: { :id => classification_type.id }
         expect(response).to be_forbidden
       end
     end
@@ -163,7 +163,7 @@ describe ClassificationTypesController do
     describe "When not logged in" do
       it "should not assign the requested classification_type as @classification_type" do
         classification_type = FactoryGirl.create(:classification_type)
-        get :edit, :id => classification_type.id
+        get :edit, params: { :id => classification_type.id }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
@@ -180,24 +180,24 @@ describe ClassificationTypesController do
 
       describe "with valid params" do
         it "assigns a newly created classification_type as @classification_type" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(assigns(:classification_type)).to be_valid
         end
 
         it "redirects to the created agent" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(response).to redirect_to(assigns(:classification_type))
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification_type as @classification_type" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(assigns(:classification_type)).not_to be_valid
         end
 
         it "should be successful" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(response).to be_success
         end
       end
@@ -208,24 +208,24 @@ describe ClassificationTypesController do
 
       describe "with valid params" do
         it "assigns a newly created classification_type as @classification_type" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(assigns(:classification_type)).to be_nil
         end
 
         it "should be forbidden" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(response).to be_forbidden
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification_type as @classification_type" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(assigns(:classification_type)).to be_nil
         end
 
         it "should be forbidden" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(response).to be_forbidden
         end
       end
@@ -236,24 +236,24 @@ describe ClassificationTypesController do
 
       describe "with valid params" do
         it "assigns a newly created classification_type as @classification_type" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(assigns(:classification_type)).to be_nil
         end
 
         it "should be forbidden" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(response).to be_forbidden
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification_type as @classification_type" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(assigns(:classification_type)).to be_nil
         end
 
         it "should be forbidden" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(response).to be_forbidden
         end
       end
@@ -262,24 +262,24 @@ describe ClassificationTypesController do
     describe "When not logged in" do
       describe "with valid params" do
         it "assigns a newly created classification_type as @classification_type" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(assigns(:classification_type)).to be_nil
         end
 
         it "should be forbidden" do
-          post :create, :classification_type => @attrs
+          post :create, params: { :classification_type => @attrs }
           expect(response).to redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved classification_type as @classification_type" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(assigns(:classification_type)).to be_nil
         end
 
         it "should be forbidden" do
-          post :create, :classification_type => @invalid_attrs
+          post :create, params: { :classification_type => @invalid_attrs }
           expect(response).to redirect_to(new_user_session_url)
         end
       end
@@ -298,23 +298,23 @@ describe ClassificationTypesController do
 
       describe "with valid params" do
         it "updates the requested classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
         end
 
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
           expect(assigns(:classification_type)).to eq(@classification_type)
         end
 
         it "moves its position when specified" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs, :move => 'lower'
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs, :move => 'lower' }
           expect(response).to redirect_to(classification_types_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @invalid_attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @invalid_attrs }
           expect(response).to render_template("edit")
         end
       end
@@ -325,11 +325,11 @@ describe ClassificationTypesController do
 
       describe "with valid params" do
         it "updates the requested classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
         end
 
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
           expect(assigns(:classification_type)).to eq(@classification_type)
           expect(response).to be_forbidden
         end
@@ -337,7 +337,7 @@ describe ClassificationTypesController do
 
       describe "with invalid params" do
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @invalid_attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @invalid_attrs }
           expect(response).to be_forbidden
         end
       end
@@ -348,11 +348,11 @@ describe ClassificationTypesController do
 
       describe "with valid params" do
         it "updates the requested classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
         end
 
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
           expect(assigns(:classification_type)).to eq(@classification_type)
           expect(response).to be_forbidden
         end
@@ -360,7 +360,7 @@ describe ClassificationTypesController do
 
       describe "with invalid params" do
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @invalid_attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @invalid_attrs }
           expect(response).to be_forbidden
         end
       end
@@ -369,18 +369,18 @@ describe ClassificationTypesController do
     describe "When not logged in" do
       describe "with valid params" do
         it "updates the requested classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
         end
 
         it "should be forbidden" do
-          put :update, :id => @classification_type.id, :classification_type => @attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @attrs }
           expect(response).to redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested classification_type as @classification_type" do
-          put :update, :id => @classification_type.id, :classification_type => @invalid_attrs
+          put :update, params: { :id => @classification_type.id, :classification_type => @invalid_attrs }
           expect(response).to redirect_to(new_user_session_url)
         end
       end
@@ -396,11 +396,11 @@ describe ClassificationTypesController do
       login_admin
 
       it "destroys the requested classification_type" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
       end
 
       it "redirects to the classification_types list" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
         expect(response).to redirect_to(classification_types_url)
       end
     end
@@ -409,11 +409,11 @@ describe ClassificationTypesController do
       login_librarian
 
       it "destroys the requested classification_type" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
         expect(response).to be_forbidden
       end
     end
@@ -422,22 +422,22 @@ describe ClassificationTypesController do
       login_user
 
       it "destroys the requested classification_type" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
         expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "destroys the requested classification_type" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, :id => @classification_type.id
+        delete :destroy, params: { :id => @classification_type.id }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
