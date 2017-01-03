@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.integer  "user_id"
     t.text     "note"
     t.datetime "executed_at"
-    t.string   "agent_import_filename"
+    t.string   "agent_import_file_name"
     t.string   "agent_import_content_type"
     t.integer  "agent_import_size"
     t.datetime "agent_import_updated_at"
@@ -530,8 +530,10 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.jsonb    "settings"
     t.jsonb    "footer_banner"
     t.text     "html_snippet"
+    t.string   "book_jacket_source"
     t.integer  "max_number_of_results",         default: 500
     t.boolean  "family_name_first",             default: true
+    t.string   "screenshot_generator"
     t.integer  "pub_year_facet_range_interval", default: 10
     t.integer  "user_id"
     t.index ["short_name"], name: "index_library_groups_on_short_name", using: :btree
@@ -599,7 +601,7 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.integer  "required_score",                  default: 0,     null: false
     t.integer  "frequency_id",                    default: 1,     null: false
     t.boolean  "subscription_master",             default: false, null: false
-    t.string   "attachment_filename"
+    t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_size"
     t.datetime "attachment_updated_at"
@@ -610,7 +612,7 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.datetime "valid_until"
     t.datetime "date_submitted"
     t.datetime "date_accepted"
-    t.datetime "date_caputured"
+    t.datetime "date_captured"
     t.string   "pub_date"
     t.string   "edition_string"
     t.integer  "volume_number"
@@ -675,7 +677,7 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "picture_filename"
+    t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_size"
     t.datetime "picture_updated_at"
@@ -806,7 +808,7 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.integer  "user_id"
     t.text     "note"
     t.datetime "executed_at"
-    t.string   "resource_import_filename"
+    t.string   "resource_import_file_name"
     t.string   "resource_import_content_type"
     t.integer  "resource_import_size"
     t.datetime "resource_import_updated_at"

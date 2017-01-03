@@ -1,9 +1,7 @@
-# -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
   before_action :check_policy, only: [:index, :new, :create]
   before_action :prepare_options, only: [:new, :edit]
-  after_action :solr_commit, only: [:create, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
