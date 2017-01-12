@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20161112122814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pgcrypto"
 
   create_table "accepts", force: :cascade do |t|
     t.integer  "basket_id"
@@ -238,11 +239,11 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.text     "display_name"
     t.text     "note"
     t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "classifications", force: :cascade do |t|
+  create_table "classifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer  "parent_id"
     t.string   "category",               null: false
     t.text     "note"
@@ -921,20 +922,20 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.text     "display_name"
     t.text     "note"
     t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "subject_types", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.text     "display_name"
+    t.string   "name",                      null: false
+    t.jsonb    "display_name_translations"
     t.text     "note"
     t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "subjects", force: :cascade do |t|
+  create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer  "parent_id"
     t.integer  "use_term_id"
     t.string   "term"
@@ -944,15 +945,14 @@ ActiveRecord::Schema.define(version: 20161112122814) do
     t.text     "note"
     t.integer  "required_role_id",        default: 1, null: false
     t.integer  "lock_version",            default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.datetime "deleted_at"
     t.string   "url"
     t.integer  "manifestation_id"
     t.integer  "subject_heading_type_id"
     t.index ["manifestation_id"], name: "index_subjects_on_manifestation_id", using: :btree
     t.index ["parent_id"], name: "index_subjects_on_parent_id", using: :btree
-    t.index ["required_role_id"], name: "index_subjects_on_required_role_id", using: :btree
     t.index ["subject_type_id"], name: "index_subjects_on_subject_type_id", using: :btree
     t.index ["term"], name: "index_subjects_on_term", using: :btree
     t.index ["use_term_id"], name: "index_subjects_on_use_term_id", using: :btree
