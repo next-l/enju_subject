@@ -1,13 +1,13 @@
 --- 
 classification_type_00001: 
   name: ndc9
-  display_name: NDC9
+  display_name_translations: {"en": "NDC9"}
   id: 1
   note: ""
   position: 1
 classification_type_00002: 
   name: ddc
-  display_name: DDC
+  display_name_translations: {"en": "DDC"}
   id: 2
   note: ""
   position: 2
