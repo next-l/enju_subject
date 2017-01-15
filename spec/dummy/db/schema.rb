@@ -332,12 +332,13 @@ ActiveRecord::Schema.define(version: 20170114174536) do
   end
 
   create_table "classification_types", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.text     "display_name"
+    t.string   "name",                      null: false
+    t.jsonb    "display_name_translations"
     t.text     "note"
     t.integer  "position"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["name"], name: "index_classification_types_on_name", unique: true, using: :btree
   end
 
   create_table "classifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1185,12 +1186,13 @@ ActiveRecord::Schema.define(version: 20170114174536) do
   end
 
   create_table "subject_heading_types", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.text     "display_name"
+    t.string   "name",                      null: false
+    t.jsonb    "display_name_translations"
     t.text     "note"
     t.integer  "position"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["name"], name: "index_subject_heading_types_on_name", unique: true, using: :btree
   end
 
   create_table "subject_types", force: :cascade do |t|
