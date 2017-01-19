@@ -337,11 +337,11 @@ ActiveRecord::Schema.define(version: 20170114174536) do
     t.string   "category",               null: false
     t.text     "note"
     t.integer  "classification_type_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "lft"
     t.integer  "rgt"
-    t.integer  "manifestation_id"
+    t.uuid     "manifestation_id"
     t.string   "url"
     t.string   "label"
     t.index ["category"], name: "index_classifications_on_category", using: :btree
@@ -1189,9 +1189,8 @@ ActiveRecord::Schema.define(version: 20170114174536) do
     t.integer  "lock_version",            default: 0, null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.datetime "deleted_at"
     t.string   "url"
-    t.integer  "manifestation_id"
+    t.uuid     "manifestation_id"
     t.integer  "subject_heading_type_id"
     t.index ["manifestation_id"], name: "index_subjects_on_manifestation_id", using: :btree
     t.index ["parent_id"], name: "index_subjects_on_parent_id", using: :btree
@@ -1439,6 +1438,7 @@ ActiveRecord::Schema.define(version: 20170114174536) do
   add_foreign_key "checkouts", "checkins"
   add_foreign_key "checkouts", "items"
   add_foreign_key "checkouts", "users"
+  add_foreign_key "classifications", "manifestations"
   add_foreign_key "creates", "agents"
   add_foreign_key "doi_records", "manifestations"
   add_foreign_key "exemplifies", "items"
@@ -1464,6 +1464,7 @@ ActiveRecord::Schema.define(version: 20170114174536) do
   add_foreign_key "reserves", "users"
   add_foreign_key "resource_import_files", "users"
   add_foreign_key "shelves", "libraries"
+  add_foreign_key "subjects", "manifestations"
   add_foreign_key "subscribes", "subscriptions"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "user_group_has_checkout_types", "checkout_types"
