@@ -55,7 +55,7 @@ describe SubjectHeadingTypesController do
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :show, params: { id: subject_heading_type.id }
+        get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
     end
@@ -65,7 +65,7 @@ describe SubjectHeadingTypesController do
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :show, params: { id: subject_heading_type.id }
+        get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
     end
@@ -75,7 +75,7 @@ describe SubjectHeadingTypesController do
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :show, params: { id: subject_heading_type.id }
+        get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
     end
@@ -83,7 +83,7 @@ describe SubjectHeadingTypesController do
     describe 'When not logged in' do
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :show, params: { id: subject_heading_type.id }
+        get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
     end
@@ -135,7 +135,7 @@ describe SubjectHeadingTypesController do
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :edit, params: { id: subject_heading_type.id }
+        get :edit, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
     end
@@ -145,7 +145,7 @@ describe SubjectHeadingTypesController do
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :edit, params: { id: subject_heading_type.id }
+        get :edit, id: subject_heading_type.id
         response.should be_forbidden
       end
     end
@@ -155,7 +155,7 @@ describe SubjectHeadingTypesController do
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :edit, params: { id: subject_heading_type.id }
+        get :edit, id: subject_heading_type.id
         response.should be_forbidden
       end
     end
@@ -163,7 +163,7 @@ describe SubjectHeadingTypesController do
     describe 'When not logged in' do
       it 'should not assign the requested subject_heading_type as @subject_heading_type' do
         subject_heading_type = FactoryGirl.create(:subject_heading_type)
-        get :edit, params: { id: subject_heading_type.id }
+        get :edit, id: subject_heading_type.id
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -180,24 +180,24 @@ describe SubjectHeadingTypesController do
 
       describe 'with valid params' do
         it 'assigns a newly created subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to be_valid
         end
 
         it 'redirects to the created agent' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           response.should redirect_to(assigns(:subject_heading_type))
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           expect(assigns(:subject_heading_type)).not_to be_valid
         end
 
         it 'should be successful' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           response.should be_success
         end
       end
@@ -208,24 +208,24 @@ describe SubjectHeadingTypesController do
 
       describe 'with valid params' do
         it 'assigns a newly created subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           response.should be_forbidden
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -236,24 +236,24 @@ describe SubjectHeadingTypesController do
 
       describe 'with valid params' do
         it 'assigns a newly created subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           response.should be_forbidden
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -262,24 +262,24 @@ describe SubjectHeadingTypesController do
     describe 'When not logged in' do
       describe 'with valid params' do
         it 'assigns a newly created subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { subject_heading_type: @attrs }
+          post :create, subject_heading_type: @attrs
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject_heading_type as @subject_heading_type' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           expect(assigns(:subject_heading_type)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { subject_heading_type: @invalid_attrs }
+          post :create, subject_heading_type: @invalid_attrs
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -298,23 +298,23 @@ describe SubjectHeadingTypesController do
 
       describe 'with valid params' do
         it 'updates the requested subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
         end
 
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to eq(@subject_heading_type)
         end
 
         it 'moves its position when specified' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs, move: 'lower' }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs, move: 'lower'
           response.should redirect_to(subject_heading_types_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @invalid_attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @invalid_attrs
           response.should render_template('edit')
         end
       end
@@ -325,11 +325,11 @@ describe SubjectHeadingTypesController do
 
       describe 'with valid params' do
         it 'updates the requested subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
         end
 
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to eq(@subject_heading_type)
           response.should be_forbidden
         end
@@ -337,7 +337,7 @@ describe SubjectHeadingTypesController do
 
       describe 'with invalid params' do
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @invalid_attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -348,11 +348,11 @@ describe SubjectHeadingTypesController do
 
       describe 'with valid params' do
         it 'updates the requested subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
         end
 
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
           expect(assigns(:subject_heading_type)).to eq(@subject_heading_type)
           response.should be_forbidden
         end
@@ -360,7 +360,7 @@ describe SubjectHeadingTypesController do
 
       describe 'with invalid params' do
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @invalid_attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -369,18 +369,18 @@ describe SubjectHeadingTypesController do
     describe 'When not logged in' do
       describe 'with valid params' do
         it 'updates the requested subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
         end
 
         it 'should be forbidden' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @attrs
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns the requested subject_heading_type as @subject_heading_type' do
-          put :update, params: { id: @subject_heading_type.id, subject_heading_type: @invalid_attrs }
+          put :update, id: @subject_heading_type.id, subject_heading_type: @invalid_attrs
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -396,11 +396,11 @@ describe SubjectHeadingTypesController do
       login_admin
 
       it 'destroys the requested subject_heading_type' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
       end
 
       it 'redirects to the subject_heading_types list' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
         response.should redirect_to(subject_heading_types_url)
       end
     end
@@ -409,11 +409,11 @@ describe SubjectHeadingTypesController do
       login_librarian
 
       it 'destroys the requested subject_heading_type' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
       end
 
       it 'should be forbidden' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
         response.should be_forbidden
       end
     end
@@ -422,22 +422,22 @@ describe SubjectHeadingTypesController do
       login_user
 
       it 'destroys the requested subject_heading_type' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
       end
 
       it 'should be forbidden' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
         response.should be_forbidden
       end
     end
 
     describe 'When not logged in' do
       it 'destroys the requested subject_heading_type' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
       end
 
       it 'should be forbidden' do
-        delete :destroy, params: { id: @subject_heading_type.id }
+        delete :destroy, id: @subject_heading_type.id
         response.should redirect_to(new_user_session_url)
       end
     end

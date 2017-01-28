@@ -46,7 +46,7 @@ describe ClassificationsController do
       end
 
       it 'should get index with query' do
-        get :index, params: { query: '500' }
+        get :index, query: '500'
         response.should be_success
         expect(assigns(:classifications)).not_to be_empty
       end
@@ -62,7 +62,7 @@ describe ClassificationsController do
       login_admin
 
       it 'assigns the requested classification as @classification' do
-        get :show, params: { id: @classification.id }
+        get :show, id: @classification.id
         expect(assigns(:classification)).to eq(@classification)
       end
     end
@@ -71,7 +71,7 @@ describe ClassificationsController do
       login_librarian
 
       it 'assigns the requested classification as @classification' do
-        get :show, params: { id: @classification.id }
+        get :show, id: @classification.id
         expect(assigns(:classification)).to eq(@classification)
       end
     end
@@ -80,14 +80,14 @@ describe ClassificationsController do
       login_user
 
       it 'assigns the requested classification as @classification' do
-        get :show, params: { id: @classification.id }
+        get :show, id: @classification.id
         expect(assigns(:classification)).to eq(@classification)
       end
     end
 
     describe 'When not logged in' do
       it 'assigns the requested classification as @classification' do
-        get :show, params: { id: @classification.id }
+        get :show, id: @classification.id
         expect(assigns(:classification)).to eq(@classification)
       end
     end
@@ -136,7 +136,7 @@ describe ClassificationsController do
 
       it 'assigns the requested classification as @classification' do
         classification = FactoryGirl.create(:classification)
-        get :edit, params: { id: classification.id }
+        get :edit, id: classification.id
         expect(assigns(:classification)).to eq(classification)
       end
     end
@@ -146,7 +146,7 @@ describe ClassificationsController do
 
       it 'assigns the requested classification as @classification' do
         classification = FactoryGirl.create(:classification)
-        get :edit, params: { id: classification.id }
+        get :edit, id: classification.id
         expect(assigns(:classification)).to eq(classification)
       end
     end
@@ -156,7 +156,7 @@ describe ClassificationsController do
 
       it 'assigns the requested classification as @classification' do
         classification = FactoryGirl.create(:classification)
-        get :edit, params: { id: classification.id }
+        get :edit, id: classification.id
         response.should be_forbidden
       end
     end
@@ -164,7 +164,7 @@ describe ClassificationsController do
     describe 'When not logged in' do
       it 'should not assign the requested classification as @classification' do
         classification = FactoryGirl.create(:classification)
-        get :edit, params: { id: classification.id }
+        get :edit, id: classification.id
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -181,24 +181,24 @@ describe ClassificationsController do
 
       describe 'with valid params' do
         it 'assigns a newly created classification as @classification' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           expect(assigns(:classification)).to be_valid
         end
 
         it 'redirects to the created classification' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           response.should redirect_to(classification_url(assigns(:classification)))
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved classification as @classification' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           expect(assigns(:classification)).not_to be_valid
         end
 
         it "re-renders the 'new' template" do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           response.should render_template('new')
         end
       end
@@ -209,24 +209,24 @@ describe ClassificationsController do
 
       describe 'with valid params' do
         it 'assigns a newly created classification as @classification' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           expect(assigns(:classification)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           response.should be_forbidden
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved classification as @classification' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           expect(assigns(:classification)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -237,24 +237,24 @@ describe ClassificationsController do
 
       describe 'with valid params' do
         it 'assigns a newly created classification as @classification' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           expect(assigns(:classification)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           response.should be_forbidden
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved classification as @classification' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           expect(assigns(:classification)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -263,24 +263,24 @@ describe ClassificationsController do
     describe 'When not logged in' do
       describe 'with valid params' do
         it 'assigns a newly created classification as @classification' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           expect(assigns(:classification)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { classification: @attrs }
+          post :create, classification: @attrs
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved classification as @classification' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           expect(assigns(:classification)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, params: { classification: @invalid_attrs }
+          post :create, classification: @invalid_attrs
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -299,18 +299,18 @@ describe ClassificationsController do
 
       describe 'with valid params' do
         it 'updates the requested classification' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
         end
 
         it 'assigns the requested classification as @classification' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
           expect(assigns(:classification)).to eq(@classification)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns the requested classification as @classification' do
-          put :update, params: { id: @classification.id, classification: @invalid_attrs }
+          put :update, id: @classification.id, classification: @invalid_attrs
           response.should render_template('edit')
         end
       end
@@ -321,11 +321,11 @@ describe ClassificationsController do
 
       describe 'with valid params' do
         it 'updates the requested classification' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
         end
 
         it 'should be forbidden' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
           expect(assigns(:classification)).to eq(@classification)
           response.should be_forbidden
         end
@@ -333,7 +333,7 @@ describe ClassificationsController do
 
       describe 'with invalid params' do
         it 'should be forbidden' do
-          put :update, params: { id: @classification, classification: @invalid_attrs }
+          put :update, id: @classification, classification: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -344,11 +344,11 @@ describe ClassificationsController do
 
       describe 'with valid params' do
         it 'updates the requested classification' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
         end
 
         it 'assigns the requested classification as @classification' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
           expect(assigns(:classification)).to eq(@classification)
           response.should be_forbidden
         end
@@ -356,7 +356,7 @@ describe ClassificationsController do
 
       describe 'with invalid params' do
         it 'assigns the requested classification as @classification' do
-          put :update, params: { id: @classification.id, classification: @invalid_attrs }
+          put :update, id: @classification.id, classification: @invalid_attrs
           response.should be_forbidden
         end
       end
@@ -365,18 +365,18 @@ describe ClassificationsController do
     describe 'When not logged in' do
       describe 'with valid params' do
         it 'updates the requested classification' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
         end
 
         it 'should be forbidden' do
-          put :update, params: { id: @classification.id, classification: @attrs }
+          put :update, id: @classification.id, classification: @attrs
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns the requested classification as @classification' do
-          put :update, params: { id: @classification.id, classification: @invalid_attrs }
+          put :update, id: @classification.id, classification: @invalid_attrs
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -392,11 +392,11 @@ describe ClassificationsController do
       login_admin
 
       it 'destroys the requested classification' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
       end
 
       it 'redirects to the classifications list' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
         response.should redirect_to(classifications_url)
       end
     end
@@ -405,11 +405,11 @@ describe ClassificationsController do
       login_librarian
 
       it 'destroys the requested classification' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
       end
 
       it 'should be forbidden' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
         response.should be_forbidden
       end
     end
@@ -418,22 +418,22 @@ describe ClassificationsController do
       login_user
 
       it 'destroys the requested classification' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
       end
 
       it 'should be forbidden' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
         response.should be_forbidden
       end
     end
 
     describe 'When not logged in' do
       it 'destroys the requested classification' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
       end
 
       it 'should be forbidden' do
-        delete :destroy, params: { id: @classification.id }
+        delete :destroy, id: @classification.id
         response.should redirect_to(new_user_session_url)
       end
     end
