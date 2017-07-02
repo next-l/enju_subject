@@ -17,3 +17,9 @@ classification_type_00003:
   id: 3
   note: ""
   position: 3
+classification_type_00004: 
+  name: ndc10
+  display_name: NDC10
+  id: 4
+  note: ""
+  position: 4
