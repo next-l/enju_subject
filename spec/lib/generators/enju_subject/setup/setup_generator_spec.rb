@@ -1,4 +1,4 @@
-require "spec_helper.rb"
+require "rails_helper.rb"
 require "generator_spec"
 require 'generator_spec/test_case'
 require 'generators/enju_subject/setup/setup_generator'
@@ -16,19 +16,17 @@ describe EnjuSubject::SetupGenerator, type: :generator do
     run_generator
   end
   it "does work" do
-    expect(destination_root).to have_structure do
-      directory "config" do
-        directory "initializers" do
-          file "enju_leaf.rb" do
+    expect(destination_root).to have_structure {
+      directory "app" do
+        directory "models" do
+          file "user.rb" do
             contains "Manifestation.include(EnjuSubject::EnjuManifestation)"
           end
         end
-      end
-      directory "app" do
         directory "controllers" do
           file "application_controller.rb"
         end
       end
-    end
+    }
   end
 end
