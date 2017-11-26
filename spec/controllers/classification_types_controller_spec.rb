@@ -6,12 +6,12 @@ describe ClassificationTypesController do
   disconnect_sunspot
 
   def valid_attributes
-    FactoryGirl.attributes_for(:classification_type)
+    FactoryBot.attributes_for(:classification_type)
   end
 
   describe 'GET index' do
     before(:each) do
-      FactoryGirl.create(:classification_type)
+      FactoryBot.create(:classification_type)
     end
 
     describe 'When logged in as Administrator' do
@@ -54,7 +54,7 @@ describe ClassificationTypesController do
       login_admin
 
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :show, params: { id: classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
@@ -64,7 +64,7 @@ describe ClassificationTypesController do
       login_librarian
 
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :show, params: { id: classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
@@ -74,7 +74,7 @@ describe ClassificationTypesController do
       login_user
 
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :show, params: { id: classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
@@ -82,7 +82,7 @@ describe ClassificationTypesController do
 
     describe 'When not logged in' do
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :show, params: { id: classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
@@ -134,7 +134,7 @@ describe ClassificationTypesController do
       login_admin
 
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :edit, params: { id: classification_type.id }
         expect(assigns(:classification_type)).to eq(classification_type)
       end
@@ -144,7 +144,7 @@ describe ClassificationTypesController do
       login_librarian
 
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :edit, params: { id: classification_type.id }
         expect(response).to be_forbidden
       end
@@ -154,7 +154,7 @@ describe ClassificationTypesController do
       login_user
 
       it 'assigns the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :edit, params: { id: classification_type.id }
         expect(response).to be_forbidden
       end
@@ -162,7 +162,7 @@ describe ClassificationTypesController do
 
     describe 'When not logged in' do
       it 'should not assign the requested classification_type as @classification_type' do
-        classification_type = FactoryGirl.create(:classification_type)
+        classification_type = FactoryBot.create(:classification_type)
         get :edit, params: { id: classification_type.id }
         expect(response).to redirect_to(new_user_session_url)
       end
@@ -288,7 +288,7 @@ describe ClassificationTypesController do
 
   describe 'PUT update' do
     before(:each) do
-      @classification_type = FactoryGirl.create(:classification_type)
+      @classification_type = FactoryBot.create(:classification_type)
       @attrs = valid_attributes
       @invalid_attrs = { name: '' }
     end
@@ -389,7 +389,7 @@ describe ClassificationTypesController do
 
   describe 'DELETE destroy' do
     before(:each) do
-      @classification_type = FactoryGirl.create(:classification_type)
+      @classification_type = FactoryBot.create(:classification_type)
     end
 
     describe 'When logged in as Administrator' do

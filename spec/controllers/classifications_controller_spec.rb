@@ -4,7 +4,7 @@ describe ClassificationsController do
   fixtures :all
 
   def valid_attributes
-    FactoryGirl.attributes_for(:classification)
+    FactoryBot.attributes_for(:classification)
   end
 
   describe 'GET index', solr: true do
@@ -55,7 +55,7 @@ describe ClassificationsController do
 
   describe 'GET show' do
     before(:each) do
-      @classification = FactoryGirl.create(:classification)
+      @classification = FactoryBot.create(:classification)
     end
 
     describe 'When logged in as Administrator' do
@@ -135,7 +135,7 @@ describe ClassificationsController do
       login_admin
 
       it 'assigns the requested classification as @classification' do
-        classification = FactoryGirl.create(:classification)
+        classification = FactoryBot.create(:classification)
         get :edit, params: { id: classification.id }
         expect(assigns(:classification)).to eq(classification)
       end
@@ -145,7 +145,7 @@ describe ClassificationsController do
       login_librarian
 
       it 'assigns the requested classification as @classification' do
-        classification = FactoryGirl.create(:classification)
+        classification = FactoryBot.create(:classification)
         get :edit, params: { id: classification.id }
         expect(assigns(:classification)).to eq(classification)
       end
@@ -155,7 +155,7 @@ describe ClassificationsController do
       login_user
 
       it 'assigns the requested classification as @classification' do
-        classification = FactoryGirl.create(:classification)
+        classification = FactoryBot.create(:classification)
         get :edit, params: { id: classification.id }
         response.should be_forbidden
       end
@@ -163,7 +163,7 @@ describe ClassificationsController do
 
     describe 'When not logged in' do
       it 'should not assign the requested classification as @classification' do
-        classification = FactoryGirl.create(:classification)
+        classification = FactoryBot.create(:classification)
         get :edit, params: { id: classification.id }
         response.should redirect_to(new_user_session_url)
       end
@@ -289,7 +289,7 @@ describe ClassificationsController do
 
   describe 'PUT update' do
     before(:each) do
-      @classification = FactoryGirl.create(:classification)
+      @classification = FactoryBot.create(:classification)
       @attrs = valid_attributes
       @invalid_attrs = { category: '' }
     end
@@ -385,7 +385,7 @@ describe ClassificationsController do
 
   describe 'DELETE destroy' do
     before(:each) do
-      @classification = FactoryGirl.create(:classification)
+      @classification = FactoryBot.create(:classification)
     end
 
     describe 'When logged in as Administrator' do
