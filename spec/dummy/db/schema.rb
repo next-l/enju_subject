@@ -320,7 +320,7 @@ ActiveRecord::Schema.define(version: 20170116152012) do
     t.index ["name"], name: "index_circulation_statuses_on_name", unique: true
   end
 
-  create_table "classification_types", id: :serial, force: :cascade do |t|
+  create_table "classification_types", force: :cascade do |t|
     t.string "name", null: false
     t.jsonb "display_name_translations"
     t.text "note"
@@ -334,7 +334,7 @@ ActiveRecord::Schema.define(version: 20170116152012) do
     t.integer "parent_id"
     t.string "category", null: false
     t.text "note"
-    t.integer "classification_type_id", null: false
+    t.bigint "classification_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lft"
@@ -342,7 +342,7 @@ ActiveRecord::Schema.define(version: 20170116152012) do
     t.uuid "manifestation_id"
     t.string "url"
     t.string "label"
-    t.index ["category"], name: "index_classifications_on_category"
+    t.index ["category"], name: "index_classifications_on_category", unique: true
     t.index ["classification_type_id"], name: "index_classifications_on_classification_type_id"
     t.index ["manifestation_id"], name: "index_classifications_on_manifestation_id"
     t.index ["parent_id"], name: "index_classifications_on_parent_id"
@@ -1179,7 +1179,7 @@ ActiveRecord::Schema.define(version: 20170116152012) do
     t.index ["library_id"], name: "index_shelves_on_library_id"
   end
 
-  create_table "subject_heading_types", id: :serial, force: :cascade do |t|
+  create_table "subject_heading_types", force: :cascade do |t|
     t.string "name", null: false
     t.jsonb "display_name_translations"
     t.text "note"
@@ -1189,7 +1189,7 @@ ActiveRecord::Schema.define(version: 20170116152012) do
     t.index ["name"], name: "index_subject_heading_types_on_name", unique: true
   end
 
-  create_table "subject_types", id: :serial, force: :cascade do |t|
+  create_table "subject_types", force: :cascade do |t|
     t.string "name", null: false
     t.jsonb "display_name_translations"
     t.text "note"
@@ -1203,18 +1203,20 @@ ActiveRecord::Schema.define(version: 20170116152012) do
     t.integer "use_term_id"
     t.string "term"
     t.text "term_transcription"
-    t.integer "subject_type_id", null: false
+    t.bigint "subject_type_id", null: false
     t.text "scope_note"
     t.text "note"
-    t.integer "required_role_id", default: 1, null: false
+    t.bigint "required_role_id", default: 1, null: false
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
     t.uuid "manifestation_id"
-    t.integer "subject_heading_type_id"
+    t.bigint "subject_heading_type_id", null: false
     t.index ["manifestation_id"], name: "index_subjects_on_manifestation_id"
     t.index ["parent_id"], name: "index_subjects_on_parent_id"
+    t.index ["required_role_id"], name: "index_subjects_on_required_role_id"
+    t.index ["subject_heading_type_id"], name: "index_subjects_on_subject_heading_type_id"
     t.index ["subject_type_id"], name: "index_subjects_on_subject_type_id"
     t.index ["term"], name: "index_subjects_on_term"
     t.index ["use_term_id"], name: "index_subjects_on_use_term_id"
@@ -1464,6 +1466,7 @@ ActiveRecord::Schema.define(version: 20170116152012) do
   add_foreign_key "checkouts", "checkins"
   add_foreign_key "checkouts", "items"
   add_foreign_key "checkouts", "users"
+  add_foreign_key "classifications", "classification_types"
   add_foreign_key "classifications", "manifestations"
   add_foreign_key "creates", "agents"
   add_foreign_key "creates", "manifestations", column: "work_id"
@@ -1506,6 +1509,9 @@ ActiveRecord::Schema.define(version: 20170116152012) do
   add_foreign_key "series_statements", "manifestations"
   add_foreign_key "shelves", "libraries"
   add_foreign_key "subjects", "manifestations"
+  add_foreign_key "subjects", "roles", column: "required_role_id"
+  add_foreign_key "subjects", "subject_heading_types"
+  add_foreign_key "subjects", "subject_types"
   add_foreign_key "subscribes", "subscriptions"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "user_group_has_checkout_types", "checkout_types"

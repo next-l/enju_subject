@@ -36,5 +36,5 @@ end
 #  updated_at              :datetime         not null
 #  url                     :string
 #  manifestation_id        :uuid
-#  subject_heading_type_id :integer
+#  subject_heading_type_id :integer          not null
 #
