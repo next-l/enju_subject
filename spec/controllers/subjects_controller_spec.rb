@@ -4,7 +4,7 @@ describe SubjectsController do
   fixtures :all
 
   def valid_attributes
-    FactoryGirl.attributes_for(:subject)
+    FactoryBot.attributes_for(:subject)
   end
 
   describe 'GET index', solr: true do
@@ -53,7 +53,7 @@ describe SubjectsController do
       login_admin
 
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :show, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
@@ -63,7 +63,7 @@ describe SubjectsController do
       login_librarian
 
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :show, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
@@ -73,7 +73,7 @@ describe SubjectsController do
       login_user
 
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :show, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
@@ -81,7 +81,7 @@ describe SubjectsController do
 
     describe 'When not logged in' do
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :show, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
@@ -131,7 +131,7 @@ describe SubjectsController do
       login_admin
 
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :edit, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
@@ -141,7 +141,7 @@ describe SubjectsController do
       login_librarian
 
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :edit, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
@@ -151,7 +151,7 @@ describe SubjectsController do
       login_user
 
       it 'assigns the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :edit, id: subject.id
         response.should be_forbidden
       end
@@ -159,7 +159,7 @@ describe SubjectsController do
 
     describe 'When not logged in' do
       it 'should not assign the requested subject as @subject' do
-        subject = FactoryGirl.create(:subject)
+        subject = FactoryBot.create(:subject)
         get :edit, id: subject.id
         response.should redirect_to(new_user_session_url)
       end
@@ -285,7 +285,7 @@ describe SubjectsController do
 
   describe 'PUT update' do
     before(:each) do
-      @subject = FactoryGirl.create(:subject)
+      @subject = FactoryBot.create(:subject)
       @attrs = valid_attributes
       @invalid_attrs = { term: '' }
     end
@@ -381,7 +381,7 @@ describe SubjectsController do
 
   describe 'DELETE destroy' do
     before(:each) do
-      @subject = FactoryGirl.create(:subject)
+      @subject = FactoryBot.create(:subject)
     end
 
     describe 'When logged in as Administrator' do

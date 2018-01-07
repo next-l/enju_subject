@@ -6,12 +6,12 @@ describe SubjectHeadingTypesController do
   disconnect_sunspot
 
   def valid_attributes
-    FactoryGirl.attributes_for(:subject_heading_type)
+    FactoryBot.attributes_for(:subject_heading_type)
   end
 
   describe 'GET index' do
     before(:each) do
-      FactoryGirl.create(:subject_heading_type)
+      FactoryBot.create(:subject_heading_type)
     end
 
     describe 'When logged in as Administrator' do
@@ -54,7 +54,7 @@ describe SubjectHeadingTypesController do
       login_admin
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
@@ -64,7 +64,7 @@ describe SubjectHeadingTypesController do
       login_librarian
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
@@ -74,7 +74,7 @@ describe SubjectHeadingTypesController do
       login_user
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
@@ -82,7 +82,7 @@ describe SubjectHeadingTypesController do
 
     describe 'When not logged in' do
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :show, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
@@ -134,7 +134,7 @@ describe SubjectHeadingTypesController do
       login_admin
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :edit, id: subject_heading_type.id
         expect(assigns(:subject_heading_type)).to eq(subject_heading_type)
       end
@@ -144,7 +144,7 @@ describe SubjectHeadingTypesController do
       login_librarian
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :edit, id: subject_heading_type.id
         response.should be_forbidden
       end
@@ -154,7 +154,7 @@ describe SubjectHeadingTypesController do
       login_user
 
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :edit, id: subject_heading_type.id
         response.should be_forbidden
       end
@@ -162,7 +162,7 @@ describe SubjectHeadingTypesController do
 
     describe 'When not logged in' do
       it 'should not assign the requested subject_heading_type as @subject_heading_type' do
-        subject_heading_type = FactoryGirl.create(:subject_heading_type)
+        subject_heading_type = FactoryBot.create(:subject_heading_type)
         get :edit, id: subject_heading_type.id
         response.should redirect_to(new_user_session_url)
       end
@@ -288,7 +288,7 @@ describe SubjectHeadingTypesController do
 
   describe 'PUT update' do
     before(:each) do
-      @subject_heading_type = FactoryGirl.create(:subject_heading_type)
+      @subject_heading_type = FactoryBot.create(:subject_heading_type)
       @attrs = valid_attributes
       @invalid_attrs = { name: '' }
     end
@@ -389,7 +389,7 @@ describe SubjectHeadingTypesController do
 
   describe 'DELETE destroy' do
     before(:each) do
-      @subject_heading_type = FactoryGirl.create(:subject_heading_type)
+      @subject_heading_type = FactoryBot.create(:subject_heading_type)
     end
 
     describe 'When logged in as Administrator' do
