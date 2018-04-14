@@ -1,7 +1,7 @@
 # EnjuSubject
 [![Build Status](https://travis-ci.org/next-l/enju_subject.svg?branch=master)](https://travis-ci.org/next-l/enju_subject)
 [![Maintainability](https://api.codeclimate.com/v1/badges/72dd97418daca5699a80/maintainability)](https://codeclimate.com/github/next-l/enju_subject/maintainability)
-[![Maintainability](https://api.codeclimate.com/v1/badges/72dd97418daca5699a80/maintainability)](https://codeclimate.com/github/next-l/enju_subject/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/72dd97418daca5699a80/test_coverage)](https://codeclimate.com/github/next-l/enju_subject/test_coverage)
 [![security](https://hakiri.io/github/next-l/enju_subject/master.svg)](https://hakiri.io/github/next-l/enju_subject/master)
 
 ##  製作者・貢献者 (Authors and contributors)
