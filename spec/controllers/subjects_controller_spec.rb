@@ -54,7 +54,7 @@ describe SubjectsController do
 
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :show, id: subject.id
+        get :show, params: { id: subject.id }
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -64,7 +64,7 @@ describe SubjectsController do
 
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :show, id: subject.id
+        get :show, params: { id: subject.id }
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -74,7 +74,7 @@ describe SubjectsController do
 
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :show, id: subject.id
+        get :show, params: { id: subject.id }
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -82,7 +82,7 @@ describe SubjectsController do
     describe 'When not logged in' do
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :show, id: subject.id
+        get :show, params: { id: subject.id }
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -132,7 +132,7 @@ describe SubjectsController do
 
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :edit, id: subject.id
+        get :edit, params: { id: subject.id }
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -142,7 +142,7 @@ describe SubjectsController do
 
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :edit, id: subject.id
+        get :edit, params: { id: subject.id }
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -152,7 +152,7 @@ describe SubjectsController do
 
       it 'assigns the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :edit, id: subject.id
+        get :edit, params: { id: subject.id }
         response.should be_forbidden
       end
     end
@@ -160,7 +160,7 @@ describe SubjectsController do
     describe 'When not logged in' do
       it 'should not assign the requested subject as @subject' do
         subject = FactoryBot.create(:subject)
-        get :edit, id: subject.id
+        get :edit, params: { id: subject.id }
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -177,24 +177,24 @@ describe SubjectsController do
 
       describe 'with valid params' do
         it 'assigns a newly created subject as @subject' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           expect(assigns(:subject)).to be_valid
         end
 
         it 'redirects to the created subject' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           response.should redirect_to(subject_url(assigns(:subject)))
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject as @subject' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           expect(assigns(:subject)).not_to be_valid
         end
 
         it "re-renders the 'new' template" do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           response.should render_template('new')
         end
       end
@@ -205,24 +205,24 @@ describe SubjectsController do
 
       describe 'with valid params' do
         it 'assigns a newly created subject as @subject' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           expect(assigns(:subject)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           response.should be_forbidden
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject as @subject' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           expect(assigns(:subject)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -233,24 +233,24 @@ describe SubjectsController do
 
       describe 'with valid params' do
         it 'assigns a newly created subject as @subject' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           expect(assigns(:subject)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           response.should be_forbidden
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject as @subject' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           expect(assigns(:subject)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -259,24 +259,24 @@ describe SubjectsController do
     describe 'When not logged in' do
       describe 'with valid params' do
         it 'assigns a newly created subject as @subject' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           expect(assigns(:subject)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, subject: @attrs
+          post :create, params: { subject: @attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns a newly created but unsaved subject as @subject' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           expect(assigns(:subject)).to be_nil
         end
 
         it 'should be forbidden' do
-          post :create, subject: @invalid_attrs
+          post :create, params: { subject: @invalid_attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -295,18 +295,18 @@ describe SubjectsController do
 
       describe 'with valid params' do
         it 'updates the requested subject' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
         end
 
         it 'assigns the requested subject as @subject' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
           expect(assigns(:subject)).to eq(@subject)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns the requested subject as @subject' do
-          put :update, id: @subject.id, subject: @invalid_attrs
+          put :update, params: { id: @subject.id, subject: @invalid_attrs }
           response.should render_template('edit')
         end
       end
@@ -317,11 +317,11 @@ describe SubjectsController do
 
       describe 'with valid params' do
         it 'updates the requested subject' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
         end
 
         it 'should be forbidden' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
           expect(assigns(:subject)).to eq(@subject)
           response.should be_forbidden
         end
@@ -329,7 +329,7 @@ describe SubjectsController do
 
       describe 'with invalid params' do
         it 'should be forbidden' do
-          put :update, id: @subject, subject: @invalid_attrs
+          put :update, params: { id: @subject, subject: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -340,11 +340,11 @@ describe SubjectsController do
 
       describe 'with valid params' do
         it 'updates the requested subject' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
         end
 
         it 'assigns the requested subject as @subject' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
           expect(assigns(:subject)).to eq(@subject)
           response.should be_forbidden
         end
@@ -352,7 +352,7 @@ describe SubjectsController do
 
       describe 'with invalid params' do
         it 'assigns the requested subject as @subject' do
-          put :update, id: @subject.id, subject: @invalid_attrs
+          put :update, params: { id: @subject.id, subject: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -361,18 +361,18 @@ describe SubjectsController do
     describe 'When not logged in' do
       describe 'with valid params' do
         it 'updates the requested subject' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
         end
 
         it 'should be forbidden' do
-          put :update, id: @subject.id, subject: @attrs
+          put :update, params: { id: @subject.id, subject: @attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe 'with invalid params' do
         it 'assigns the requested subject as @subject' do
-          put :update, id: @subject.id, subject: @invalid_attrs
+          put :update, params: { id: @subject.id, subject: @invalid_attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -388,11 +388,11 @@ describe SubjectsController do
       login_admin
 
       it 'destroys the requested subject' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
       end
 
       it 'redirects to the subjects list' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
         response.should redirect_to(subjects_url)
       end
     end
@@ -401,11 +401,11 @@ describe SubjectsController do
       login_librarian
 
       it 'destroys the requested subject' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
       end
 
       it 'should be forbidden' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
         response.should be_forbidden
       end
     end
@@ -414,22 +414,22 @@ describe SubjectsController do
       login_user
 
       it 'destroys the requested subject' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
       end
 
       it 'should be forbidden' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
         response.should be_forbidden
       end
     end
 
     describe 'When not logged in' do
       it 'destroys the requested subject' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
       end
 
       it 'should be forbidden' do
-        delete :destroy, id: @subject.id
+        delete :destroy, params: { id: @subject.id }
         response.should redirect_to(new_user_session_url)
       end
     end
