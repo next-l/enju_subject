@@ -1,5 +1,5 @@
 class Subject < ActiveRecord::Base
-  belongs_to :manifestation, touch: true
+  belongs_to :manifestation, touch: true, optional: true
   belongs_to :subject_type
   belongs_to :subject_heading_type
   belongs_to :required_role, class_name: 'Role', foreign_key: 'required_role_id'
