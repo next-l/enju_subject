@@ -96,7 +96,7 @@ describe ClassificationTypesController do
       it 'assigns the requested classification_type as @classification_type' do
         get :new
         expect(assigns(:classification_type)).not_to be_valid
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -198,7 +198,7 @@ describe ClassificationTypesController do
 
         it 'should be successful' do
           post :create, params: { classification_type: @invalid_attrs }
-          expect(response).to be_success
+          expect(response).to be_successful
         end
       end
     end

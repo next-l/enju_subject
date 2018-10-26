@@ -98,7 +98,7 @@ describe SubjectTypesController do
       it 'assigns the requested subject_type as @subject_type' do
         get :new
         expect(assigns(:subject_type)).not_to be_valid
-        response.should be_success
+        response.should be_successful
       end
     end
 
@@ -200,7 +200,7 @@ describe SubjectTypesController do
 
         it 'should be successful' do
           post :create, params: { subject_type: @invalid_attrs }
-          response.should be_success
+          response.should be_successful
         end
       end
     end
