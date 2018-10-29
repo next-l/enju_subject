@@ -42,7 +42,7 @@ describe SubjectsController do
     describe 'When not logged in' do
       it 'assigns all subjects as @subjects' do
         get :index
-        response.should be_success
+        response.should be_successful
         expect(assigns(:subjects)).not_to be_nil
       end
     end

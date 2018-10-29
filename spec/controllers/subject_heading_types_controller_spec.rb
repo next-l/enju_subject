@@ -96,7 +96,7 @@ describe SubjectHeadingTypesController do
       it 'assigns the requested subject_heading_type as @subject_heading_type' do
         get :new
         expect(assigns(:subject_heading_type)).not_to be_valid
-        response.should be_success
+        response.should be_successful
       end
     end
 
@@ -198,7 +198,7 @@ describe SubjectHeadingTypesController do
 
         it 'should be successful' do
           post :create, params: { subject_heading_type: @invalid_attrs }
-          response.should be_success
+          response.should be_successful
         end
       end
     end
