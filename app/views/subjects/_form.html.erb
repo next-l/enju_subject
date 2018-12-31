@@ -2,11 +2,11 @@
   <%= f.error_messages -%>
   <div class="field">
     <%= f.label t('activerecord.models.subject_heading_type') -%>
-    <%= f.select(:subject_heading_type_id, @subject_heading_types.collect{|s| [s.display_name, s.id]}) -%>
+    <%= f.select(:subject_heading_type_id, @subject_heading_types.collect{|s| [s.display_name.localize, s.id]}) -%>
   </div>
   <div class="field">
     <%= f.label t('activerecord.models.subject_type') -%>
-    <%= f.select(:subject_type_id, @subject_types.collect{|s| [s.display_name, s.id]}) -%>
+    <%= f.select(:subject_type_id, @subject_types.collect{|s| [s.display_name.localize, s.id]}) -%>
   </div>
 
   <div class="field">

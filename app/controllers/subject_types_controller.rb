@@ -87,7 +87,6 @@ class SubjectTypesController < ApplicationController
   def set_subject_type
     @subject_type = SubjectType.find(params[:id])
     authorize @subject_type
-    access_denied unless LibraryGroup.site_config.network_access_allowed?(request.ip)
   end
 
   def check_policy

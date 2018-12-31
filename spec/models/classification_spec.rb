@@ -9,16 +9,16 @@ end
 #
 # Table name: classifications
 #
-#  id                     :uuid             not null, primary key
+#  id                     :integer          not null, primary key
 #  parent_id              :integer
 #  category               :string           not null
 #  note                   :text
 #  classification_type_id :integer          not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  created_at             :datetime
+#  updated_at             :datetime
 #  lft                    :integer
 #  rgt                    :integer
-#  manifestation_id       :uuid
+#  manifestation_id       :integer
 #  url                    :string
 #  label                  :string
 #

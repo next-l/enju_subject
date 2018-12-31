@@ -1,9 +1,9 @@
-class CreateAccepts < ActiveRecord::Migration[5.0]
+class CreateAccepts < ActiveRecord::Migration[4.2]
   def change
     create_table :accepts do |t|
-      t.references :basket, foreign_key: {on_delete: :nullify}
-      t.references :item, foreign_key: true, type: :uuid
-      t.integer :librarian_id
+      t.references :basket, index: true
+      t.references :item, index: true
+      t.references :librarian, index: true
 
       t.timestamps
     end

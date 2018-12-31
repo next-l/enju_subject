@@ -1,9 +1,9 @@
 class Classification < ActiveRecord::Base
   belongs_to :classification_type
-  belongs_to :manifestation, touch: true
+  belongs_to :manifestation, touch: true, optional: true
 
   validates_associated :classification_type
-  validates :category, :classification_type, presence: true
+  validates_presence_of :category, :classification_type
   searchable do
     text :category, :note
     integer :classification_type_id
@@ -17,16 +17,16 @@ end
 #
 # Table name: classifications
 #
-#  id                     :uuid             not null, primary key
+#  id                     :integer          not null, primary key
 #  parent_id              :integer
 #  category               :string           not null
 #  note                   :text
 #  classification_type_id :integer          not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  created_at             :datetime
+#  updated_at             :datetime
 #  lft                    :integer
 #  rgt                    :integer
-#  manifestation_id       :uuid
+#  manifestation_id       :integer
 #  url                    :string
 #  label                  :string
 #

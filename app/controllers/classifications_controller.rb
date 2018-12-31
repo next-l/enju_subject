@@ -1,7 +1,8 @@
+# -*- encoding: utf-8 -*-
 class ClassificationsController < ApplicationController
   before_action :set_classification, only: [:show, :edit, :update, :destroy]
   before_action :check_policy, only: [:index, :new, :create]
-  before_action :set_parent_subject, :set_parent_classification_type
+  before_action :get_subject, :get_classification_type
 
   # GET /classifications
   # GET /classifications.json
@@ -121,5 +122,9 @@ class ClassificationsController < ApplicationController
     params.require(:classification).permit(
       :parent_id, :category, :note, :classification_type_id, :url, :label
     )
+  end
+
+  def get_classification_type
+    @classification_type = ClassificationType.find(params[:classification_type_id]) rescue nil
   end
 end

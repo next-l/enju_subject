@@ -87,7 +87,6 @@ class SubjectHeadingTypesController < ApplicationController
   def set_subject_heading_type
     @subject_heading_type = SubjectHeadingType.find(params[:id])
     authorize @subject_heading_type
-    access_denied unless LibraryGroup.site_config.network_access_allowed?(request.ip)
   end
 
   def check_policy

@@ -12,7 +12,7 @@ end
 #
 # Table name: subjects
 #
-#  id                      :uuid             not null, primary key
+#  id                      :integer          not null, primary key
 #  parent_id               :integer
 #  use_term_id             :integer
 #  term                    :string
@@ -22,9 +22,10 @@ end
 #  note                    :text
 #  required_role_id        :integer          default(1), not null
 #  lock_version            :integer          default(0), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
+#  created_at              :datetime
+#  updated_at              :datetime
+#  deleted_at              :datetime
 #  url                     :string
-#  manifestation_id        :uuid
-#  subject_heading_type_id :integer          not null
+#  manifestation_id        :integer
+#  subject_heading_type_id :integer
 #

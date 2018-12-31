@@ -87,7 +87,6 @@ class ClassificationTypesController < ApplicationController
   def set_classification_type
     @classification_type = ClassificationType.find(params[:id])
     authorize @classification_type
-    access_denied unless LibraryGroup.site_config.network_access_allowed?(request.ip)
   end
 
   def check_policy

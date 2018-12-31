@@ -1,5 +1,4 @@
-require 'dynamic_form'
-require 'cocoon'
+require 'enju_biblio'
 
 module EnjuSubject
   class Engine < ::Rails::Engine
