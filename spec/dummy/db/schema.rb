@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
     t.datetime "updated_at", null: false
     t.integer "lft"
     t.integer "rgt"
-    t.integer "manifestation_id"
+    t.bigint "manifestation_id"
     t.string "url"
     t.string "label"
     t.index ["category"], name: "index_classifications_on_category"
@@ -993,7 +993,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
-    t.integer "manifestation_id"
+    t.bigint "manifestation_id"
     t.bigint "subject_heading_type_id"
     t.index ["manifestation_id"], name: "index_subjects_on_manifestation_id"
     t.index ["parent_id"], name: "index_subjects_on_parent_id"
@@ -1166,6 +1166,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
   end
 
   add_foreign_key "classifications", "classifications", column: "parent_id"
+  add_foreign_key "classifications", "manifestations"
   add_foreign_key "doi_records", "manifestations"
   add_foreign_key "isbn_record_and_manifestations", "isbn_records"
   add_foreign_key "isbn_record_and_manifestations", "manifestations"
@@ -1175,5 +1176,6 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
   add_foreign_key "items", "manifestations"
   add_foreign_key "libraries", "library_groups"
   add_foreign_key "library_groups", "users"
+  add_foreign_key "subjects", "manifestations"
   add_foreign_key "subjects", "subjects", column: "parent_id"
 end
