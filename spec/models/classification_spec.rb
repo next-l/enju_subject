@@ -18,7 +18,7 @@ end
 #  updated_at             :datetime         not null
 #  lft                    :integer
 #  rgt                    :integer
-#  manifestation_id       :integer
+#  manifestation_id       :bigint(8)
 #  url                    :string
 #  label                  :string
 #
