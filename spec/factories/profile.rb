@@ -4,6 +4,6 @@ FactoryBot.define do
     f.required_role_id {Role.where(name: 'User').first.id}
     f.sequence(:user_number){|n| "user_number_#{n}"}
     f.library_id { 2 }
-    f.locale { 'ja' }
+    f.locale { "ja" }
   end
 end
