@@ -12,20 +12,19 @@ end
 #
 # Table name: subjects
 #
-#  id                      :integer          not null, primary key
-#  parent_id               :integer
+#  id                      :bigint(8)        not null, primary key
+#  parent_id               :bigint(8)
 #  use_term_id             :integer
 #  term                    :string
 #  term_transcription      :text
-#  subject_type_id         :integer          not null
+#  subject_type_id         :bigint(8)        not null
 #  scope_note              :text
 #  note                    :text
-#  required_role_id        :integer          default(1), not null
+#  required_role_id        :bigint(8)        default(1), not null
 #  lock_version            :integer          default(0), not null
-#  created_at              :datetime
-#  updated_at              :datetime
-#  deleted_at              :datetime
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
 #  url                     :string
-#  manifestation_id        :integer
-#  subject_heading_type_id :integer
+#  manifestation_id        :uuid
+#  subject_heading_type_id :bigint(8)
 #
