@@ -233,8 +233,8 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "classifications", force: :cascade do |t|
-    t.bigint "parent_id"
+  create_table "classifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "parent_id"
     t.string "category", null: false
     t.text "note"
     t.bigint "classification_type_id", null: false
@@ -981,8 +981,8 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subjects", force: :cascade do |t|
-    t.bigint "parent_id"
+  create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "parent_id"
     t.integer "use_term_id"
     t.string "term"
     t.text "term_transcription"

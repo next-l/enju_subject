@@ -5,7 +5,7 @@ subject_00001:
   scope_note: 
   subject_type_id: 1
   term_transcription: next-l
-  id: 1
+  id: 2bb26320-ad0c-472c-8605-ac6abcdf285c
   note: 
   parent_id: 
   created_at: 2008-03-01 17:53:06.118389 +09:00
@@ -17,7 +17,7 @@ subject_00002:
   scope_note: 
   subject_type_id: 1
   term_transcription: test2
-  id: 2
+  id: 1871c368-67aa-4cc9-8e9c-5b49d29a2bf3
   note: 
   parent_id: 
   created_at: 2008-03-01 17:50:34.658349 +09:00
@@ -28,7 +28,7 @@ subject_00003:
   scope_note: 
   subject_type_id: 1
   term_transcription: test3
-  id: 3
+  id: c617235c-4afd-4efd-b61e-70d800276570
   note: 
   parent_id: 
   created_at: 2008-03-01 17:51:39.448430 +09:00
@@ -39,7 +39,7 @@ subject_00004:
   scope_note: 
   subject_type_id: 1
   term_transcription: test4
-  id: 4
+  id: 5e2d656f-5055-4222-877e-ae2467e23ab5
   note: 
   parent_id: 
   created_at: 2008-03-01 17:51:39.448430 +09:00
@@ -50,7 +50,7 @@ subject_00005:
   scope_note: 
   subject_type_id: 1
   term_transcription: test5
-  id: 5
+  id: 04d632ba-d460-4ad8-a58e-a01273548b9a
   note: 
   parent_id: 
   created_at: 2008-03-01 17:51:39.448430 +09:00
@@ -60,8 +60,8 @@ subject_00005:
 #
 # Table name: subjects
 #
-#  id                      :bigint(8)        not null, primary key
-#  parent_id               :bigint(8)
+#  id                      :uuid             not null, primary key
+#  parent_id               :uuid
 #  use_term_id             :integer
 #  term                    :string
 #  term_transcription      :text

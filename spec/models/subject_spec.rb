@@ -12,8 +12,8 @@ end
 #
 # Table name: subjects
 #
-#  id                      :bigint(8)        not null, primary key
-#  parent_id               :bigint(8)
+#  id                      :uuid             not null, primary key
+#  parent_id               :uuid
 #  use_term_id             :integer
 #  term                    :string
 #  term_transcription      :text
