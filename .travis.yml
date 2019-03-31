@@ -2,7 +2,7 @@ language: ruby
 cache: bundler
 rvm:
   - 2.3.7
-  - 2.4.4
+  - 2.4.5
 before_script:
   - mysql -e 'create database enju_test DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'
   - psql -c 'create database enju_test;' -U postgres
@@ -10,6 +10,8 @@ before_script:
   - bundle exec rake app:sunspot:solr:start
 services:
   - redis-server
+  - mysql
+  - postgresql
 env:
   - DB=sqlite
   - DB=mysql
@@ -18,3 +20,4 @@ notifications:
   slack:
     secure: qmxqNdreAdu1Z3F2V1yORYuEAJV/Se4Df8LeRJnDZEEKM9boREUNUatY7N0cwHeiN7vZnQDrtMgkhYCT7J0MVwbWahuTzow/wPbI4TesEExRHyzrkPqAsjHI1wqySlkJ3kUAQpZs4vtr0kYTotHiqXlxmUaTADpPGUo3XrHyRIE=
 sudo: false
+dist: xenial
