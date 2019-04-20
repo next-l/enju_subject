@@ -22,8 +22,8 @@ end
 #
 # Table name: subjects
 #
-#  id                      :uuid             not null, primary key
-#  parent_id               :uuid
+#  id                      :bigint(8)        not null, primary key
+#  parent_id               :bigint(8)
 #  use_term_id             :integer
 #  term                    :string
 #  term_transcription      :text
@@ -35,6 +35,6 @@ end
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  url                     :string
-#  manifestation_id        :uuid
+#  manifestation_id        :bigint(8)
 #  subject_heading_type_id :bigint(8)
 #

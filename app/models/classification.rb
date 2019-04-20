@@ -17,8 +17,8 @@ end
 #
 # Table name: classifications
 #
-#  id                     :uuid             not null, primary key
-#  parent_id              :uuid
+#  id                     :bigint(8)        not null, primary key
+#  parent_id              :bigint(8)
 #  category               :string           not null
 #  note                   :text
 #  classification_type_id :bigint(8)        not null
@@ -26,7 +26,7 @@ end
 #  updated_at             :datetime         not null
 #  lft                    :integer
 #  rgt                    :integer
-#  manifestation_id       :uuid
+#  manifestation_id       :bigint(8)
 #  url                    :string
 #  label                  :string
 #
