@@ -3,7 +3,7 @@ class CreateSubjects < ActiveRecord::Migration[5.2]
     create_table :subjects do |t|
       t.references :parent, foreign_key: {to_table: :subjects}
       t.integer :use_term_id, index: true
-      t.string :term, index: true
+      t.string :term, index: true, null: false
       t.text :term_transcription
       t.references :subject_type, null: false
       t.text :scope_note
