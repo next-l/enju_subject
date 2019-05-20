@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_08_14_165332) do
+ActiveRecord::Schema.define(version: 2019_05_12_134553) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer "basket_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "updated_at"
     t.index ["basket_id"], name: "index_accepts_on_basket_id"
     t.index ["item_id"], name: "index_accepts_on_item_id"
+    t.index ["librarian_id"], name: "index_accepts_on_librarian_id"
   end
 
   create_table "agent_import_file_transitions", force: :cascade do |t|
@@ -29,6 +30,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "agent_import_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "most_recent", null: false
+    t.index ["agent_import_file_id", "most_recent"], name: "index_agent_import_file_transitions_parent_most_recent", unique: true, where: "most_recent"
     t.index ["agent_import_file_id"], name: "index_agent_import_file_transitions_on_agent_import_file_id"
     t.index ["sort_key", "agent_import_file_id"], name: "index_agent_import_file_transitions_on_sort_key_and_file_id", unique: true
   end
@@ -152,10 +155,12 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.string "birth_date"
     t.string "death_date"
     t.string "agent_identifier"
+    t.integer "profile_id"
     t.index ["agent_identifier"], name: "index_agents_on_agent_identifier"
     t.index ["country_id"], name: "index_agents_on_country_id"
     t.index ["full_name"], name: "index_agents_on_full_name"
     t.index ["language_id"], name: "index_agents_on_language_id"
+    t.index ["profile_id"], name: "index_agents_on_profile_id"
     t.index ["required_role_id"], name: "index_agents_on_required_role_id"
   end
 
@@ -198,19 +203,23 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "classification_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "position"
+    t.integer "position", default: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "classifications", force: :cascade do |t|
-    t.integer "parent_id"
+    t.bigint "parent_id"
     t.string "category", null: false
     t.text "note"
     t.integer "classification_type_id", null: false
@@ -347,6 +356,19 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.index ["manifestation_id"], name: "index_identifiers_on_manifestation_id"
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "provider"
+    t.index ["email"], name: "index_identities_on_email"
+    t.index ["name"], name: "index_identities_on_name"
+    t.index ["profile_id"], name: "index_identities_on_profile_id"
+  end
+
   create_table "import_request_transitions", force: :cascade do |t|
     t.string "to_state"
     t.text "metadata", default: "{}"
@@ -354,6 +376,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "import_request_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "most_recent", null: false
+    t.index ["import_request_id", "most_recent"], name: "index_import_request_transitions_parent_most_recent", unique: true, where: "most_recent"
     t.index ["import_request_id"], name: "index_import_request_transitions_on_import_request_id"
     t.index ["sort_key", "import_request_id"], name: "index_import_request_transitions_on_sort_key_and_request_id", unique: true
   end
@@ -389,7 +413,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.string "binding_item_identifier"
     t.string "binding_call_number"
     t.datetime "binded_at"
-    t.integer "manifestation_id"
+    t.integer "manifestation_id", null: false
     t.index ["binding_item_identifier"], name: "index_items_on_binding_item_identifier"
     t.index ["bookstore_id"], name: "index_items_on_bookstore_id"
     t.index ["item_identifier"], name: "index_items_on_item_identifier"
@@ -427,7 +451,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.text "note"
     t.integer "call_number_rows", default: 1, null: false
     t.string "call_number_delimiter", default: "|", null: false
-    t.integer "library_group_id", default: 1, null: false
+    t.integer "library_group_id", null: false
     t.integer "users_count", default: 0, null: false
     t.integer "position"
     t.integer "country_id"
@@ -439,7 +463,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.float "latitude"
     t.float "longitude"
     t.index ["library_group_id"], name: "index_libraries_on_library_group_id"
-    t.index ["name"], name: "index_libraries_on_name", unique: true
+    t.index ["name"], name: "index_libraries_on_name"
   end
 
   create_table "library_group_translations", force: :cascade do |t|
@@ -458,7 +482,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.text "display_name"
     t.string "short_name", null: false
     t.text "my_networks"
-    t.text "login_banner"
+    t.text "old_login_banner"
     t.text "note"
     t.integer "country_id"
     t.integer "position"
@@ -472,6 +496,12 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.boolean "family_name_first", default: true
     t.integer "pub_year_facet_range_interval", default: 10
     t.integer "user_id"
+    t.boolean "csv_charset_conversion", default: false, null: false
+    t.string "header_logo_file_name"
+    t.string "header_logo_content_type"
+    t.integer "header_logo_file_size"
+    t.datetime "header_logo_updated_at"
+    t.text "header_logo_meta"
     t.index ["short_name"], name: "index_library_groups_on_short_name"
     t.index ["user_id"], name: "index_library_groups_on_user_id"
   end
@@ -548,7 +578,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "valid_until"
     t.datetime "date_submitted"
     t.datetime "date_accepted"
-    t.datetime "date_caputured"
+    t.datetime "date_captured"
     t.string "pub_date"
     t.string "edition_string"
     t.integer "volume_number"
@@ -671,6 +701,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "picture_updated_at"
     t.text "picture_meta"
     t.string "picture_fingerprint"
+    t.integer "picture_width"
+    t.integer "picture_height"
     t.index ["picture_attachable_id", "picture_attachable_type"], name: "index_picture_files_on_picture_attachable_id_and_type"
   end
 
@@ -709,6 +741,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "expired_at"
     t.text "full_name_transcription"
     t.datetime "date_of_birth"
+    t.index ["library_id"], name: "index_profiles_on_library_id"
+    t.index ["user_group_id"], name: "index_profiles_on_user_group_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
     t.index ["user_number"], name: "index_profiles_on_user_number", unique: true
   end
@@ -758,6 +792,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "resource_export_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "most_recent", null: false
+    t.index ["resource_export_file_id", "most_recent"], name: "index_resource_export_file_transitions_parent_most_recent", unique: true, where: "most_recent"
     t.index ["resource_export_file_id"], name: "index_resource_export_file_transitions_on_file_id"
     t.index ["sort_key", "resource_export_file_id"], name: "index_resource_export_file_transitions_on_sort_key_and_file_id", unique: true
   end
@@ -780,6 +816,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "resource_import_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "most_recent", null: false
+    t.index ["resource_import_file_id", "most_recent"], name: "index_resource_import_file_transitions_parent_most_recent", unique: true, where: "most_recent"
     t.index ["resource_import_file_id"], name: "index_resource_import_file_transitions_on_file_id"
     t.index ["sort_key", "resource_import_file_id"], name: "index_resource_import_file_transitions_on_sort_key_and_file_id", unique: true
   end
@@ -886,7 +924,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "library_id", default: 1, null: false
+    t.integer "library_id", null: false
     t.integer "items_count", default: 0, null: false
     t.integer "position"
     t.datetime "created_at"
@@ -900,7 +938,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "position"
+    t.integer "position", default: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -909,7 +947,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "position"
+    t.integer "position", default: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -917,7 +955,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
   create_table "subjects", force: :cascade do |t|
     t.integer "parent_id"
     t.integer "use_term_id"
-    t.string "term"
+    t.string "term", null: false
     t.text "term_transcription"
     t.integer "subject_type_id", null: false
     t.text "scope_note"
@@ -933,6 +971,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.index ["manifestation_id"], name: "index_subjects_on_manifestation_id"
     t.index ["parent_id"], name: "index_subjects_on_parent_id"
     t.index ["required_role_id"], name: "index_subjects_on_required_role_id"
+    t.index ["subject_heading_type_id"], name: "index_subjects_on_subject_heading_type_id"
     t.index ["subject_type_id"], name: "index_subjects_on_subject_type_id"
     t.index ["term"], name: "index_subjects_on_term"
     t.index ["use_term_id"], name: "index_subjects_on_use_term_id"
@@ -969,9 +1008,11 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "user_export_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean "most_recent"
+    t.boolean "most_recent", null: false
     t.index ["sort_key", "user_export_file_id"], name: "index_user_export_file_transitions_on_sort_key_and_file_id", unique: true
+    t.index ["user_export_file_id", "most_recent"], name: "index_user_export_file_transitions_parent_most_recent", unique: true, where: "most_recent"
     t.index ["user_export_file_id"], name: "index_user_export_file_transitions_on_file_id"
+    t.index ["user_export_file_id"], name: "index_user_export_file_transitions_on_user_export_file_id"
   end
 
   create_table "user_export_files", force: :cascade do |t|
@@ -983,6 +1024,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "executed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], name: "index_user_export_files_on_user_id"
   end
 
   create_table "user_groups", force: :cascade do |t|
@@ -998,12 +1040,11 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
   end
 
   create_table "user_has_roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+    t.integer "user_id", null: false
+    t.integer "role_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["role_id"], name: "index_user_has_roles_on_role_id"
-    t.index ["user_id"], name: "index_user_has_roles_on_user_id"
+    t.index ["user_id", "role_id"], name: "index_user_has_roles_on_user_id_and_role_id", unique: true
   end
 
   create_table "user_import_file_transitions", force: :cascade do |t|
@@ -1013,8 +1054,9 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.integer "user_import_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean "most_recent"
+    t.boolean "most_recent", null: false
     t.index ["sort_key", "user_import_file_id"], name: "index_user_import_file_transitions_on_sort_key_and_file_id", unique: true
+    t.index ["user_import_file_id", "most_recent"], name: "index_user_import_file_transitions_parent_most_recent", unique: true, where: "most_recent"
     t.index ["user_import_file_id"], name: "index_user_import_file_transitions_on_user_import_file_id"
   end
 
@@ -1034,6 +1076,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.string "user_encoding"
     t.integer "default_library_id"
     t.integer "default_user_group_id"
+    t.index ["user_id"], name: "index_user_import_files_on_user_id"
   end
 
   create_table "user_import_results", force: :cascade do |t|
@@ -1043,6 +1086,8 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text "error_message"
+    t.index ["user_id"], name: "index_user_import_results_on_user_id"
+    t.index ["user_import_file_id"], name: "index_user_import_results_on_user_import_file_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -1089,6 +1134,7 @@ ActiveRecord::Schema.define(version: 2016_08_14_165332) do
     t.datetime "updated_at", null: false
     t.index ["basket_id"], name: "index_withdraws_on_basket_id"
     t.index ["item_id"], name: "index_withdraws_on_item_id"
+    t.index ["librarian_id"], name: "index_withdraws_on_librarian_id"
   end
 
 end

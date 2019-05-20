@@ -15,6 +15,7 @@ describe EnjuSubject::SetupGenerator, type: :generator do
     end
     run_generator
   end
+
   it "does work" do
     expect(destination_root).to have_structure {
       directory "app" do

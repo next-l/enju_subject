@@ -25,7 +25,7 @@ end
 #  id                      :integer          not null, primary key
 #  parent_id               :integer
 #  use_term_id             :integer
-#  term                    :string
+#  term                    :string           not null
 #  term_transcription      :text
 #  subject_type_id         :integer          not null
 #  scope_note              :text
