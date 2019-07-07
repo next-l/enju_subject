@@ -22,3 +22,4 @@ gem 'enju_biblio', github: 'next-l/enju_biblio'
 gem 'rails-controller-testing', group: :test
 gem 'rspec_junit_formatter', group: :test
 gem 'sassc-rails'
+gem 'paper_trail'

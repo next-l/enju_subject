@@ -1,25 +1,37 @@
 --- 
 classification_type_00001: 
-  name: ndc9
-  display_name: NDC9
+  name: ndc
+  display_name: NDC
   id: 1
   note: ""
   position: 1
 classification_type_00002: 
-  name: ddc
-  display_name: DDC
+  name: ndlc
+  display_name: NDLC
   id: 2
   note: ""
   position: 2
 classification_type_00003: 
-  name: ndc8
-  display_name: NDC8
+  name: ddc
+  display_name: DDC
   id: 3
   note: ""
   position: 3
 classification_type_00004: 
-  name: ndc10
-  display_name: NDC10
+  name: udc
+  display_name: UDC
   id: 4
   note: ""
   position: 4
+classification_type_00005: 
+  name: lcc
+  display_name: LCC
+  id: 5
+  note: ""
+  position: 5
+classification_type_00006: 
+  name: nlmc
+  display_name: NLMC
+  id: 6
+  note: ""
+  position: 6
