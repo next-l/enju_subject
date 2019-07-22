@@ -1,4 +1,4 @@
-class Subject < ActiveRecord::Base
+class Subject < ApplicationRecord
   belongs_to :manifestation, touch: true, optional: true
   belongs_to :subject_type
   belongs_to :subject_heading_type
