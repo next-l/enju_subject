@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_12_134553) do
+ActiveRecord::Schema.define(version: 2018_01_07_161410) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer "basket_id"
@@ -213,13 +213,13 @@ ActiveRecord::Schema.define(version: 2019_05_12_134553) do
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "position", default: 1, null: false
+    t.integer "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "classifications", force: :cascade do |t|
-    t.bigint "parent_id"
+    t.integer "parent_id"
     t.string "category", null: false
     t.text "note"
     t.integer "classification_type_id", null: false
@@ -938,7 +938,7 @@ ActiveRecord::Schema.define(version: 2019_05_12_134553) do
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "position", default: 1, null: false
+    t.integer "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -947,7 +947,7 @@ ActiveRecord::Schema.define(version: 2019_05_12_134553) do
     t.string "name", null: false
     t.text "display_name"
     t.text "note"
-    t.integer "position", default: 1, null: false
+    t.integer "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -955,7 +955,7 @@ ActiveRecord::Schema.define(version: 2019_05_12_134553) do
   create_table "subjects", force: :cascade do |t|
     t.integer "parent_id"
     t.integer "use_term_id"
-    t.string "term", null: false
+    t.string "term"
     t.text "term_transcription"
     t.integer "subject_type_id", null: false
     t.text "scope_note"
@@ -971,7 +971,6 @@ ActiveRecord::Schema.define(version: 2019_05_12_134553) do
     t.index ["manifestation_id"], name: "index_subjects_on_manifestation_id"
     t.index ["parent_id"], name: "index_subjects_on_parent_id"
     t.index ["required_role_id"], name: "index_subjects_on_required_role_id"
-    t.index ["subject_heading_type_id"], name: "index_subjects_on_subject_heading_type_id"
     t.index ["subject_type_id"], name: "index_subjects_on_subject_type_id"
     t.index ["term"], name: "index_subjects_on_term"
     t.index ["use_term_id"], name: "index_subjects_on_use_term_id"

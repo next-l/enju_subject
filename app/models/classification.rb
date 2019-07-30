@@ -18,7 +18,7 @@ end
 # Table name: classifications
 #
 #  id                     :integer          not null, primary key
-#  parent_id              :bigint
+#  parent_id              :integer
 #  category               :string           not null
 #  note                   :text
 #  classification_type_id :integer          not null
