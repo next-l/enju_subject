@@ -1007,16 +1007,15 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "subjects", force: :cascade do |t|
     t.bigint "parent_id"
     t.integer "use_term_id"
-    t.string "term"
+    t.string "term", null: false
     t.text "term_transcription"
     t.bigint "subject_type_id", null: false
     t.text "scope_note"
     t.text "note"
     t.bigint "required_role_id", default: 1, null: false
     t.integer "lock_version", default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "url"
     t.integer "manifestation_id"
     t.integer "subject_heading_type_id"
