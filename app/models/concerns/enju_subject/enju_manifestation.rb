@@ -3,7 +3,7 @@ module EnjuSubject
     extend ActiveSupport::Concern
 
     included do
-      has_many :manifestation_and_subjects, as: :resource, dependent: :destroy
+      has_many :manifestation_and_subjects, dependent: :destroy
       has_many :subjects, through: :manifestation_and_subjects
       has_many :classifications
       accepts_nested_attributes_for :subjects, allow_destroy: true, reject_if: :all_blank
