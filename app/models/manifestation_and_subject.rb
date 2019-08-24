@@ -1,6 +1,6 @@
 class ManifestationAndSubject < ApplicationRecord
-  belongs_to :manifestation
-  belongs_to :subject
+  belongs_to :manifestation, touch: true
+  belongs_to :subject, touch: true
 end
 
 # == Schema Information
