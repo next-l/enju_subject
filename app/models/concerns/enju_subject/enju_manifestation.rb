@@ -17,10 +17,10 @@ module EnjuSubject
 
       searchable do
         text :subject do
-          subjects.pluck(:term, :term_transaction).flatten.compact
+          subjects.pluck(:term, :term_transcription).flatten.compact
         end
         string :subject, multiple: true do
-          subjects.pluck(:term, :term_transaction).flatten.compact
+          subjects.pluck(:term, :term_transcription).flatten.compact
         end
         string :classification, multiple: true do
           classifications.map{|c| "#{c.classification_type.name}_#{c.category}"}
