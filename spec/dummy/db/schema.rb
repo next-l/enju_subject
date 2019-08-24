@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_18_075628) do
+ActiveRecord::Schema.define(version: 2019_08_23_161828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -550,6 +550,15 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "display_name_translations", default: {}, null: false
+  end
+
+  create_table "manifestation_and_subjects", force: :cascade do |t|
+    t.bigint "manifestation_id", null: false
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manifestation_id"], name: "index_manifestation_and_subjects_on_manifestation_id"
+    t.index ["subject_id"], name: "index_manifestation_and_subjects_on_subject_id"
   end
 
   create_table "manifestation_relationship_types", force: :cascade do |t|
@@ -1139,7 +1148,6 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
-    t.datetime "deleted_at"
     t.datetime "expired_at"
     t.integer "failed_attempts", default: 0
     t.string "unlock_token"
@@ -1189,6 +1197,8 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
   add_foreign_key "items", "manifestations"
   add_foreign_key "libraries", "library_groups"
   add_foreign_key "library_groups", "users"
+  add_foreign_key "manifestation_and_subjects", "manifestations"
+  add_foreign_key "manifestation_and_subjects", "subjects"
   add_foreign_key "periodical_and_manifestations", "manifestations"
   add_foreign_key "periodical_and_manifestations", "periodicals"
   add_foreign_key "periodicals", "frequencies"

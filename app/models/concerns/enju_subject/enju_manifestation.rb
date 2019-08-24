@@ -3,7 +3,8 @@ module EnjuSubject
     extend ActiveSupport::Concern
 
     included do
-      has_many :subjects
+      has_many :manifestation_and_subjects, as: :resource, dependent: :destroy
+      has_many :subjects, through: :manifestation_and_subjects
       has_many :classifications
       accepts_nested_attributes_for :subjects, allow_destroy: true, reject_if: :all_blank
       accepts_nested_attributes_for :classifications, allow_destroy: true, reject_if: :all_blank
@@ -16,10 +17,10 @@ module EnjuSubject
 
       searchable do
         text :subject do
-          subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact
+          subjects.pluck(:term, :term_transaction).flatten.compact
         end
         string :subject, multiple: true do
-          subjects.map{|s| [s.term, s.term_transcription]}.flatten.compact
+          subjects.pluck(:term, :term_transaction).flatten.compact
         end
         string :classification, multiple: true do
           classifications.map{|c| "#{c.classification_type.name}_#{c.category}"}
