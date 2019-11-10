@@ -13,10 +13,10 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-gem 'enju_leaf', github: 'next-l/enju_leaf', branch: '2.x'
 gem 'sassc-rails'
 gem 'paper_trail'
 gem 'paperclip-meta'
+gem 'rails', '~> 5.2'
 gem 'sprockets', '~> 3.7'
 group :test do
   gem 'rails-controller-testing'
