@@ -14,8 +14,6 @@ gemspec
 # To use debugger
 # gem 'debugger'
 gem 'sassc-rails'
-gem 'paper_trail'
-gem 'paperclip-meta'
 gem 'rails', '~> 5.2'
 gem 'sprockets', '~> 3.7'
 group :test do

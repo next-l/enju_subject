@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "enju_biblio", "~> 0.4.0.beta.2"
 
-  s.add_development_dependency "enju_leaf", "~> 2.0.0.beta.1"
+  s.add_development_dependency "enju_leaf", "~> 2.0.0.beta.2"
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.8"
   s.add_development_dependency "simplecov"
