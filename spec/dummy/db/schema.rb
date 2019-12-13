@@ -27,9 +27,30 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["librarian_id"], name: "index_accepts_on_librarian_id"
   end
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "agent_import_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.integer "agent_import_file_id"
     t.datetime "created_at", null: false
@@ -381,7 +402,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
 
   create_table "import_request_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.integer "import_request_id"
     t.datetime "created_at", null: false
@@ -442,17 +463,17 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "call_number"
-    t.string "item_identifier"
+    t.string "call_number", comment: "請求記号"
+    t.string "item_identifier", comment: "所蔵情報ID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "shelf_id", default: 1, null: false
-    t.boolean "include_supplements", default: false, null: false
-    t.text "note"
-    t.string "url"
-    t.integer "price"
+    t.integer "shelf_id", default: 1, null: false, comment: "書架ID"
+    t.boolean "include_supplements", default: false, null: false, comment: "付録の有無"
+    t.text "note", comment: "備考"
+    t.string "url", comment: "URL"
+    t.integer "price", comment: "価格"
     t.integer "lock_version", default: 0, null: false
-    t.integer "required_role_id", default: 1, null: false
+    t.integer "required_role_id", default: 1, null: false, comment: "参照に必要な権限ID"
     t.integer "required_score", default: 0, null: false
     t.datetime "acquired_at"
     t.integer "bookstore_id"
@@ -582,21 +603,20 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["parent_id"], name: "index_manifestation_relationships_on_parent_id"
   end
 
-  create_table "manifestations", force: :cascade do |t|
-    t.text "original_title", null: false
+  create_table "manifestations", comment: "書誌", force: :cascade do |t|
+    t.text "original_title", null: false, comment: "タイトル"
     t.text "title_alternative"
     t.text "title_transcription"
-    t.string "classification_number"
     t.string "manifestation_identifier"
-    t.datetime "date_of_publication"
     t.datetime "date_copyrighted"
+    t.datetime "date_of_publication", comment: "出版日"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "access_address"
+    t.string "access_address", comment: "アクセスアドレス"
     t.integer "language_id", default: 1, null: false
     t.integer "carrier_type_id", default: 1, null: false
-    t.integer "start_page"
-    t.integer "end_page"
+    t.integer "start_page", comment: "開始ページ"
+    t.integer "end_page", comment: "終了ページ"
     t.integer "height"
     t.integer "width"
     t.integer "depth"
@@ -606,7 +626,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.string "issue_number_string"
     t.string "serial_number_string"
     t.integer "edition"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.boolean "repository_content", default: false, null: false
     t.integer "lock_version", default: 0, null: false
     t.integer "required_role_id", default: 1, null: false
@@ -850,7 +870,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
 
   create_table "resource_export_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.integer "resource_export_file_id"
     t.datetime "created_at", null: false
@@ -871,7 +891,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
 
   create_table "resource_import_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.integer "resource_import_file_id"
     t.datetime "created_at", null: false
@@ -1181,6 +1201,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["librarian_id"], name: "index_withdraws_on_librarian_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agent_import_files", "users"
   add_foreign_key "doi_records", "manifestations"
   add_foreign_key "donates", "agents"
