@@ -1,9 +1,9 @@
 class CreateClassifications < ActiveRecord::Migration[5.2]
   def change
-    create_table :classifications do |t|
+    create_table :classifications, comment: '分類' do |t|
       t.integer :parent_id
       t.string :category, null: false
-      t.text :note
+      t.text :note, comment: '備考'
       t.integer :classification_type_id, null: false
 
       t.timestamps

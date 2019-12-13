@@ -212,10 +212,10 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "classifications", force: :cascade do |t|
+  create_table "classifications", comment: "分類", force: :cascade do |t|
     t.integer "parent_id"
     t.string "category", null: false
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "classification_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1004,7 +1004,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subjects", force: :cascade do |t|
+  create_table "subjects", comment: "件名", force: :cascade do |t|
     t.bigint "parent_id"
     t.integer "use_term_id"
     t.string "term", null: false

@@ -1,6 +1,6 @@
 class CreateSubjects < ActiveRecord::Migration[5.2]
   def change
-    create_table :subjects do |t|
+    create_table :subjects, comment: '件名' do |t|
       t.references :parent, index: true
       t.integer :use_term_id
       t.string :term, null: false
