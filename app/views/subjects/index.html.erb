@@ -35,11 +35,13 @@
     <%= paginate(@subjects) -%>
   </div>
 
-  <div id="submenu" class="ui-corner-all ui-widget-content">
-    <ul>
-      <%- if policy(Subject).create? -%>
-        <li><%= link_to t('page.new', model: t('activerecord.models.subject')), new_subject_path -%></li>
-      <%- end -%>
-    </ul>
+  <div class="col">
+    <div class="card card-body">
+      <ul>
+        <%- if policy(Subject).create? -%>
+          <li><%= link_to t('page.new', model: t('activerecord.models.subject')), new_subject_path -%></li>
+        <%- end -%>
+      </ul>
+    </div>
   </div>
 </div>
