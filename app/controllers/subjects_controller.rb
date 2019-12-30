@@ -53,7 +53,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.json
   def show
     if params[:term]
-      subject = Subject.where(term: params[:term]).first
+      subject = Subject.find_by(term: params[:term])
       redirected_to subject
       return
     end
