@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_115451) do
+ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "accepts", id: :serial, force: :cascade do |t|
@@ -296,6 +297,15 @@ ActiveRecord::Schema.define(version: 2019_07_13_115451) do
     t.integer "create_type_id"
     t.index ["agent_id"], name: "index_creates_on_agent_id"
     t.index ["work_id"], name: "index_creates_on_work_id"
+  end
+
+  create_table "custom_properties", force: :cascade do |t|
+    t.integer "resource_id", null: false
+    t.string "resource_type", null: false
+    t.text "label", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "donates", id: :serial, force: :cascade do |t|
