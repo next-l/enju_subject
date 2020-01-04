@@ -8,17 +8,15 @@ end
 #
 # Table name: manifestations
 #
-#  id                              :integer          not null, primary key
+#  id                              :bigint           not null, primary key
 #  original_title                  :text             not null
 #  title_alternative               :text
 #  title_transcription             :text
-#  classification_number           :string
 #  manifestation_identifier        :string
-#  date_of_publication             :datetime
 #  date_copyrighted                :datetime
-#  created_at                      :datetime
-#  updated_at                      :datetime
-#  deleted_at                      :datetime
+#  date_of_publication             :datetime
+#  created_at                      :datetime         not null
+#  updated_at                      :datetime         not null
 #  access_address                  :string
 #  language_id                     :integer          default(1), not null
 #  carrier_type_id                 :integer          default(1), not null
@@ -40,10 +38,6 @@ end
 #  required_score                  :integer          default(0), not null
 #  frequency_id                    :integer          default(1), not null
 #  subscription_master             :boolean          default(FALSE), not null
-#  attachment_file_name            :string
-#  attachment_content_type         :string
-#  attachment_file_size            :integer
-#  attachment_updated_at           :datetime
 #  title_alternative_transcription :text
 #  description                     :text
 #  abstract                        :text
@@ -59,7 +53,6 @@ end
 #  serial_number                   :integer
 #  content_type_id                 :integer          default(1)
 #  year_of_publication             :integer
-#  attachment_meta                 :text
 #  month_of_publication            :integer
 #  fulltext_content                :boolean
 #  doi                             :string
@@ -68,4 +61,5 @@ end
 #  publication_place               :text
 #  extent                          :text
 #  dimensions                      :text
+#  memo                            :text
 #

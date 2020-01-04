@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_08_23_161828) do
-=======
 ActiveRecord::Schema.define(version: 2019_12_19_122214) do
->>>>>>> bb444b2... include EnjuManifestation module in Manifestation class
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -310,7 +306,15 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.index ["work_id"], name: "index_creates_on_work_id"
   end
 
-<<<<<<< HEAD
+  create_table "custom_properties", force: :cascade do |t|
+    t.integer "resource_id", null: false
+    t.string "resource_type", null: false
+    t.text "label", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "doi_records", force: :cascade do |t|
     t.string "body", null: false
     t.string "display_body", null: false
@@ -328,22 +332,6 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-=======
-  create_table "custom_properties", force: :cascade do |t|
-    t.integer "resource_id", null: false
-    t.string "resource_type", null: false
-    t.text "label", null: false
-    t.text "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "donates", id: :serial, force: :cascade do |t|
-    t.integer "agent_id", null: false
-    t.integer "item_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
->>>>>>> bb444b2... include EnjuManifestation module in Manifestation class
     t.index ["agent_id"], name: "index_donates_on_agent_id"
     t.index ["item_id"], name: "index_donates_on_item_id"
   end
