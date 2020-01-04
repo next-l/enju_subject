@@ -107,7 +107,7 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1.json
   def update
     respond_to do |format|
-      if @subject.update_attributes(subject_params)
+      if @subject.update(subject_params)
         format.html { redirect_to @subject, notice: t('controller.successfully_updated', model: t('activerecord.models.subject')) }
         format.json { head :no_content }
       else

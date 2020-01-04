@@ -62,7 +62,7 @@ class SubjectHeadingTypesController < ApplicationController
     end
 
     respond_to do |format|
-      if @subject_heading_type.update_attributes(subject_heading_type_params)
+      if @subject_heading_type.update(subject_heading_type_params)
         format.html { redirect_to @subject_heading_type, notice:  t('controller.successfully_updated', model:  t('activerecord.models.subject_heading_type')) }
         format.json { head :no_content }
       else

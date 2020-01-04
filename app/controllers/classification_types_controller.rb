@@ -62,7 +62,7 @@ class ClassificationTypesController < ApplicationController
     end
 
     respond_to do |format|
-      if @classification_type.update_attributes(classification_type_params)
+      if @classification_type.update(classification_type_params)
         format.html { redirect_to @classification_type, notice:  t('controller.successfully_updated', model:  t('activerecord.models.classification_type')) }
         format.json { head :no_content }
       else

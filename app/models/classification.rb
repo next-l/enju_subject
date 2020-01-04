@@ -1,4 +1,4 @@
-class Classification < ActiveRecord::Base
+class Classification < ApplicationRecord
   belongs_to :classification_type
   belongs_to :manifestation, touch: true, optional: true
 

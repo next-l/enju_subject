@@ -1,4 +1,4 @@
-class SubjectType < ActiveRecord::Base
+class SubjectType < ApplicationRecord
   include MasterModel
   has_many :subjects
   validates :name, format: {with: /\A[0-9A-Za-z][0-9a-z_\-]*[0-9a-z]\Z/}
