@@ -3,7 +3,5 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, #, :validatable
     :lockable, lock_strategy: :none, unlock_strategy: :none
 
-  include EnjuSeed::EnjuUser
+  include EnjuLibrary::EnjuUser
 end
-
-Manifestation.include(EnjuSubject::EnjuManifestation)
