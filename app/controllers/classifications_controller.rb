@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 class ClassificationsController < ApplicationController
   before_action :set_classification, only: [:show, :edit, :update, :destroy]
   before_action :check_policy, only: [:index, :new, :create]

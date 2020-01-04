@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
   before_action :check_policy, only: [:index, :new, :create]
@@ -53,7 +52,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.json
   def show
     if params[:term]
-      subject = Subject.where(term: params[:term]).first
+      subject = Subject.find_by(term: params[:term])
       redirected_to subject
       return
     end
