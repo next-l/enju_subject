@@ -20,6 +20,7 @@ manifestation_00003:
 
   id: 3
   created_at: 2007-11-19 16:59:02.618359 +09:00
+<<<<<<< HEAD
 
 # == Schema Information
 #
@@ -80,3 +81,5 @@ manifestation_00003:
 #  dimensions                      :text
 #  memo                            :text
 #
+=======
+>>>>>>> parent of 12f0ffc... include EnjuManifestation module in Manifestation class
