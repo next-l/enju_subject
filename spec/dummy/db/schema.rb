@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_23_161828) do
+ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
 
   create_table "agent_import_files", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.datetime "executed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "agent_relationship_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "agent_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.integer "country_id", default: 1, null: false
     t.integer "agent_type_id", default: 1, null: false
     t.integer "lock_version", default: 0, null: false
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "required_role_id", default: 1, null: false
     t.integer "required_score", default: 0, null: false
     t.text "email"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "carrier_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "content_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -277,7 +277,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.string "alpha_2"
     t.string "alpha_3"
     t.string "numeric_3"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.index ["alpha_2"], name: "index_countries_on_alpha_2"
     t.index ["alpha_3"], name: "index_countries_on_alpha_3"
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "create_types", force: :cascade do |t|
     t.string "name"
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -306,9 +306,18 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["work_id"], name: "index_creates_on_work_id"
   end
 
-  create_table "doi_records", force: :cascade do |t|
-    t.string "body", null: false
-    t.string "display_body", null: false
+  create_table "custom_properties", force: :cascade do |t|
+    t.integer "resource_id", null: false
+    t.string "resource_type", null: false
+    t.text "label", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doi_records", comment: "DOI", force: :cascade do |t|
+    t.string "body", null: false, comment: "正規化名"
+    t.string "display_body", null: false, comment: "表示名"
     t.string "source"
     t.jsonb "response", default: {}, null: false
     t.bigint "manifestation_id", null: false
@@ -349,7 +358,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "form_of_works", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -359,7 +368,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "frequencies", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -369,7 +378,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "identifier_types", force: :cascade do |t|
     t.string "name"
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -498,7 +507,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.string "iso_639_1"
     t.string "iso_639_2"
     t.string "iso_639_3"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.jsonb "display_name_translations", default: {}, null: false
     t.index ["iso_639_1"], name: "index_languages_on_iso_639_1"
@@ -563,10 +572,10 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["user_id"], name: "index_library_groups_on_user_id"
   end
 
-  create_table "licenses", force: :cascade do |t|
+  create_table "licenses", comment: "ライセンス", force: :cascade do |t|
     t.string "name", null: false
     t.string "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -585,7 +594,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "manifestation_relationship_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -667,7 +676,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "medium_of_performances", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -787,7 +796,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   create_table "produce_types", force: :cascade do |t|
     t.string "name"
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -805,32 +814,27 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["manifestation_id"], name: "index_produces_on_manifestation_id"
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "user_group_id"
-    t.bigint "library_id"
-    t.string "locale"
-    t.string "user_number"
-    t.text "full_name"
-    t.text "note"
-    t.text "keyword_list"
-    t.bigint "required_role_id"
+  create_table "profiles", comment: "プロフィール", force: :cascade do |t|
+    t.string "locale", comment: "ロケール"
+    t.string "user_number", comment: "利用者番号"
+    t.text "full_name", comment: "氏名"
+    t.text "note", comment: "備考"
+    t.text "keyword_list", comment: "キーワードリスト"
+    t.bigint "required_role_id", comment: "参照に必要な権限"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "expired_at"
     t.text "full_name_transcription"
     t.datetime "date_of_birth"
     t.jsonb "full_name_translations", default: {}, null: false
-    t.index ["library_id"], name: "index_profiles_on_library_id"
-    t.index ["user_group_id"], name: "index_profiles_on_user_group_id"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["required_role_id"], name: "index_profiles_on_required_role_id"
     t.index ["user_number"], name: "index_profiles_on_user_number", unique: true
   end
 
   create_table "realize_types", force: :cascade do |t|
     t.string "name"
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -904,7 +908,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
 
   create_table "resource_import_files", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.datetime "executed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -929,14 +933,13 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.index ["resource_import_file_id"], name: "index_resource_import_results_on_resource_import_file_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", comment: "権限", force: :cascade do |t|
     t.string "name", null: false
     t.string "display_name"
-    t.text "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "score", default: 0, null: false
+    t.text "note", comment: "備考"
     t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.jsonb "display_name_translations", default: {}, null: false
   end
 
@@ -1172,7 +1175,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.datetime "confirmed_at"
-    t.bigint "profile_id"
+    t.bigint "profile_id", comment: "プロフィールID"
     t.index ["email"], name: "index_users_on_email"
     t.index ["profile_id"], name: "index_users_on_profile_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -1222,7 +1225,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_161828) do
   add_foreign_key "periodical_and_manifestations", "manifestations"
   add_foreign_key "periodical_and_manifestations", "periodicals"
   add_foreign_key "periodicals", "frequencies"
-  add_foreign_key "profiles", "users"
+  add_foreign_key "profiles", "roles", column: "required_role_id"
   add_foreign_key "resource_import_files", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "user_export_files", "users"
