@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "baskets", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.text "name", null: false
     t.string "zip_code"
     t.text "address"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.string "telephone_number"
     t.string "fax_number"
     t.string "url"
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
   create_table "budget_types", force: :cascade do |t|
     t.string "name"
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -526,7 +526,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.string "telephone_number_1"
     t.string "telephone_number_2"
     t.string "fax_number"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "call_number_rows", default: 1, null: false
     t.string "call_number_delimiter", default: "|", null: false
     t.bigint "library_group_id", null: false
@@ -550,7 +550,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.string "short_name", null: false
     t.text "my_networks"
     t.text "old_login_banner"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "country_id"
     t.integer "position"
     t.datetime "created_at", null: false
@@ -568,6 +568,8 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.jsonb "display_name_translations", default: {}, null: false
     t.jsonb "login_banner_translations", default: {}, null: false
     t.jsonb "footer_banner_translations", default: {}, null: false
+    t.string "email"
+    t.index ["email"], name: "index_library_groups_on_email"
     t.index ["short_name"], name: "index_library_groups_on_short_name"
     t.index ["user_id"], name: "index_library_groups_on_user_id"
   end
@@ -827,7 +829,11 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.text "full_name_transcription"
     t.datetime "date_of_birth"
     t.jsonb "full_name_translations", default: {}, null: false
+    t.bigint "user_group_id"
+    t.bigint "library_id"
+    t.index ["library_id"], name: "index_profiles_on_library_id"
     t.index ["required_role_id"], name: "index_profiles_on_required_role_id"
+    t.index ["user_group_id"], name: "index_profiles_on_user_group_id"
     t.index ["user_number"], name: "index_profiles_on_user_number", unique: true
   end
 
@@ -855,7 +861,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
   create_table "request_status_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -865,7 +871,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
   create_table "request_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -950,7 +956,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.text "http_method", null: false
     t.text "query_param", null: false
     t.text "additional_param"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -998,7 +1004,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "shelves", force: :cascade do |t|
     t.string "name", null: false
-    t.text "note"
+    t.text "note", comment: "備考"
     t.bigint "library_id", null: false
     t.integer "items_count", default: 0, null: false
     t.integer "position"
@@ -1063,7 +1069,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.text "title", null: false
-    t.text "note"
+    t.text "note", comment: "備考"
     t.bigint "user_id"
     t.bigint "order_list_id"
     t.integer "subscribes_count", default: 0, null: false
@@ -1075,7 +1081,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "user_export_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.bigint "user_export_file_id"
     t.datetime "created_at", null: false
@@ -1097,7 +1103,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "user_groups", force: :cascade do |t|
     t.string "name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1117,7 +1123,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "user_import_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.bigint "user_import_file_id"
     t.datetime "created_at", null: false
@@ -1130,7 +1136,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
 
   create_table "user_import_files", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.datetime "executed_at"
     t.string "user_import_fingerprint"
     t.string "edit_mode"
@@ -1225,7 +1231,9 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
   add_foreign_key "periodical_and_manifestations", "manifestations"
   add_foreign_key "periodical_and_manifestations", "periodicals"
   add_foreign_key "periodicals", "frequencies"
+  add_foreign_key "profiles", "libraries"
   add_foreign_key "profiles", "roles", column: "required_role_id"
+  add_foreign_key "profiles", "user_groups"
   add_foreign_key "resource_import_files", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "user_export_files", "users"
