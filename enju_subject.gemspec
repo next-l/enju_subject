@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sunspot_solr", "~> 2.5"
   s.add_development_dependency "coveralls", '~> 0.8.23'
   s.add_development_dependency "annotate"
+  s.add_development_dependency "brakeman"
 end
