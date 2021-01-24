@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Subject and classification management for Next-L Enju"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"] - Dir["spec/dummy/solr/**/*"] - Dir["spec/dummy/tmp/**/*"]
+  s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/{log,private,solr,tmp,node_modules}/**/*"] - Dir["spec/dummy/public/packs*/**/*"]
 
   s.add_dependency "enju_biblio", "~> 0.5.0.beta.1"
 
