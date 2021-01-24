@@ -4,9 +4,7 @@ carrier_type_00001:
   display_name_translations: {"en": "Volume", "ja": "Volume"}
   updated_at: 2007-11-20 16:04:29.853828 +09:00
   id: 1
-  note: !binary |
-    5pys44Gn44GZ44CC
-
+  note:
   created_at: 2007-11-20 15:47:03.641530 +09:00
   position: 1
 carrier_type_00002: 
@@ -30,9 +28,7 @@ carrier_type_00004:
   display_name_translations: {"en": "online_resource", "ja": "online_resource"}
   updated_at: 2007-12-24 01:30:50.637433 +09:00
   id: 4
-  note: !binary |
-    44Kz44Oz44OU44Ol44O844K/44Gu44OV44Kh44Kk44Or44Gn44GZ44CC
-
+  note:
   created_at: 2007-12-24 01:30:50.637433 +09:00
   position: 4
 
