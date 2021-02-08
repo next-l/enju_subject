@@ -28,7 +28,7 @@ class SubjectsController < ApplicationController
       order_by sort[:sort_by], sort[:order]
     end
 
-    role = current_user.try(:role) || Role.default_role
+    role = current_user.try(:role) || Role.default
     search.build do
       with(:required_role_id).less_than_or_equal_to role.id
     end
