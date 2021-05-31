@@ -1,8 +1,16 @@
 <div class="nested-fields">
   <div class="form-row">
-    <%= f.select(:subject_heading_type_id, @subject_heading_types.collect{|s| [s.display_name, s.id]}, {}, {class: 'form-control col-sm-4'}) %>
-    <%= f.select(:subject_type_id, @subject_types.collect{|s| [s.display_name, s.id]}, {}, {class: 'form-control col-sm-4'}) %>
-    <%= f.text_field :term, class: 'form-control col-sm-4' %>
+    <div class="form-group col-md-3">
+      <%= f.select(:subject_heading_type_id, @subject_heading_types.collect{|s| [s.display_name, s.id]}, {}, {class: 'form-control'}) %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= f.select(:subject_type_id, @subject_types.collect{|s| [s.display_name, s.id]}, {}, {class: 'form-control'}) %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= f.text_field :term, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= link_to_remove_association t('page.remove'), f, data: {confirm: t('page.are_you_sure')} %>
+    </div>
   </div>
-  <%= link_to_remove_association t('page.remove'), f, data: {confirm: t('page.are_you_sure')} %>
 </div>
